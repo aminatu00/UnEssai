@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('media_path')->nullable();
-            
+        Schema::table('demande_mentorats', function (Blueprint $table) {
+            $table->boolean('valide')->default(false);
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('demande_mentorats', function (Blueprint $table) {
             //
         });
     }

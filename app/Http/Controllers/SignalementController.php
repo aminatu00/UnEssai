@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Signalement;
 use Illuminate\Http\Request;
 use App\Notifications\QuestionReportedNotification;
+use App\Notifications\AnswerReportedNotification;
+
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +40,26 @@ class SignalementController extends Controller
     }
     
 
+
+    public function reportAns($id)
+    {
+        $answer = Answer::find($id);
+        if (!$answer) {
+            return redirect()->back()->with('error', 'Question not found.');
+        }
+    
+      
+        // Incrémentez le compteur de signalements dans la base de données
+        DB::table('answers')->where('id', $answer->id)->increment('reports_count');
+    
+        // Envoyez la notification à l'administrateur
+        $admin = User::where('user_type', 'admin')->first();
+        $admin->notify(new AnswerReportedNotification($answer));
+    
+        // Redirigez l'utilisateur vers la page précédente ou une autre page appropriée
+        return redirect()->back()->with('success', 'Le signalement a été envoyé avec succès, merci de votre bienveillance.');
+    }
+    
 
 
    

@@ -28,13 +28,50 @@ class RegistrationController extends Controller
         $domains = [
             'informatique' => ['java', 'php', 'html', 'css', 'javascript'],
             'reseaux' => ['reseaux sans fil', 'reseaux avec fil'],
-            'chimie' => ['chimie organique', 'chimie analytique'],
-            'physique' => ['physique quantique', 'physique classique'],
-            'math' => ['algèbre', 'analyse'],
+           
         ];
 
-        return view('admin.ajoutMentor', compact('domains'));
+        $sub_expertises = [
+            'licence 2' => [
+                'informatique' => ['module1', 'module2', 'module3'],
+                'reseaux' => ['module4', 'module5']
+            ],
+            'licence 3' => [
+                'informatique' => ['module6', 'module7', 'module8'],
+                'reseaux' => ['module9', 'module10']
+            ],
+            'master 1' => [
+                'informatique' => ['module11', 'module12', 'module13'],
+                'reseaux' => ['module14', 'module15']
+            ],
+            'master 2' => [
+                'informatique' => ['module16', 'module17', 'module18'],
+                'reseaux' => ['module19', 'module20']
+            ],
+            // Ajoutez d'autres niveaux et leurs relations avec les domaines et les modules
+        ];
+        
+
+        return view('admin.ajoutMentor', compact('domains','sub_expertises'));
     }
+
+//     public function showMentorForm()
+// {
+//     $expertisesParNiveau = [
+//         'licence 2' => [
+//             'informatique' => ['java', 'php', 'html', 'css', 'javascript'],
+//             'reseaux' => ['reseaux sans fil', 'reseaux avec fil']
+//         ],
+//         'licence 3' => [
+//             'informatique' => ['python', 'ruby', 'mysql', 'mongodb', 'angular'],
+//             'reseaux' => ['cisco', 'routing', 'switching']
+//         ],
+//         // Ajoutez d'autres niveaux et leurs relations avec les domaines et les sous-expertises
+//     ];
+
+//     return view('admin.ajoutMentor', compact('expertisesParNiveau'));
+// }
+
 
    
 

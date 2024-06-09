@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Answer;
 use App\Models\User;
 use App\Models\Question;
 use App\Models\Mentorat;
@@ -27,6 +28,20 @@ class AdminController extends Controller
 
     // Déclencher la notification pour le propriétaire de la question
     $question->user->notify(new QuestionDeletedNotification($question));    }
+    return redirect()->back()->with('success', 'Question supprimée avec succès.');
+}
+
+
+
+public function deleteReportedAnswer($id)
+{
+    $answer = Answer::find($id);
+    if ($answer) {
+        $answer->delete();
+
+
+    // Déclencher la notification pour le propriétaire de la question
+    $answer->user->notify(new QuestionDeletedNotification($answer));    }
     return redirect()->back()->with('success', 'Question supprimée avec succès.');
 }
 
@@ -107,9 +122,13 @@ return view('admin.vueStatiqueAdmin', [
          if (!$question) {
              return redirect()->route('reported.admin')->with('error', 'Question not found or not reported.');
          }
+         $answer = Question::where('id', $id)->where('reports_count', '>', 0)->first();
+         if (!$answer) {
+             return redirect()->route('reported.admin')->with('error', 'Question not found or not reported.');
+         }
      
          // Rediriger vers la page de gestion des signalements avec la question spécifique
-         return view('admin.voirQuestionSignale', compact('question'));
+         return view('admin.voirQuestionSignale', compact('question','answer'));
      }
      
 

@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\DemandeMentorat;
 use App\Models\Question;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MentorRequestNotification;
 
 class StudentController extends Controller
 {
@@ -32,22 +36,38 @@ class StudentController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'niveau' => 'nullable|string',
-            'interests' => ['nullable', 'array'],
-            'interests.*' => ['string'],
+            'interests' => ['nullable', 'array'], // Le champ 'interests' peut être null ou un tableau
+            'interests.*' => ['string'], // Chaque élément du tableau 'interests' doit être une chaîne de caractères
         ]);
-// Convertir les intérêts en JSON
-$interestsJson = json_encode($data['interests']);
+    
+        // Convertir les intérêts en JSON
+        $interestsJson = json_encode($data['interests']);
+    
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'user_type' => 'student',
             'niveau' => $data['niveau'],
-              'interests' => $interestsJson,
+            'interests' => $interestsJson,
         ]);
-
+    
         return redirect()->route('listeUser.index')->with('success', 'Inscription étudiant réussie.');
     }
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

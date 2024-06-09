@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="col-md-6">
+<div class="col-md-6 text-white">
     <div class="row">
         <form method="POST" action="{{ route('register.student') }}">
             @csrf
@@ -34,13 +34,17 @@
             </div>
             <div class="form-group">
     <label for="interests">Intérêts</label>
-    <select class="form-control" id="interests" name="interests[]" multiple required>
-        <option value="informatique">Informatique</option>
-        <option value="reseaux">Réseaux</option>
-        <option value="chimie">Chimie</option>
-        <option value="physique">Physique</option>
-        <option value="math">Math</option>
-    </select>
+    <div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="informatique" id="interests_informatique" name="interests[]">
+            <label class="form-check-label" for="interests_informatique">Informatique</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="reseaux" id="interests_reseaux" name="interests[]">
+            <label class="form-check-label" for="interests_reseaux">Réseaux</label>
+        </div>
+        <!-- Ajoutez d'autres cases à cocher si nécessaire -->
+    </div>
 </div>
 
             <button type="submit" class="btn btn-primary">S'inscrire</button>

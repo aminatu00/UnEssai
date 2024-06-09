@@ -14,7 +14,9 @@ class Answer extends Model
         'question_id', 
         'user_id',
         'likes',
-       // Ajoutez la colonne 'question_id' au tableau fillable
+        'is_accepted', // Ajouter cette ligne
+        'reports_count',
+
     ];
     
     public function question()

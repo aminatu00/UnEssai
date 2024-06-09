@@ -333,7 +333,7 @@
                 <div class="form-check">
                                     <input class="form-check-input" type="hidden" name="user_type" id="student" value="student" checked>
                                     <label class="form-check-label" for="student">
-                                        {{ __('Student') }}
+                                     
                                     </label>
                                 </div>
                 <div class="form-group">

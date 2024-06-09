@@ -36,9 +36,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="media" class="form-label text-white" style="background-color:#081b29">Ajouter une image </label>
-                    <input type="file" name="media" id="media" class="form-control text-white" style="background-color:#081b29" accept="image/*,video/*">
-                </div>
+    <label for="media" class="form-label text-white" style="background-color:#081b29">Ajouter un fichier</label>
+    <input type="file" name="media" id="media" class="form-control text-white" style="background-color:#081b29" accept="*/*">
+</div>
+
 
         </div>
         <div id="previewContainer" class="mb-3" style="display: none;">

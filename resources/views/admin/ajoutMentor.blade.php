@@ -1,8 +1,17 @@
 @extends('layouts.template')
 @section('content')
 
+<div class="col-md-6 text-white">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-<div class="col-md-6">
     <div class="row">
         <form method="POST" action="{{ route('register.mentor') }}">
             @csrf
@@ -25,7 +34,7 @@
             <div class="form-group">
                 <label for="niveau">Niveau</label>
                 <select class="form-control" id="niveau" name="niveau" required>
-                    <option value="licence 1">Licence 1</option>
+                 
                     <option value="licence 2">Licence 2</option>
                     <option value="licence 3">Licence 3</option>
                     <option value="master 1">Master 1</option>
@@ -41,36 +50,61 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="sub_expertises">Sous-expertises</label>
+                <label for="sub_expertises">Modules</label>
                 <div id="sub_expertises-container"></div>
             </div>
             <button type="submit" class="btn btn-primary">S'inscrire</button>
         </form>
     </div>
 </div>
+
 <script>
+    document.getElementById('niveau').addEventListener('change', function() {
+        updateModules();
+    });
+
     document.getElementById('expertise').addEventListener('change', function() {
-        let selectedDomaines = Array.from(this.selectedOptions).map(option => option.value);
+        updateModules();
+    });
+
+    function updateModules() {
+        console.log("Update Modules Function Called"); // Vérifions si la fonction est appelée
+
+        let selectedNiveau = document.getElementById('niveau').value;
+        let selectedDomaines = Array.from(document.getElementById('expertise').selectedOptions).map(option => option.value);
+        console.log("Selected Niveau:", selectedNiveau); // Vérifions le niveau sélectionné
+        console.log("Selected Domaines:", selectedDomaines); // Vérifions les domaines sélectionnés
+
         let container = document.getElementById('sub_expertises-container');
         container.innerHTML = '';
 
-        // const domains = @json($domains);
-        const domains = <?php echo json_encode($domains); ?>;
+        const modules = <?php echo json_encode($sub_expertises); ?>;
+        console.log("Modules:", modules); // Vérifions les modules disponibles
+
         selectedDomaines.forEach(domaine => {
-            if (domains[domaine]) {
+            console.log("Domaine:", domaine); // Vérifions chaque domaine sélectionné
+            if (modules[selectedNiveau] && modules[selectedNiveau][domaine]) {
+                console.log("Modules Found for Domaine", domaine); // Vérifions si des modules sont disponibles pour ce domaine
                 let domainDiv = document.createElement('div');
                 domainDiv.className = 'form-group';
                 domainDiv.innerHTML = `<label>${domaine.charAt(0).toUpperCase() + domaine.slice(1)}</label>`;
-                domains[domaine].forEach(subExpertise => {
-                    domainDiv.innerHTML += `
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="sub_expertises[]" value="${subExpertise}" id="sub_expertise_${subExpertise}">
-                            <label class="form-check-label" for="sub_expertise_${subExpertise}">${subExpertise}</label>
-                        </div>`;
-                });
+                modules[selectedNiveau][domaine].forEach(module => {
+    console.log("Module:", module); // Vérifions chaque module disponible
+    domainDiv.innerHTML += `
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="sub_expertises[]" value="${module}" id="module_${module}">
+            <label class="form-check-label" for="module_${module}">${module}</label>
+        </div>`;
+});
+
                 container.appendChild(domainDiv);
             }
         });
-    });
+    }
+
+    // Appel initial pour afficher les modules basés sur les valeurs initiales
+    updateModules();
 </script>
+
+
 @endsection

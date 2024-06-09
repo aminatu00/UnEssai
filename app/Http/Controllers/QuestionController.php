@@ -166,8 +166,9 @@ class QuestionController extends Controller
             'title' => 'required',
             'content' => 'required',
             'categorie' => 'required|exists:categories,id', // Assurez-vous que l'ID de la catégorie existe dans la table des catégories
-            'media' => 'nullable|file|mimes:jpeg,png,mp4|max:10240', // Taille maximale : 10 Mo
-        ]);
+            'media' => 'nullable|file|mimetypes:image/jpeg,image/png,image/gif,video/mp4,application/pdf|max:10240', // Validation pour les images et les vidéos
+            'file' => 'nullable|filemimetypes:application/pdf|max:10240', // Validation pour les fichiers
+                    ]);
 
       
     
@@ -197,31 +198,29 @@ class QuestionController extends Controller
             }
         }
 
-        
-    // Vérification si un fichier média a été téléchargé
-    if ($request->hasFile('media')) {
-        // Téléchargement du fichier
-        $mediaPath = $request->file('media')->store('public/media');
-        // dd($mediaPath);
+   // Vérification si un fichier média a été téléchargé
+if ($request->hasFile('media')) {
+    // Téléchargement du fichier
+    $mediaPath = $request->file('media')->store('public/media');
 
-        // Enregistrement du chemin du fichier dans la base de données
-        $question = Question::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => auth()->id(),
-            'category_id' => $request->categorie,
-            'media_path' => $mediaPath,
-        ]);
-    } else {
-        // Création de la question sans fichier média
-        $question = Question::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => auth()->id(),
-            'category_id' => $request->categorie,
-        ]);
-    }
-    
+    // Enregistrement du chemin du fichier dans la base de données
+    $question = Question::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'user_id' => auth()->id(),
+        'category_id' => $request->categorie,
+        'media_path' => $mediaPath,
+    ]);
+}  else {
+    // Création de la question sans fichier média
+    $question = Question::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'user_id' => auth()->id(),
+        'category_id' => $request->categorie,
+    ]);
+}
+
         
         // Redirigez l'utilisateur vers la page des questions avec un message de succès
         return redirect()->route('question.index')->with('success', 'Question ajoutée avec succès.');

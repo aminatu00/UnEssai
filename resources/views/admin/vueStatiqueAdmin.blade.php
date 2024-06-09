@@ -4,7 +4,25 @@
 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                           <!-- Afficher les messages d'erreur -->
+    @if ($errors->any())
+    <div class="alert alert-danger auto-dismiss">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <!-- Afficher les messages de succès -->
+    @if (session('success'))
+    <div class="alert alert-success auto-dismiss">
+        {{ session('success') }}
+    </div>
+    @endif      
                     </div>
+                    <
+                    
 
                    <!-- Content Row -->
 <div class="row">

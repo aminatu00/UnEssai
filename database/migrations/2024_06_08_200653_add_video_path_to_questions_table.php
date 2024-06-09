@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->string('media_path')->nullable();
-            
+            $table->string('video_path')->nullable();
+$table->string('file_path')->nullable();
+            //
         });
     }
 

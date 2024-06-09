@@ -86,7 +86,7 @@
 
     <!-- Nav Item - Manage Requests -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('mentor.requests.index') }}">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Gérer Demande</span>
         </a>

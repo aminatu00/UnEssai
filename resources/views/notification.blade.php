@@ -8,9 +8,15 @@
             <ul>
                 @foreach($notifications as $notification)
                 <li>
+                    @if(isset($notification->data['mentor_request_id']))
+                    <a href="{{ route('mentor.request.show', $notification->data['mentor_request_id']) }}">
+                        {{ $notification->data['message'] ?? 'Notification sans message' }}
+                    </a>
+                    @else
                     <a href="{{ route('admin.notification.show', $notification->data['question_id']) }}">
                         {{ $notification->data['message'] ?? 'Notification sans message' }}
                     </a>
+                    @endif
                 </li>
                 @endforeach
             </ul>

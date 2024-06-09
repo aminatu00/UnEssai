@@ -36,7 +36,7 @@ class QuestionReportedNotification extends Notification
     return [
         'question_id' => $this->question->id,
         'title' => $this->question->title,
-        'message' => 'Vous avez reçu un signalement pour une question. Cliquez pour voir la question.',
+        'message' => 'Vous avez recu un nouveau signalement',
         'link' => route('admin.notification.show', $this->question->id)
     ];
 }

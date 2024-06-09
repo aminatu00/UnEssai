@@ -24,18 +24,22 @@ class MentorController extends Controller
 
 
     public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'niveau' => 'nullable|string',
-            'expertise' => 'required|array', // L'expertise est requise pour les mentors
-            'expertise.*' => 'string',
-            'sub_expertises' => 'nullable|array', // Les sous-expertises sont facultatives
-            'sub_expertises.*' => 'string',
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'niveau' => 'nullable|string',
+        'expertise' => 'required|array', // L'expertise est requise pour les mentors
+        'expertise.*' => 'string',
+        'sub_expertises' => 'nullable|array', // Les sous-expertises sont facultatives
+        'sub_expertises.*' => 'string',
+    ]);
 
+    // Ajouter une ligne pour déboguer les données reçues
+    // dd($request->all()); // <- décommenter cette ligne pour voir les données reçues
+    
+    try {
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -43,11 +47,16 @@ class MentorController extends Controller
             'user_type' => 'mentor', // Définir le type d'utilisateur comme mentor
             'niveau' => $data['niveau'],
             'expertise' => json_encode($data['expertise']), // Convertir en JSON
-    'sub_expertises' => json_encode($data['sub_expertises']), // Convertir en JSON
+            'sub_expertises' => json_encode($data['sub_expertises']), // Convertir en JSON
         ]);
 
         return redirect()->route('listeUser.index')->with('success', 'Inscription mentor réussie.');
+    } catch (\Exception $e) {
+        // En cas d'erreur, rediriger avec un message d'erreur
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+}
+
 
     
 

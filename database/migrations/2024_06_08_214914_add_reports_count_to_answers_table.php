@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('media_path')->nullable();
-            
+        Schema::table('answers', function (Blueprint $table) {
+            $table->integer('reports_count')->default(0);
+
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('answers', function (Blueprint $table) {
             //
         });
     }

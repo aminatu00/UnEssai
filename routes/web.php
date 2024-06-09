@@ -89,6 +89,8 @@ Route::post('/questions/{question}/like', [QuestionController::class, 'like'])->
     Route::put('/answers/{answer}', [AnswerController::class, 'update'])->name('answers.update');
     //edition reponse
     Route::get('/answers/{answer}/edit', [AnswerController::class, 'edit'])->name('answers.edit');
+    //route pour dire qu'une reponse a satisfaite a la question
+    Route::match(['post', 'put'], '/answers/{answer}/accept', [AnswerController::class, 'acceptAnswer'])->name('answers.accept');
     //liste des etidiants dans le systeme
     Route::get('/listeUser', [UserController::class, 'index'])->name('listeUser.index');
     //edition des utilisateur
@@ -205,7 +207,8 @@ Route::get('/mentors/{id}', [UserController::class, 'show'])->name('mentors.show
 
 
 //route pour signalement 
-Route::post('/questions/{id}/report', [SignalementController::class, 'report'])->name('questions.report');
+Route::post('/questiones/{id}/report', [SignalementController::class, 'report'])->name('questions.report');
+Route::post('/questions/{id}/report', [SignalementController::class, 'reportAns'])->name('answers.report');
 
 Route::get('/admin/reported-questions', [AdminController::class, 'manageReportedQuestions'])->name('reported.admin');
 
@@ -230,6 +233,7 @@ Route::get('/admin/reported-questions/{id}', [AdminController::class, 'showRepor
 
 
 Route::delete('/admin/reported-questions/{id}', [AdminController::class, 'deleteReportedQuestion'])->name('reported.questions.delete');
+Route::delete('/admine/reported-questions/{id}', [AdminController::class, 'deleteReportedAnswer'])->name('reported.answers.delete');
 
 // Route::post('/signaler/contenue/{question_id}', [SignalementController::class, 'create'])->name('reports.create');
 
@@ -243,8 +247,12 @@ Route::get('Unequestions/{question}', [QuestionController::class, 'showAdmin'])-
 Route::delete('Unequestions/{question}', [QuestionController::class, 'destroyAdmin'])->name('questionAdmin.destroy');
 Route::delete('Uneanswers/{answer}', [AnswerController::class, 'destroyAdmin'])->name('answerAdmin.destroy');
 
-
-
+//pour le mentorat
+Route::post('/mentor-request', [DemandeMentoratController::class, 'submit'])->name('mentor.request.submit');
+Route::get('/mentor-request/{id}', [DemandeMentoratController::class, 'show'])->name('mentor.request.show');
+Route::get('/mentor-requests', [DemandeMentoratController::class, 'index'])->name('mentor.requests.index');
+// route pour validation demande 
+Route::post('/mentor-request/{id}/validate', [DemandeMentoratController::class, 'validateRequest'])->name('mentor.validate');
 
 //le testtttt
 // Route::get('/testeuuuu', [StudentController::class, 'test'])->name('test');

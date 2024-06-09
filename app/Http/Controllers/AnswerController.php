@@ -7,12 +7,26 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Notifications\NewReplyNotification;
 use App\Notifications\ReplyLikedNotification;
+use App\Notifications\AnswerMarkedAsAcceptedNotification;
 
 class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
+
+
+     public function acceptAnswer(Answer $answer)
+     {
+         $question = $answer->question;
+         $question->update(['is_accepted' => true]);
+         $answer->update(['is_accepted' => true]);
+         $answer->user->notify(new AnswerMarkedAsAcceptedNotification($answer));
+         return redirect()->back()->with('success', 'Réponse marquée comme satisfaisante avec succès.');
+     }
+
     public function index()
     {
         //

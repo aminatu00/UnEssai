@@ -88,7 +88,7 @@ class ProfileController extends Controller
     
         // Rediriger l'utilisateur vers la page de profil avec un message de succès
         // return redirect()->route('profile.show')->with('success', 'Profil mis à jour avec succès.');
-        return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
+        return redirect()->route('question.index')->with('success', 'Profil mis à jour avec succès.');
 
     }
     
