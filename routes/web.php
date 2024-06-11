@@ -41,7 +41,7 @@ use App\Http\Controllers\ReportController;
 //     return view('dashboard');
 // });
 Route::get('/', function () {
-    return view('welcome');
+    return view('AccueilForum');
 });
 
 Auth::routes();
