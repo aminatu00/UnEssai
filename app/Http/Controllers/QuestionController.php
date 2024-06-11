@@ -236,6 +236,17 @@ if ($request->hasFile('media')) {
       return view('question.show', compact('question'));
    }
 
+
+   public function showno($id)
+   {
+       // Récupérer la question spécifique
+       $question = Question::findOrFail($id);
+   
+       // Charger la vue avec les données de la question
+       return view('question.likeDiscussion', compact('question'));
+   }
+   
+
     /**
      * Show the form for editing the specified resource.
      */

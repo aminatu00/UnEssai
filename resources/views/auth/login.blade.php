@@ -215,9 +215,29 @@
             transition: .5s;
             margin-left: 90px;
         }
+
+        .btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: 2px solid #0ef;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9999; /* Assure que le bouton reste au-dessus des autres éléments */
+}
+
+/* Style pour l'icône */
+.btn-back i {
+    vertical-align: middle;
+}
+
     </style>
 </head>
 <body>
+    
     <div class="wrapper">
         <span class="bg-animate"></span>
         <div class="form-box login">
@@ -262,4 +282,9 @@
             <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
         </div>
     </div>
+     <!-- Bouton Back -->
+<!-- Bouton Back avec icône -->
+<button type="button" onclick="window.history.back()" class="btn-back">
+    <i class="bx bx-arrow-back"></i>
+</button>
 </body>

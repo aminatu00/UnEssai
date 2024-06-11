@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">StudentHub<sup>2</sup></div>
     </a>
 
     <!-- Divider -->
@@ -57,13 +57,13 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('sondage.showForUser') }}">
             <i class="fas fa-fw fa-chart-bar"></i>
-            <span>Sondage des Mentor</span>
+            <span>Sondage des Tuteurs</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('listeUser.index')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Mes Mentors</span>
+            <span>Mes Tuteurs</span>
         </a>
     </li>
 
@@ -79,7 +79,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('mentor.request') }}">
             <i class="fas fa-fw fa-user-plus"></i>
-            <span>DM pour etre mentor</span>
+            <span>DM pour etre Tuteur</span>
         </a>
     </li>
 
@@ -94,17 +94,15 @@
             <span>Notifications</span>
         </a>
     </li>
+<!-- Nav Item - Manage Tutoring Requests -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('demandeTutorat.create') }}">
+        <i class="fas fa-fw fa-handshake"></i>
+        <span>Demande de Tutorat</span>
+    </a>
+</li>
 
    
-
-    <!-- Nav Item - Test -->
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-vial"></i>
-            <span>Assistance</span>
-        </a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

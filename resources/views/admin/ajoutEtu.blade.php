@@ -7,7 +7,7 @@
         <form method="POST" action="{{ route('register.student') }}">
             @csrf
             <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name">NomPrenom</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="form-group">
-    <label for="interests">Intérêts</label>
+    <label for="interests">Centre d'Intérêts</label>
     <div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="informatique" id="interests_informatique" name="interests[]">

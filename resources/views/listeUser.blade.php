@@ -3,7 +3,6 @@
 
 <div class="container-fluid">
 
-    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
 
 
     <div class="col-md-14">
@@ -31,11 +30,11 @@
                 @if(auth()->user()->user_type === 'student')
                 @if (!$mentors->isEmpty())
                 <div class="mb-4">
-                    <h3>Your Mentors</h3>
+                    <h3>Les Tuteurs</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
                                 <th>Expertise</th>
@@ -61,21 +60,21 @@
                     </table>
                 </div>
                 @else
-                <p>No mentors found.</p>
+                <p>Pas de tuteurs</p>
                 @endif
                 <!-- Display students for mentors -->
                 @elseif(auth()->user()->user_type === 'mentor')
                 @if (!$students->isEmpty())
                 <div class="mb-4">
-                    <h3>Your Students</h3>
+                    <h3>Mes Etudiants Tuteures</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
                                 <th>Centre d'intérêt</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -90,32 +89,32 @@
                                 echo implode('<br>', $studentMentor);
                                 @endphp
                                 </td>
-                                <td>
+                                <!-- <td> -->
                                     <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('users.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                    <form action="{{ route('users.destroy', $student->id) }}" method="POST" style="display: inline;">
+                                    <!-- <a href="{{ route('users.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a> -->
+                                    <!-- <form action="{{ route('users.destroy', $student->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
+                                    </form> -->
+                                <!-- </td> -->
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 @else
-                <p>No students found.</p>
+                <p>Pas d'etudiants</p>
                 @endif
                 <!-- Display all users for admin -->
                 @elseif(auth()->user()->user_type === 'admin')
                 @if (!$students->isEmpty())
                 <div class="mb-4">
-                    <h3>Students</h3>
+                    <h3>Etudiants</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
                                 <th>Centre d'intérêt</th>
@@ -155,15 +154,15 @@
 
                 @if (!$mentors->isEmpty())
                 <div class="mb-4">
-                    <h3>Mentors</h3>
+                    <h3>Tuteurs</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
+                                <th> Domaine d'expertise</th>
                                 <th>Expertise</th>
-                                <th>Centre d'interet</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

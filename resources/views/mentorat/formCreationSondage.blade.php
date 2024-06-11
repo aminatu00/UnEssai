@@ -6,14 +6,14 @@
    
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Create Survey') }}</div>
+            <div class="card-header">{{ __('Creer Sondage') }}</div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('sondage.store') }}">
                     @csrf
 
                     <div class="form-group">
-                        <label for="subject">{{ __('Expertise') }}</label>
+                        <label for="subject">{{ __('Domaine Expertise') }}</label>
                         <select id="subject" class="form-control @error('subject') is-invalid @enderror" name="subject" required>
                             <option value="">Select an expertise</option>
                             @if(is_array($expertises))
@@ -59,7 +59,7 @@
 
 
                     <div class="form-group">
-                        <label for="expiry_date">{{ __('Expiry Date') }}</label>
+                        <label for="expiry_date">{{ __(' Date Expiration') }}</label>
                         <input id="expiry_date" type="datetime-local" class="form-control @error('expiry_date') is-invalid @enderror" name="expiry_date" value="{{ old('expiry_date') }}" required autocomplete="expiry_date">
                         @error('expiry_date')
                         <span class="invalid-feedback" role="alert">

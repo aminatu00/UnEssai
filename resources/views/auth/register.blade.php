@@ -292,6 +292,24 @@
         .form-group input {
             color: #fff;
         }
+        
+        .btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: 2px solid #0ef;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9999; /* Assure que le bouton reste au-dessus des autres éléments */
+}
+
+/* Style pour l'icône */
+.btn-back i {
+    vertical-align: middle;
+}
     </style>
 </head>
 <body>
@@ -375,5 +393,9 @@
             <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
         </div>
     </div>
+    <!-- Bouton Back avec icône -->
+<button type="button" onclick="window.history.back()" class="btn-back">
+    <i class="bx bx-arrow-back"></i>
+</button>
 </body>
 </html>

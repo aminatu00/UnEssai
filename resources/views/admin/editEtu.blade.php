@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Edit Student</h1>
+    <h1 class="h3 mb-4 text-gray-800">Modifier Etudiant</h1>
     <div class="card">
         <div class="card-body">
             <form method="POST" action="{{ route('students.update', $student->id) }}">
@@ -30,7 +30,7 @@
                         <!-- Add more options as needed -->
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Update Student</button>
+                <button type="submit" class="btn btn-primary">Mettre a jour Etudiant</button>
             </form>
         </div>
     </div>

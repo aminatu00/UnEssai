@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-9 offset-md-0"> <!-- Utilisez toute la largeur disponible -->
+<div class="col-md-8 offset-md-0"> <!-- Utilisez toute la largeur disponible -->
 
     <!-- Afficher les messages d'erreur -->
     @if ($errors->any())
@@ -54,7 +54,7 @@
                                 Publié par {{ $question->user->name }} il y a {{ $question->created_at->diffForHumans() }}
                                 @endif
                                 @if ($question->user->user_type === 'mentor')
-                                <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Mentor</span>
+                                <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
                                 @endif
                             </div>
                             <div class="d-flex align-items-center">
@@ -185,6 +185,10 @@
         </div>
         @endif
     </div>
+    <!-- <div class="col-md-4 ml-auto">
+    <img src="{{ asset('assets/img/integra.png') }}" alt="Description de ton image" width="400" height="1000">
+</div> -->
+
 
     <!-- Ajouter le code JavaScript pour masquer automatiquement les messages d'erreur -->
     <script>
@@ -249,6 +253,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <style>
+
+
         .card .img-profile.rounded-circle {
             width: 10px;
             /* Modifier cette valeur selon vos besoins */

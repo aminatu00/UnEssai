@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-md-8">
     <div class="card">
-        <div class="card-header">{{ __('Create Meeting') }}</div>
+        <div class="card-header">{{ __('Creer Tutorat') }}</div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('meetings.store') }}">
@@ -15,14 +15,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="domaine" class="col-md-4 col-form-label text-md-right">{{ __('Domaine') }}</label>
+                    <label for="domaine" class="col-md-4 col-form-label text-md-right">{{ __('Domaine dexpertise') }}</label>
                     <div class="col-md-6">
                         <input id="domaine" type="text" class="form-control" name="domaine" value="{{ $survey['subject'] }}" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Subject') }}</label>
+                    <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Sujet') }}</label>
                     <div class="col-md-6">
                         <select id="subject" class="form-control @error('subject') is-invalid @enderror" name="subject" required>
                             @php
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Time') }}</label>
+                    <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Heure') }}</label>
                     <div class="col-md-6">
                         <input id="time" type="time" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required>
                         @error('time')
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="session_type" class="col-md-4 col-form-label text-md-right">{{ __('Session Type') }}</label>
+                    <label for="session_type" class="col-md-4 col-form-label text-md-right">{{ __('Type de la session') }}</label>
                     <div class="col-md-6">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="session_type" id="online" value="online" required>
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Meeting Link/Info') }}</label>
+                    <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Lien Meet/Info') }}</label>
                     <div class="col-md-6">
                         <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="meeting_link" value="{{ old('link') }}" required>
                         @error('link')

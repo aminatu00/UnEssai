@@ -3,7 +3,7 @@
 
 
 <<div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Edit Mentor</h1>
+    <h1 class="h3 mb-4 text-gray-800">Modifier Tuteur</h1>
     <div class="card">
         <div class="card-body">
             <form method="POST" action="{{ route('mentors.update', $mentor->id) }}">

@@ -18,7 +18,7 @@
         </div>
         @endif
 
-        <div class="card-header">{{ __('Recent Surveys') }}</div>
+        <div class="card-header">{{ __('Mes Sondages recents') }}</div>
         <div class="card-body">
             @foreach($surveys->sortByDesc('created_at') as $survey)
             <div id="sondage_{{ $survey->id }}" class="survey"> <!-- Ajout d'un div unique pour chaque sondage -->
@@ -72,8 +72,10 @@
                     </li>
                     @endforeach
                 </ul>
-                <a href="{{ route('view.survey', $survey->id) }}" class="btn btn-link"><i class="fas fa-eye"></i></a>
-                <a href="{{ route('surveys.meetings', $survey->id) }}" class="btn btn-link"><i class="fas fa-calendar-alt"></i></a>
+                <!-- <a href="{{ route('view.survey', $survey->id) }}" class="btn btn-link"><i class="fas fa-eye"></i></a> -->
+                <a href="{{ route('surveys.meetings', $survey->id) }}" class="btn btn-link">
+    <i class="fas fa-calendar-check"></i> Voir Tutorat Disponible
+</a>
                 <hr>
             </div>
             @endif
@@ -127,15 +129,23 @@
                     @endforeach
                 </ul>
                 @if(auth()->user()->user_type === 'mentor' && auth()->user()->id === $survey->mentor_id)
-                <a href="{{ route('view.survey', $survey->id) }}" class="btn btn-link"><i class="fas fa-eye"></i></a>
-                <a href="{{ route('sondages.destroy', $survey->id) }}" class="btn btn-link"><i class="fas fa-trash-alt" style="color: red;"></i></a>
-                <a href="{{ route('sondages.edit', $survey->id) }}" class="btn btn-link"><i class="fas fa-edit"></i></a>
-                <form action="{{ route('meetings.create') }}" method="GET">
-                    @csrf
-                    <input type="hidden" name="survey" id="survey" value="{{ json_encode($survey) }}">
-                    <input type="hidden" name="survey_id" value="{{ $survey->id }}">
-                    <button type="submit" class="btn btn-link"><i class="fas fa-calendar-plus" style="color: green;"></i></button>
-                </form>
+                <div class="d-flex align-items-center">
+    <a href="{{ route('sondages.destroy', $survey->id) }}" class="btn btn-link">
+        <i class="fas fa-trash-alt" style="color: red;"></i>
+    </a>
+    <a href="{{ route('sondages.edit', $survey->id) }}" class="btn btn-link">
+        <i class="fas fa-edit"></i>
+    </a>
+    <form action="{{ route('meetings.create') }}" method="GET">
+        @csrf
+        <input type="hidden" name="survey" id="survey" value="{{ json_encode($survey) }}">
+        <input type="hidden" name="survey_id" value="{{ $survey->id }}">
+        <button type="submit" class="btn btn-link">
+            <i class="fas fa-calendar-plus" style="color: green;"></i> Créer Réunion
+        </button>
+    </form>
+</div>
+
                 @endif
                 <hr style="border-top: 2px solid #8B0000; margin: 40px 0;">
             </div>

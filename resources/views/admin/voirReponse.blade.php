@@ -14,10 +14,10 @@
 
                             @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
                             <!-- Afficher une image -->
-                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 80px; cursor: pointer;">
+                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 300px; cursor: pointer;">
                             @elseif ($extension === 'mp4')
                             <!-- Afficher une vidéo -->
-                            <video controls style="max-width: 100%; max-height: 300px;">
+                            <video controls style="max-width: 100%; max-height: 100px;">
                                 <source src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>

@@ -16,7 +16,7 @@
         <form method="POST" action="{{ route('register.mentor') }}">
             @csrf
             <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name">NomPrenom</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
@@ -42,7 +42,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="expertise">Domaines</label>
+                <label for="expertise">Domaines d'expertise</label>
                 <select class="form-control" id="expertise" name="expertise[]" multiple required>
                     @foreach($domains as $domain => $subExpertises)
                         <option value="{{ $domain }}">{{ ucfirst($domain) }}</option>
@@ -50,7 +50,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="sub_expertises">Modules</label>
+                <label for="sub_expertises">Expertises</label>
                 <div id="sub_expertises-container"></div>
             </div>
             <button type="submit" class="btn btn-primary">S'inscrire</button>

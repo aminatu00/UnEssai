@@ -36,7 +36,7 @@ class NewReplyNotification extends Notification
             return [
                 'reply_id' => $this->answer->id,
                 'message' => 'Vous avez une nouvelle réponse à votre question.', // Message de la notification
-                'link' => route('answers.show', $this->answer->id), // Lien vers la réponse
+'link' => route('answers.notifshow', ['question' => $this->question->id, 'answer' => $this->answer->id]),
             ];
         }
         
