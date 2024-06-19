@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">Profil Utilisateur</div>
+                <div class="card-header text-center text-white" style="background-color:#081b29; border-color:#fff">Profil Utilisateur</div>
 
-                <div class="card-body">
+                <div class="card-body" style="background-color:#081b29">
                     <!-- Afficher les messages d'erreur -->
                     @if ($errors->any())
                         <div class="alert alert-danger auto-dismiss">
@@ -33,13 +33,13 @@
                             <img class="img-profile rounded-circle" src="{{ asset('storage/' . Auth::user()->profile_image) }}" width="150" height="150">
                         @else
                             <!-- Afficher le cercle avec le commencement du nom de l'utilisateur -->
-                            <div class="circle mx-auto">
+                            <div class="circle mx-auto" style="background-image:linear-gradient(180deg , #081b29, #0ef)">
                                 {{ substr(Auth::user()->name, 0, 1) }}
                             </div>
                         @endif
                     </div>
 
-                    <div class="text-center">
+                    <div class="text-center text-white" >
                         <h3>{{ Auth::user()->name }}</h3>
                         <p>{{ Auth::user()->email }}</p>
                     </div>
@@ -48,25 +48,25 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="name">Nom :</label>
-                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}">
+                            <input type="text" name="name" class="form-control text-white" style="background-color:#081b29;" value="{{ Auth::user()->name }}">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="password">Mot de passe :</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" class="form-control text-white" style="background-color:#081b29;">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="profile_image">Photo de profil :</label>
-                            <input type="file" name="profile_image" class="form-control-file">
+                            <input type="file" name="profile_image" class="form-control-file text-white"style="background-color:#081b29;">
                         </div>
 
                         @if(Auth::user()->user_type == 'student')
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="niveau">Niveau :</label>
-                            <select name="niveau" class="form-control">
+                            <select name="niveau" class="form-control text-white"style="background-color:#081b29;">
                                 <option value="licence1" {{ Auth::user()->niveau == 'licence1' ? 'selected' : '' }}>Licence 1</option>
                                 <option value="licence2" {{ Auth::user()->niveau == 'licence2' ? 'selected' : '' }}>Licence 2</option>
                                 <option value="licence3" {{ Auth::user()->niveau == 'licence3' ? 'selected' : '' }}>Licence 3</option>
@@ -75,18 +75,18 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group text-white">
                             <label for="interests">Centres d'intérêt :</label><br>
                             @foreach (['informatique', 'reseaux'] as $interest)
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="interests[]" value="{{ $interest }}" {{ in_array($interest, json_decode(Auth::user()->interests)) ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="interests[]"style="background-color:#081b29;" value="{{ $interest }}" {{ in_array($interest, json_decode(Auth::user()->interests)) ? 'checked' : '' }}>
                                     <label class="form-check-label">{{ $interest }}</label>
                                 </div>
                             @endforeach
                         </div>
                         @endif
 
-                        <button type="submit" class="btn btn-primary btn-block">Enregistrer les modifications</button>
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color:#081b29; background-image:linear-gradient(180deg, #081b29, #0ef); border-radius:10px">Enregistrer les modifications</button>
                     </form>
                 </div>
             </div>

@@ -5,8 +5,8 @@
 @section('content')
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">Toutes les questions</div>
-            <div class="card-body">
+            <div class="card-header text-white" style="background-color:#081b29">Toutes les questions</div>
+            <div class="card-body"  style="background-color:#081b29">
                 @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -16,20 +16,20 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Sujet</th>
-                                <th scope="col">Contenu</th>
-                                <th scope="col">Action</th>
+                                <th  class="text-white" style="background-color:#081b29"scope="col">Sujet</th>
+                                <th  class="text-white" style="background-color:#081b29" scope="col">Contenu</th>
+                                <th class="text-white" style="background-color:#081b29" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($questions as $question)
                                 <tr>
-                                    <td>
+                                    <td class="text-white" style="background-color:#081b29">
                                  <a href="{{ route('questionAdmin.show', $question->id) }}">{{ $question->title }}
                                 </a>
                                     </td>
-                                    <td>{{ $question->content }}</td>
-                                    <td>
+                                    <td class="text-white" style="background-color:#081b29">{{ $question->content }}</td>
+                                    <td class="text-white" style="background-color:#081b29">
                                     @if ($question->media_path)
                             @php
                             $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
@@ -64,11 +64,12 @@
                                 @endif
                                 @endif
                                     </td>
-                                    <td>
+                                    <td class="text-white" style="background-color:#081b29">
                                         <form action="{{ route('questionAdmin.destroy', $question->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
+
                                         </form>
                                     </td>
                                 </tr>

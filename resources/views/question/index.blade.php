@@ -46,7 +46,7 @@
                 <div class="card-body" style="border: 1px solid #0ef; border-radius:10px">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <div class="text-white text-sm mb-2 ">
+                            <div class="text-white text-sm mb-2 " >
 
                                 @if (auth()->user()->id === $question->user->id)
                                 Publié par Moi il y a {{ $question->created_at->diffForHumans() }}
@@ -62,7 +62,7 @@
                                 @if (auth()->user()->profile_image)
                                 <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}" style="width: 50px; height: 50px;">
                                 @else
-                                <div class="circle rounded-circle mr-3" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
+                                <div class="circle rounded-circle mr-4" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
                                     <span class="text-white font-weight-bold" style="line-height: 1;">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                                 </div>
                                 @endif
@@ -71,8 +71,8 @@
                                 @if ($question->user->profile_image)
                                 <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}" style="width: 50px; height: 50px;">
                                 @else
-                                <div class="circle rounded-circle mr-3" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
-                                    <span class="text-white font-weight-bold" style="line-height: 1;">{{ strtoupper(substr($question->user->name, 0, 1)) }}</span>
+                                <div class="circle rounded-circle mr-1 " style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29); ">
+                                    <span class="text-white font-weight-bold" style="line-height: 1; ">{{ strtoupper(substr($question->user->name, 0, 1)) }}</span>
                                 </div>
                                 @endif
                                 <!-- <p class="card-text text-white">{{ $question->user->name }}</p> -->

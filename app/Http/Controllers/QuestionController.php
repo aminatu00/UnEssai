@@ -125,29 +125,37 @@ class QuestionController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        // Vérifier si l'utilisateur est connecté
-        if (Auth::check()) {
-            // Vérifier le type d'utilisateur
-            if (Auth::user()->user_type === 'mentor') {
-                // Si c'est un mentor, récupérer ses expertises
-                $userExpertise = json_decode(Auth::user()->expertise);
+{
+    // Vérifier si l'utilisateur est connecté
+    if (Auth::check()) {
+        // Initialiser $categories à une liste vide par défaut
+        $categories = [];
+
+        // Vérifier le type d'utilisateur
+        if (Auth::user()->user_type === 'mentor') {
+            // Si c'est un mentor, récupérer ses expertises
+            $userExpertise = json_decode(Auth::user()->expertise);
+            // Vérifier si $userExpertise est null ou non
+            if ($userExpertise !== null) {
                 // Récupérer les catégories correspondant à ses expertises
                 $categories = Category::whereIn('nom', $userExpertise)->get();
-            } elseif (Auth::user()->user_type === 'student') {
-                // Si c'est un étudiant, récupérer ses centres d'intérêt
-                $userInterests = json_decode(Auth::user()->interests);
+            }
+        } elseif (Auth::user()->user_type === 'student') {
+            // Si c'est un étudiant, récupérer ses centres d'intérêt
+            $userInterests = json_decode(Auth::user()->interests);
+            // Vérifier si $userInterests est null ou non
+            if ($userInterests !== null) {
                 // Récupérer les catégories correspondant à ses centres d'intérêt
                 $categories = Category::whereIn('nom', $userInterests)->get();
             }
-    
-            return view('question.create', compact('categories'));
         }
-    
-        // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-        return redirect()->route('login');
+
+        return view('question.create', compact('categories'));
     }
-    
+
+    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    return redirect()->route('login');
+}
 
 
     /**

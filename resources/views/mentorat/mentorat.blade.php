@@ -2,10 +2,10 @@
 @section('content')
 
 <div class="col-md-8 offset-md-0">
-    <div class="card">
-        <div class="card-header ">{{ __('Meetings') }}</div>
+    <div class="card" >
+        <div class="card-header text-white " style="background-color:#081b29 ; border:1px solid #fff">{{ __('Meetings') }}</div>
 
-        <div class="card-body">
+        <div class="card-body" style="background-color:#081b29">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
                 <div class="alert alert-danger auto-dismiss">
@@ -25,7 +25,7 @@
             @endif
 
             @if($meetings->isEmpty())
-                <p>No meetings found.</p>
+             <div class="text-white" style="background-color:#081b29"> <p>No meetings found.</p></div>  
             @else
                 <table class="table">
                     <thead>

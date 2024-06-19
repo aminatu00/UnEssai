@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8">
-    <div class="card">
+<div class="col-md-8" >
+    <div class="card" >
         @if (session('success'))
         <div class="alert alert-success auto-dismiss">
             {{ session('success') }}
@@ -18,13 +18,13 @@
         </div>
         @endif
 
-        <div class="card-header">{{ __('Recent Surveys') }}</div>
-        <div class="card-body">
+        <div class="card-header text-white"  style="background-color:#081b29; border:1px solid #fff">{{ __('Recent Surveys') }}</div>
+        <div class="card-body" style="background-color:#081b29">
             @foreach($surveys->sortByDesc('created_at') as $survey)
-            <div id="sondage_{{ $survey->id }}" class="survey"> <!-- Ajout d'un div unique pour chaque sondage -->
+            <div id="sondage_{{ $survey->id }}" class="survey text-white" > <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
             @if(auth()->user()->niveau >= $survey->niveau && in_array($survey->subject, json_decode(auth()->user()->interests)))
-            <div class="survey">
+            <div class="survey text-white" >
                 <h4>{{ $survey->subject }}</h4>
                 <p>{{ $survey->question }}</p>
                 <p><strong>Domaine :</strong> {{ $survey->subject }}</p>
@@ -48,7 +48,7 @@
                     @foreach($options as $option)
                     <li class="d-flex align-items-center justify-content-between">
                         <div>{{ is_array($option) ? $option['name'] : $option }}</div>
-                        <div class="progress" style="width: 50%">
+                        <div class="progress " style="width: 50%">
                             @php
                             $percentage = 0;
                             $optionName = is_array($option) ? $option['name'] : $option;
@@ -102,7 +102,7 @@
                     @foreach($options as $option)
                     <li class="d-flex align-items-center justify-content-between">
                         <div>{{ is_array($option) ? $option['name'] : $option }}</div>
-                        <div class="progress" style="width: 50%">
+                        <div class="progress " style="width: 50% ; background-color:#081b29; border:1px solid #fff">
                             @php
                             $percentage = 0;
                             $optionName = is_array($option) ? $option['name'] : $option;
@@ -110,7 +110,7 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-                            <div class="progress-bar bg-primary" role="progressbar" style="width:10%" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar " style="background-image:linear-gradient(180deg,#081b29,#0ef);border-radius:40px" role="progressbar" style="width:10%" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
                                 {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
                             </div>
                         </div>
@@ -134,10 +134,10 @@
                     @csrf
                     <input type="hidden" name="survey" id="survey" value="{{ json_encode($survey) }}">
                     <input type="hidden" name="survey_id" value="{{ $survey->id }}">
-                    <button type="submit" class="btn btn-link"><i class="fas fa-calendar-plus" style="color: green;"></i></button>
+                    <button type="submit" class="btn btn-link"><i class="fas fa-calendar-plus" style="color: white;"></i></button>
                 </form>
                 @endif
-                <hr style="border-top: 2px solid #8B0000; margin: 40px 0;">
+                <!-- <hr style="border-top: 2px solid #8B0000; margin: 40px 0;"> -->
             </div>
             @endif
             @endforeach
@@ -148,7 +148,7 @@
 @endsection
 
 
-@section('styles')
+ @section('styles')
 <style>
     .survey {
         margin-bottom: 30px;
