@@ -1,8 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-8 offset-md-0"> <!-- Utilisez toute la largeur disponible -->
-
+<div class="col-md-8 offset-md-2">
     <!-- Afficher les messages d'erreur -->
     @if ($errors->any())
     <div class="alert alert-danger auto-dismiss">
@@ -23,7 +22,7 @@
         <h1>Liste des questions</h1>
     </div> -->
     <div style="font-family: Arial, sans-serif; color: #ffffff; font-weight: bold;">
-        <h1>Liste des questions</h1>
+        <!-- <h1>Liste des questions</h1> -->
     </div>
 
     <form action="{{ route('questions.search') }}" method="GET" class="mb-3">

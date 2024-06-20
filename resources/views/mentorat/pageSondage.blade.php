@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8">
+<div class="col-md-8 offset-md-2">
     <div class="card">
         @if (session('success'))
         <div class="alert alert-success auto-dismiss">
@@ -18,8 +18,8 @@
         </div>
         @endif
 
-        <div class="card-header">{{ __('Mes Sondages recents') }}</div>
-        <div class="card-body">
+        <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('Mes Sondages recents') }}</div>
+        <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
             @foreach($surveys->sortByDesc('created_at') as $survey)
             <div id="sondage_{{ $survey->id }}" class="survey"> <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
@@ -56,9 +56,10 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-                            <div class="progress-bar bg-primary" role="progressbar" style="width:10%" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
-                            </div>
+                            <div class="progress-bar" role="progressbar" style="width:10%; background-color: #0ef;" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
+    {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
+</div>
+
                         </div>
 
                         @if(auth()->user()->user_type !== 'mentor' || auth()->user()->user_type === 'mentor')
@@ -160,6 +161,10 @@
 
 @section('styles')
 <style>
+    .bg-custom {
+    background-color: #0ef !important;
+}
+
     .survey {
         margin-bottom: 30px;
         padding-bottom: 15px;

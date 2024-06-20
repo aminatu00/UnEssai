@@ -16,10 +16,31 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function showAll()
+    {
+        // Logic to fetch all questions
+        $questions = Question::all(); // Example logic, adjust as per your needs
+       
 
+        return view('AccueilForum', compact('questions'));
+    }
 
 
      public function getQuestionsByCategory($id)
+     {
+         // Récupérer les questions pour la catégorie spécifiée par $id
+         $category = Category::find($id);
+     
+         if ($category) {
+             $questions = $category->questions;
+             return view('nonConnecter.discussion', ['questions' => $questions, 'category' => $category]);
+         } else {
+             return view('nonConnecter.discussion')->with('error', 'Aucune question associée à cette catégorie.');
+         }
+     }
+
+
+     public function getQuestionsparCategory($id)
      {
          // Récupérer les questions pour la catégorie spécifiée par $id
          $category = Category::find($id);

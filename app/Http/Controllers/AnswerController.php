@@ -151,6 +151,16 @@ if ($answer->comments && $answer->comments->isNotEmpty()) {
         // Charger la vue avec les données de la question et ses réponses
         return view('answer.show', compact('question', 'answers'));
     }
+
+
+    public function showa($id)
+    {
+        $question = Question::findOrFail($id);
+        $answers = $question->answers;
+    
+        // Charger la vue avec les données de la question et ses réponses
+        return view('nonConnecter.show', compact('question', 'answers'));
+    }
     
 
     public function like(Answer $answer, Request $request)

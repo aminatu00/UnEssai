@@ -51,9 +51,9 @@
         }
 
         .form-box h2 {
-            font-size: 32px;
+            font-size: 25px;
             color: #fff;
-            text-align: center;
+            text-align: bottom;
         }
 
         .form-box .input-box {
@@ -233,6 +233,26 @@
 .btn-back i {
     vertical-align: middle;
 }
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    padding-left: -100px;
+}
+
+.header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.header h2 {
+    font-size: 25px;
+    color: #fff;
+    margin: 0;
+}
 
     </style>
 </head>
@@ -241,7 +261,10 @@
     <div class="wrapper">
         <span class="bg-animate"></span>
         <div class="form-box login">
-            <h2>Login</h2>
+        <div class="header">
+        <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
+        <h2>Inscription</h2>
+    </div>
             <form action="{{route('login')}}" method="POST">
                 @csrf
                 <div class="input-box">

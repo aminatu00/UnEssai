@@ -23,15 +23,15 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="card-header">{{ __('La liste des utilisateurs ') }}</div>
-            <div class="card-body">
+            <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div>
+            <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
 
                 <!-- Display mentors for students -->
                 @if(auth()->user()->user_type === 'student')
                 @if (!$mentors->isEmpty())
-                <div class="mb-4">
+                <div class="mb-4 custom-background">
                     <h3>Les Tuteurs</h3>
-                    <table class="table">
+                    <table class="table" >
                         <thead>
                             <tr>
                                 <th>NomPrenom</th>
@@ -65,7 +65,7 @@
                 <!-- Display students for mentors -->
                 @elseif(auth()->user()->user_type === 'mentor')
                 @if (!$students->isEmpty())
-                <div class="mb-4">
+                <div class="mb-4  custom-background">
                     <h3>Mes Etudiants Tuteures</h3>
                     <table class="table">
                         <thead>
@@ -109,7 +109,7 @@
                 <!-- Display all users for admin -->
                 @elseif(auth()->user()->user_type === 'admin')
                 @if (!$students->isEmpty())
-                <div class="mb-4">
+                <div class="mb-4  custom-background ">
                     <h3>Etudiants</h3>
                     <table class="table">
                         <thead>
@@ -153,7 +153,7 @@
                 @endif
 
                 @if (!$mentors->isEmpty())
-                <div class="mb-4">
+                <div class="mb-4  custom-background">
                     <h3>Tuteurs</h3>
                     <table class="table">
                         <thead>
@@ -208,4 +208,26 @@
             </div>
 
         </div>
-        @endsection
+
+        @endsection 
+
+      
+        @section('styles')
+ 
+
+    <style>
+.custom-table {
+    background-color: #081b29 !important;
+    color: white; /* Pour que le texte soit lisible sur un fond sombre */
+}
+
+.custom-table th,
+.custom-table td {
+    background-color: #081b29 !important;
+    color: white;
+    border: 1px solid #0ef; /* Pour une bordure visible */
+}
+
+     
+    </style>
+    @endsection

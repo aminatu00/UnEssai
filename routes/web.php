@@ -287,6 +287,19 @@ Route::get('/mentor/requests/{mentorRequest}', [DmTutoratController::class, 'sho
 
 // partie page accueil
 
-Route::get('/discussions', [QuestionController::class, 'showAll'])->name('forum');
+Route::get('/', [QuestionController::class, 'showAll'])->name('forum.home');
+//pour les categories hors du forum
+// Route::get('/categories/{id}', [CategoryController::class, 'indexCat'])->name('categories.indexCat');
+
+
+// Route::get('/categorieee/{id}/questions', [QuestionController::class, 'getQuestionsparCategory'])->name('categorie.showe');
+
+
+Route::get('/disscussions', [QuestionController::class, 'indexe'])->name('discussions.index');
+
+
+Route::get('/questions/{question}/answerrrs', [AnswerController::class, 'showa'])->name('answers.showa');
+
+
 
 
