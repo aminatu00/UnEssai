@@ -56,8 +56,8 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-                            <div class="progress-bar bg-primary" role="progressbar" style="width:10%" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
+                            <div class="progress-bar" role="progressbar" style="width:10%;background-image:linear-gradient(180deg,#081b29,#0ef" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
+                                <!-- {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }} -->
                             </div>
                         </div>
 

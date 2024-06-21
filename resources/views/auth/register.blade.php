@@ -248,23 +248,10 @@
             box-shadow: 0 0 5px rgba(0, 128, 255, 0.5);
         }
 
-        .form-check {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
+        
 
-        .form-check-input {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-        }
-
-        .form-check-input[type="checkbox"]:checked {
-            background-color: #081b29;
-            border-color: #0ef;
-        }
-
+        
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -278,16 +265,6 @@
             color: #fff;
         }
 
-        .input[type="checkbox"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            background-color: #081b29;
-            color: #0ef;
-        }
 
         .form-group input {
             color: #fff;
@@ -327,7 +304,7 @@
                         <option value="licence2">Licence 2</option>
                         <option value="licence3">Licence 3</option>
                         <option value="master1">Master 1</option>
-                        <option value="master2">Master 2</option>
+                       <option value="master2">Master 2</option>
                     </select>
                 </div>
                 <div class="form-check">
@@ -336,19 +313,20 @@
                                      
                                     </label>
                                 </div>
-                <div class="form-group">
-                    <label class="interests" for="interests">Centre d'Intérêt :</label>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" id="informatique" name="interests[]" value="informatique">
-                            Informatique
-                        </label>
-                        <label>
-                            <input type="checkbox" id="reseaux" name="interests[]" value="reseaux">
-                            Reseaux
-                        </label>
-                    </div>
-                </div>
+                                <div class="form-group">
+        <label for="domain">Centre d'interet :</label>
+        <div>
+            <div class="form-check">
+                <input class="form-check-input  text-white"  style="background-color:#081b29"  type="checkbox" id="domain_informatique" name="domain[]" value="informatique">
+                <label class="form-check-label  text-white"  style="background-color:#081b29"  for="domain_informatique">Informatique</label>
+          
+                <input class="form-check-input  text-white"  style="background-color:#081b29"  type="checkbox" id="domain_reseaux" name="domain[]" value="reseaux">
+                <label class="form-check-label  text-white"  style="background-color:#081b29"  for="domain_reseaux">Réseaux</label>
+            </div>
+           
+            <!-- Ajouter d'autres cases à cocher ici -->
+        </div>
+    </div>
                 <div class="input-box">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     @error('password')
