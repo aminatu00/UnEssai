@@ -1,12 +1,9 @@
 @extends('layouts.template')
 @section('content')
-<<<<<<< HEAD
-<div class="col-md-8" >
-    <div class="card" >
-=======
+
 <div class="col-md-8 offset-md-2">
     <div class="card">
->>>>>>> origin/amina
+
         @if (session('success'))
         <div class="alert alert-success auto-dismiss">
             {{ session('success') }}
@@ -23,13 +20,10 @@
         </div>
         @endif
 
-<<<<<<< HEAD
-        <div class="card-header text-white"  style="background-color:#081b29; border:1px solid #fff">{{ __('Recent Surveys') }}</div>
-        <div class="card-body" style="background-color:#081b29">
-=======
+
         <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('Mes Sondages recents') }}</div>
         <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
->>>>>>> origin/amina
+
             @foreach($surveys->sortByDesc('created_at') as $survey)
             <div id="sondage_{{ $survey->id }}" class="survey text-white" > <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
@@ -66,16 +60,11 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-<<<<<<< HEAD
+
                             <div class="progress-bar" role="progressbar" style="width:10%;background-image:linear-gradient(180deg,#081b29,#0ef" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
                                 <!-- {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }} -->
                             </div>
-=======
-                            <div class="progress-bar" role="progressbar" style="width:10%; background-color: #0ef;" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
-    {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
-</div>
 
->>>>>>> origin/amina
                         </div>
 
                         @if(auth()->user()->user_type !== 'mentor' || auth()->user()->user_type === 'mentor')
@@ -146,17 +135,7 @@
                     @endforeach
                 </ul>
                 @if(auth()->user()->user_type === 'mentor' && auth()->user()->id === $survey->mentor_id)
-<<<<<<< HEAD
-                <a href="{{ route('view.survey', $survey->id) }}" class="btn btn-link"><i class="fas fa-eye"></i></a>
-                <a href="{{ route('sondages.destroy', $survey->id) }}" class="btn btn-link"><i class="fas fa-trash-alt" style="color: red;"></i></a>
-                <a href="{{ route('sondages.edit', $survey->id) }}" class="btn btn-link"><i class="fas fa-edit"></i></a>
-                <form action="{{ route('meetings.create') }}" method="GET">
-                    @csrf
-                    <input type="hidden" name="survey" id="survey" value="{{ json_encode($survey) }}">
-                    <input type="hidden" name="survey_id" value="{{ $survey->id }}">
-                    <button type="submit" class="btn btn-link"><i class="fas fa-calendar-plus" style="color: white;"></i></button>
-                </form>
-=======
+
                 <div class="d-flex align-items-center">
     <a href="{{ route('sondages.destroy', $survey->id) }}" class="btn btn-link">
         <i class="fas fa-trash-alt" style="color: red;"></i>
@@ -174,7 +153,7 @@
     </form>
 </div>
 
->>>>>>> origin/amina
+
                 @endif
                 <!-- <hr style="border-top: 2px solid #8B0000; margin: 40px 0;"> -->
             </div>
