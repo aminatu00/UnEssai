@@ -33,6 +33,7 @@
             box-shadow: 0 0 25px #0ef;
             overflow: hidden;
             min-height: 95vh;
+            margin-top: 20px; /* Ajoutez cette ligne */
         }
 
         .wrapper .form-box {
@@ -172,7 +173,7 @@
             position: absolute;
             top: 0;
             width: 50%;
-            height: 100%;
+            height: 70%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -269,12 +270,61 @@
         .form-group input {
             color: #fff;
         }
+        
+        .btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: 2px solid #0ef;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9999; /* Assure que le bouton reste au-dessus des autres éléments */
+}
+.form-box h2 {
+            font-size: 25px;
+            color: #fff;
+            text-align: left;
+        }
+
+
+/* Style pour l'icône */
+.btn-back i {
+    vertical-align: middle;
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    padding-left: -100px;
+}
+
+.header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.header h2 {
+    font-size: 25px;
+    color: #fff;
+    margin: 0;
+}
+
     </style>
 </head>
 <body>
     <div class="wrapper">
         <span class="bg-animate"></span>
         <div class="form-box register">
+        <div class="header">
+        <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
+        <h2>Inscription</h2>
+    </div>
             <form action="{{route('register')}}" method="POST">
                 @csrf
                 <div class="input-box">
@@ -353,5 +403,9 @@
             <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
         </div>
     </div>
+    <!-- Bouton Back avec icône -->
+<button type="button" onclick="window.history.back()" class="btn-back">
+    <i class="bx bx-arrow-back"></i>
+</button>
 </body>
 </html>

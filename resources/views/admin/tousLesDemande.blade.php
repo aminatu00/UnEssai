@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="col-md-10 offset-md-0 text-white">
-    <h2>Liste des Demandes de Mentorat</h2>
+    <h2>Liste des Demandes pour etre Tuteur</h2>
 
     <table class="table">
         <thead>
@@ -19,11 +19,28 @@
         <tbody>
             @foreach($mentorRequests as $request)
             <tr>
+<<<<<<< HEAD
                 <td class="text-white" style="background-color:#081b29">{{ $request->prenom }}</td>
                 <td class="text-white" style="background-color:#081b29">{{ $request->nom }}</td>
                 <td class="text-white" style="background-color:#081b29">{{ $request->email }}</td>
                 <td class="text-white" style="background-color:#081b29">{{ $request->domain }}</td>
                 <td class="text-white" style="background-color:#081b29">
+=======
+                <td>{{ $request->prenom }}</td>
+                <td>{{ $request->nom }}</td>
+                <td>{{ $request->email }}</td>
+                <td>
+    @php
+    $domain = json_decode($request->domain);
+    if (json_last_error() === JSON_ERROR_NONE && is_array($domain)) {
+        echo implode('<br>', $domain);
+    } else {
+        echo $request->domain; // Afficher la valeur brute si ce n'est pas un tableau JSON
+    }
+    @endphp
+</td>
+                <td>
+>>>>>>> origin/amina
                     <a href="{{ route('mentor.request.show', $request->id) }}" class="btn btn-primary">Voir</a>
                 </td>
             </tr>

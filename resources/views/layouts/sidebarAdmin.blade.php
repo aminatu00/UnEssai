@@ -2,6 +2,13 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<<<<<<< HEAD
+=======
+    <div class="sidebar-brand-icon rotate-n-15">
+            <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%;">
+        </div>
+        <div class="sidebar-brand-text mx-3" style="text-transform: none;">StudentHub</div>
+>>>>>>> origin/amina
     </a>
 
     <!-- Divider -->
@@ -35,7 +42,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('register.mentor.form')}}">
             <i class="fas fa-fw fa-user-plus"></i>
-            <span>Ajouter Mentor</span>
+            <span>Ajouter Tuteur</span>
         </a>
     </li>
 

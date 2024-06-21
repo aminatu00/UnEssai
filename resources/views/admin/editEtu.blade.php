@@ -2,7 +2,11 @@
 @section('content')
 
 <div class="container-fluid">
+<<<<<<< HEAD
     <h1 class="h3 mb-4 text-white">Edit Student</h1>
+=======
+    <h1 class="h3 mb-4 text-gray-800">Modifier Etudiant</h1>
+>>>>>>> origin/amina
     <div class="card">
         <div class="card-body" style="background-color:#081b29;" > 
             <form method="POST" action="{{ route('students.update', $student->id) }}">
@@ -28,7 +32,11 @@
                         <!-- Add more options as needed -->
                     </select>
                 </div>
+<<<<<<< HEAD
                 <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg, #081b29, #0ef); width:50%; border-radius:40px">Update Student</button>
+=======
+                <button type="submit" class="btn btn-primary">Mettre a jour Etudiant</button>
+>>>>>>> origin/amina
             </form>
         </div>
     </div>

@@ -40,6 +40,17 @@ class CategoryController extends Controller
     }
     
 
+
+
+
+    public function indexCat()
+    {
+        // Récupérer toutes les catégories
+        $categories = Category::all();
+
+        // Retourner la vue avec les catégories
+        return view('nonConnecter.categorie', compact('categories'));
+    }
     /**
      * Show the form for creating a new resource.
      */

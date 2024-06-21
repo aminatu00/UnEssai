@@ -35,7 +35,7 @@ class ReplyLikedNotification extends Notification
                 'question_id' => $this->question->id,
                 'reply_id' => $this->reply->id,
                 'message' => $this->liker->name . ' a aimé votre commentaire.', // Message de la notification
-                'link' => route('answers.show', $this->question->id), // Lien vers la question
+'link' => route('answers.likeshow', ['question' => $this->question->id, 'answer' => $this->reply->id]),
             ];
         }
         

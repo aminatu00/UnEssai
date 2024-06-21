@@ -11,7 +11,7 @@
                     <button type="submit" class="btn btn-primary search-button text-white" style="background-color:#081b29;background-image:linear-gradient(180deg, #081b29, #0ef);">Rechercher</button>
                 </div>
             </form>
-            @if ($questions->isEmpty())
+            @if (!isset($question))
               <div class="text-white"><p>Aucune question n'a été trouvée.</p></div>  
             @else
                 <div class="row">

@@ -16,10 +16,31 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function showAll()
+    {
+        // Logic to fetch all questions
+        $questions = Question::all(); // Example logic, adjust as per your needs
+       
 
+        return view('AccueilForum', compact('questions'));
+    }
 
 
      public function getQuestionsByCategory($id)
+     {
+         // Récupérer les questions pour la catégorie spécifiée par $id
+         $category = Category::find($id);
+     
+         if ($category) {
+             $questions = $category->questions;
+             return view('nonConnecter.discussion', ['questions' => $questions, 'category' => $category]);
+         } else {
+             return view('nonConnecter.discussion')->with('error', 'Aucune question associée à cette catégorie.');
+         }
+     }
+
+
+     public function getQuestionsparCategory($id)
      {
          // Récupérer les questions pour la catégorie spécifiée par $id
          $category = Category::find($id);
@@ -243,6 +264,17 @@ if ($request->hasFile('media')) {
       $question = Question::findOrFail($id);
       return view('question.show', compact('question'));
    }
+
+
+   public function showno($id)
+   {
+       // Récupérer la question spécifique
+       $question = Question::findOrFail($id);
+   
+       // Charger la vue avec les données de la question
+       return view('question.likeDiscussion', compact('question'));
+   }
+   
 
     /**
      * Show the form for editing the specified resource.

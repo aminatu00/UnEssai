@@ -2,9 +2,8 @@
 @section('content')
 <div class="col-md-8 offset-md-2">
     <div class="card text-white">
-        <div class="card-header  "style="background-color:#081b29">
-        </div>
-        <div class="card-body"style="background-color:#081b29">
+       
+        <div class="card-body" style="background-color: #081b29; border: 1px solid #0ef;">
             @if($errors->any())
             <div class="alert alert-danger">
                 <ul>

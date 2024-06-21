@@ -6,18 +6,30 @@
 <div class="container mt-2">
     <div class="row justify-content-center">
     <div class="col-md-8">
+<<<<<<< HEAD
         <div class="card" >
             
             <div class="card-header text-white" style="background-color:#081b29; border-color:#fff">{{ __('Create Survey') }}</div>
+=======
+        <div class="card">
+            <div class="card-header">{{ __('Creer Sondage') }}</div>
+>>>>>>> origin/amina
 
             <div class="card-body" style="background-color:#081b29">
                 <form method="POST" action="{{ route('sondage.store') }}">
                     @csrf
 
+<<<<<<< HEAD
                     <div class="form-group text-white" style="background-color:#081b29">
                         <label for="subject">{{ __('Expertise') }}</label>
                         <select id="subject" class="form-control @error('subject') is-invalid @enderror text-white"  style="background-color:#081b29"name="subject" required>
                             <option value="" >Select an expertise</option>
+=======
+                    <div class="form-group">
+                        <label for="subject">{{ __('Domaine Expertise') }}</label>
+                        <select id="subject" class="form-control @error('subject') is-invalid @enderror" name="subject" required>
+                            <option value="">Select an expertise</option>
+>>>>>>> origin/amina
                             @if(is_array($expertises))
                             @foreach($expertises as $expertise)
                             <option value="{{ $expertise }}" class="text-white" style="background-color:#081b29" >{{ $expertise }} </option>
@@ -60,9 +72,15 @@
 </div>
 
 
+<<<<<<< HEAD
                     <div class="form-group text-white">
                         <label for="expiry_date">{{ __('Expiry Date') }}</label>
                         <input id="expiry_date" type="datetime-local" class="form-control @error('expiry_date') is-invalid @enderror text-white" style="background-color:#081b29" name="expiry_date" value="{{ old('expiry_date') }}" required autocomplete="expiry_date">
+=======
+                    <div class="form-group">
+                        <label for="expiry_date">{{ __(' Date Expiration') }}</label>
+                        <input id="expiry_date" type="datetime-local" class="form-control @error('expiry_date') is-invalid @enderror" name="expiry_date" value="{{ old('expiry_date') }}" required autocomplete="expiry_date">
+>>>>>>> origin/amina
                         @error('expiry_date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

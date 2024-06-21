@@ -3,8 +3,14 @@
 
 
 <<div class="container-fluid">
+<<<<<<< HEAD
     <h1 class="h3 mb-4 text-white">Edit Mentor</h1><div class="card" >
         <div class="card-body" style="background-color:#081b29">
+=======
+    <h1 class="h3 mb-4 text-gray-800">Modifier Tuteur</h1>
+    <div class="card">
+        <div class="card-body">
+>>>>>>> origin/amina
             <form method="POST" action="{{ route('mentors.update', $mentor->id) }}">
                 @csrf
                 @method('PUT')

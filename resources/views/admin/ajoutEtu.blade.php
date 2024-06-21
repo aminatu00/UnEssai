@@ -6,9 +6,15 @@
     <div class="row">
         <form method="POST" action="{{ route('register.student') }}">
             @csrf
+<<<<<<< HEAD
             <div class="form-group text-white">
                 <label for="name">Nom</label>
                 <input type="text" class="form-control text-white" style="background-color:#081b29;" id="name" name="name" required>
+=======
+            <div class="form-group">
+                <label for="name">NomPrenom</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+>>>>>>> origin/amina
             </div>
             <div class="form-group text-white">
                 <label for="email">Email</label>
@@ -32,8 +38,13 @@
                     <option value="master 2">Master 2</option>
                 </select>
             </div>
+<<<<<<< HEAD
             <div class="form-group text-white">
     <label for="interests">Intérêts</label>
+=======
+            <div class="form-group">
+    <label for="interests">Centre d'Intérêts</label>
+>>>>>>> origin/amina
     <div>
         <div class="form-check">
             <input class="form-check-input text-white" style="background-color:#081b29;" type="checkbox" value="informatique" id="interests_informatique" name="interests[]">

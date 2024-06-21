@@ -90,7 +90,7 @@
                                 @endif
 
                                 @if (auth()->user()->id === $answer->user->id && auth()->user()->user_type === 'mentor')
-                                    <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Mentor</span>
+                                    <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
                                 @endif
 
                                 @if(auth()->user()->id === $question->user_id && !$answer->is_accepted)
