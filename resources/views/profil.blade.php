@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
     <div class="col-md-8 offset-md-2">
-    <div class="card">
+    <div class="card" style="background-color: #081b29; border: 1px solid #0ef; color:#fff">
                 <div class="card-header text-center">Profil Utilisateur</div>
 
                 <div class="card-body">
@@ -50,23 +50,23 @@
 
                         <div class="form-group">
                             <label for="name">NomPrenom :</label>
-                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" style="background-color: #081b29; color:white">
                         </div>
 
                         <div class="form-group">
                             <label for="password">Mot de passe :</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" class="form-control"style="background-color: #081b29; color:white">
                         </div>
 
                         <div class="form-group">
                             <label for="profile_image">Photo de profil :</label>
-                            <input type="file" name="profile_image" class="form-control-file">
+                            <input type="file" name="profile_image" class="form-control-file" >
                         </div>
 
                         @if(Auth::user()->user_type == 'student')
                         <div class="form-group">
                             <label for="niveau">Niveau :</label>
-                            <select name="niveau" class="form-control">
+                            <select name="niveau" class="form-control" style="background-color: #081b29; color:white">
                                 <option value="licence1" {{ Auth::user()->niveau == 'licence1' ? 'selected' : '' }}>Licence 1</option>
                                 <option value="licence2" {{ Auth::user()->niveau == 'licence2' ? 'selected' : '' }}>Licence 2</option>
                                 <option value="licence3" {{ Auth::user()->niveau == 'licence3' ? 'selected' : '' }}>Licence 3</option>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label for="interests">Centres d'intérêt :</label><br>
                             @foreach (['informatique', 'reseaux'] as $interest)
-                                <div class="form-check form-check-inline">
+                                <div class="form-check form-check-inline custom-checkbox">
                                     <input class="form-check-input" type="checkbox" name="interests[]" value="{{ $interest }}" {{ in_array($interest, json_decode(Auth::user()->interests)) ? 'checked' : '' }}>
                                     <label class="form-check-label">{{ $interest }}</label>
                                 </div>
@@ -86,7 +86,9 @@
                         </div>
                         @endif
 
-                        <button type="submit" class="btn btn-primary btn-block">Enregistrer les modifications</button>
+                        <button type="submit" class="btn btn-primary btn-block" style="background: linear-gradient(180deg, #0ef, #081b29); color: white;">
+    Enregistrer les modifications
+</button>
                     </form>
                 </div>
             </div>
@@ -97,6 +99,29 @@
 @endsection
 
 <style>
+  .custom-checkbox .form-check-input {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff; /* Couleur de fond de base */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 3px; /* Coins arrondis */
+    outline: none; /* Supprimer la bordure bleue lors du focus */
+    cursor: pointer; /* Curseur de la souris */
+}
+
+.custom-checkbox .form-check-input:checked {
+    background-color: #0ef; /* Couleur de fond quand la case est cochée */
+}
+
+.custom-checkbox .form-check-label {
+    color: #000; /* Couleur du texte du label */
+    margin-left: 8px; /* Espace entre la case à cocher et le label */
+}
+
+
     .circle {
         width: 100px;
         height: 100px;

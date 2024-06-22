@@ -24,7 +24,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Gestion
+        Votre Menu
     </div>
 
     <!-- Nav Item - User Management -->

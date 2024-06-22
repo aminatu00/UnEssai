@@ -24,7 +24,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu
+    Votre Menu
     </div>
 
     <!-- Nav Item - Recent Discussions -->

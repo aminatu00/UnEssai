@@ -336,6 +336,80 @@
     font-size: 25px;
     color: #fff;
     margin: 0;
+}.custom-checkbox .form-check-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent; /* Fond transparent par défaut */
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-checkbox .form-check-input:checked {
+    background-color: #0ef; /* Couleur de fond lorsque la case est cochée */
+}
+
+.custom-checkbox .form-check-input:checked::before {
+    content: ''; /* Pseudo-élément pour simuler la coche */
+    position: absolute;
+    top: 5px; /* Ajustement vertical pour centrer */
+    left: 7px; /* Ajustement horizontal pour centrer */
+    width: 6px; /* Largeur de la coche */
+    height: 10px; /* Hauteur de la coche */
+    border: 2px solid #fff; /* Couleur et épaisseur de la coche */
+    border-top: none; /* Supprimer la partie supérieure de la coche */
+    border-left: none; /* Supprimer la partie gauche de la coche */
+    transform: rotate(45deg); /* Rotation pour créer une forme de coche */
+}
+
+.custom-checkbox .form-check-label {
+    color: #fff; /* Couleur du texte du label */
+    margin-left: 8px; /* Espace entre la case à cocher et le label */
+}
+
+.custom-checkbox .spacer {
+    margin-right: 10px; /* Espace supplémentaire entre les cases à cocher */
+}
+.interests {
+    display: block; /* Pour que le label soit sur une ligne distincte */
+    margin-bottom: 20px; /* Ajustement de l'espace sous le label */
+}
+
+
+.highlight-text {
+    color: #0ef; /* Couleur plus foncée pour "StudentHub" */
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group .interests {
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-group .interests i {
+    margin-left: 70px; /* Espace entre l'icône et le texte */
+    font-size: 24px; /* Taille de l'icône */
+    color: #fff; /* Couleur de l'icône */
+}
+
+.form-group .interests::before {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Positionnement du trait par rapport au texte */
+    left: 0;
+    width: 220px; /* Largeur du trait */
+    height: 1.5px; /* Hauteur du trait */
+    background-color: #0ef; /* Couleur du trait */
 }
 
     </style>
@@ -357,7 +431,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <label>UserName</label>
+                    <label>Nom d'utilisateur</label>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
@@ -386,19 +460,24 @@
                                      
                                     </label>
                                 </div>
-                <div class="form-group">
-                    <label class="interests" for="interests">Centre d'Intérêt :</label>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" id="informatique" name="interests[]" value="informatique">
-                            Informatique
-                        </label>
-                        <label>
-                            <input type="checkbox" id="reseaux" name="interests[]" value="reseaux">
-                            Reseaux
-                        </label>
-                    </div>
-                </div>
+                                <div class="form-group text-white">
+                                <label class="interests">
+        Centre d'interet 
+        <i class='bx bx-network-chart'></i> <!-- Icône pour l'informatique et les réseaux -->
+    </label>    
+    <div class="custom-checkbox checkbox-group">
+        <label>
+            <input type="checkbox" id="informatique" name="interests[]" value="informatique" class="form-check-input">
+            <span class="form-check-label " >Informatique</span>
+        </label>
+        <span class="spacer"></span> <!-- Espace supplémentaire -->
+        <label>
+            <input type="checkbox" id="reseaux" name="interests[]" value="reseaux" class="form-check-input">
+            <span class="form-check-label">Reseaux</span>
+        </label>
+    </div>
+</div>
+
                 <div class="input-box">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     @error('password')
@@ -406,24 +485,24 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <label>Password</label>
+                    <label>Mot de passe</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    <label>Confirm Password</label>
+                    <label>Confirmer Mot de passe</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">S'inscrire</button>
                 <div class="logreg-link">
-                    <p>Do you have an account? <a href="{{ route('login') }}" class="register-link">Sign-in</a></p>
+                    <p>Avez vous un compte? <a href="{{ route('login') }}" class="register-link">connexion</a></p>
                 </div>
             </form>
         </div>
         <div class="info-text login">
             <h2>Bienvenue</h2>
-            <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
-        </div>
+            <p>Rejoignez <span class="highlight-text">StudentHub</span> pour une expérience d'apprentissage collaborative et enrichissante !</p>
+            </div>
     </div>
     <!-- Bouton Back avec icône -->
 <button type="button" onclick="window.history.back()" class="btn-back">

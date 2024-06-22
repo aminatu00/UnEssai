@@ -254,6 +254,11 @@
     margin: 0;
 }
 
+.highlight-text {
+    color: #0ef; /* Couleur plus foncée pour "StudentHub" */
+}
+
+
     </style>
 </head>
 <body>
@@ -263,7 +268,7 @@
         <div class="form-box login">
         <div class="header">
         <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
-        <h2>Inscription</h2>
+        <h2>Connexion</h2>
     </div>
             <form action="{{route('login')}}" method="POST">
                 @csrf
@@ -284,26 +289,26 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                    <label>Password</label>
+                    <label>Mot de passe</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-white">
-                    {{ __('Forgot Your Password?') }}
+                    {{ __('Mot de passe oublie!') }}
                 </a>
                 @endif
                 <div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn">Connexion</button>
                 </div>
                 <div class="logreg-link">
-                    <p>Don't have an account? <a href="{{ route('register') }}" class="register-link">Sign-up</a></p>
+                    <p>Vous n'avez pas de compte?<a href="{{ route('register') }}" class="register-link">S'inscire</a></p>
                 </div>
             </form>
         </div>
         <div class="info-text login">
             <h2 style="margin-bottom: 60px; font-size: 36px;">Bienvenue</h2>
-            <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
-        </div>
+            <p>Rejoignez <span class="highlight-text">StudentHub</span> pour une expérience d'apprentissage collaborative et enrichissante !</p>
+            </div>
     </div>
      <!-- Bouton Back -->
 <!-- Bouton Back avec icône -->

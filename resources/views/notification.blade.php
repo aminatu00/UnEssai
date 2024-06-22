@@ -1,8 +1,8 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="col-md-8">
-    <div class="card">
+<div class="col-md-8 text-white">
+    <div class="card"  style="background-color: #081b29; border: 1px solid #0ef;color:azure">
         <div class="card-header">Notifications</div>
         <div class="card-body">
             @switch(auth()->user()->user_type)

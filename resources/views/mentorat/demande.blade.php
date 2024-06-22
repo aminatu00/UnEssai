@@ -11,32 +11,32 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="prenom" class="text-white">Prénom :</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                    <input type="text" class="form-control" id="prenom" name="prenom" required style="background-color: #081b29;color:white;">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="nom" class="text-white">Nom :</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
+                    <input type="text" class="form-control" id="nom" name="nom" required style="background-color: #081b29;color:white;">
                 </div>
             </div>
             <!-- Email -->
             <div class="form-group">
                 <label for="email" class="text-white">Email :</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" required style="background-color: #081b29;color:white;">
             </div>
             <!-- Numéro de téléphone -->
             <div class="form-group">
                 <label for="phone" class="text-white">Numéro de téléphone :</label>
-                <input type="text" class="form-control" id="phone" name="phone" required>
+                <input type="text" class="form-control" id="phone" name="phone" required style="background-color: #081b29;color:white;">
             </div>
             <!-- Domaine de Mentorat -->
             <div class="form-group">
                 <label for="domain" class="text-white">Domaine de Mentorat :</label>
                 <div>
-                    <div class="form-check">
+                    <div class="custom-checkbox ">
                         <input class="form-check-input" type="checkbox" id="domain_informatique" name="domain[]" value="informatique">
                         <label class="form-check-label" for="domain_informatique">Informatique</label>
                     </div>
-                    <div class="form-check">
+                    <div class="custom-checkbox ">
                         <input class="form-check-input" type="checkbox" id="domain_reseaux" name="domain[]" value="reseaux">
                         <label class="form-check-label" for="domain_reseaux">Réseaux</label>
                     </div>
@@ -46,7 +46,7 @@
             <!-- Niveau d'Étude -->
             <div class="form-group">
                 <label for="current_level" class="text-white">Niveau d'Étude Actuel :</label>
-                <select class="form-control" id="current_level" name="current_level" required>
+                <select class="form-control" id="current_level" name="current_level" required style="background-color: #081b29;color:white;">
                     <option value="licence_2">Licence 2</option>
                     <option value="licence_3">Licence 3</option>
                     <option value="master_1">Master 1</option>
@@ -56,7 +56,7 @@
             <!-- Lettre de Motivation -->
             <div class="form-group">
                 <label for="motivation" class="text-white">Lettre de Motivation :</label>
-                <textarea class="form-control" id="motivation" name="motivation" rows="5" required></textarea>
+                <textarea class="form-control" id="motivation" name="motivation" rows="5" required style="background-color: #081b29;color:white;"></textarea>
             </div>
             <!-- Téléverser les Documents -->
             <div class="form-group">
@@ -67,7 +67,7 @@
 
             <!-- Bouton de Soumission -->
             <div class="text-right">
-                <button type="submit" class="btn btn-gradient">Soumettre</button>
+                <button type="submit" class="btn btn-gradient" style="background: linear-gradient(180deg, #0ef, #081b29); color: white;">Soumettre</button>
             </div>
         </form>
     </div>
@@ -75,6 +75,31 @@
 @endsection
 
 <style>
+      .custom-checkbox .form-check-input {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff; /* Couleur de fond de base */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 3px; /* Coins arrondis */
+    outline: none; /* Supprimer la bordure bleue lors du focus */
+    cursor: pointer; /* Curseur de la souris */
+    margin-left: 8px;
+}
+
+.custom-checkbox .form-check-input:checked {
+    background-color: #0ef; /* Couleur de fond quand la case est cochée */
+    
+    
+}
+
+.custom-checkbox .form-check-label {
+    color: #ffff; /* Couleur du texte du label */
+    margin-left: 68px; /* Espace entre la case à cocher et le label */
+}
+
     .card {
         background-color: #081b29;
         border: 1px solid #0ef;
@@ -104,7 +129,7 @@
         color: #fff;
     }
 
-    .btn-gradient {
+    /* .btn-gradient {
         background: linear-gradient(180deg, #0ef, #081b29);
         border: none;
         color: white;
@@ -114,5 +139,5 @@
 
     .btn-gradient:hover {
         background: linear-gradient(180deg, #081b29, #0ef);
-    }
+    } */
 </style>

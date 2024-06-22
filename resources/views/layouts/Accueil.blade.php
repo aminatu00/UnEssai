@@ -106,7 +106,7 @@
       <p>Échangez des idées, posez des questions et enrichissez vos connaissances.</p>
       <div class="d-flex">
         <a href="#about" class="btn-get-started">Commencer</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Regarder la Vidéo</span></a>
+        <a href="https://youtu.be/8GbVwhBI67w" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Regarder la Vidéo</span></a>
       </div>
     </div>
     <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">

@@ -5,7 +5,7 @@
 
 
 
-    <div class="col-md-14">
+<div class="col-md-8 offset-md-2">
         <div class="card">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
@@ -23,21 +23,21 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div>
+            <!-- <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div> -->
             <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
 
                 <!-- Display mentors for students -->
                 @if(auth()->user()->user_type === 'student')
                 @if (!$mentors->isEmpty())
                 <div class="mb-4 custom-background">
-                    <h3>Les Tuteurs</h3>
-                    <table class="table" >
+                    <h3 class="mb-4">Les Tuteurs</h3>
+                    <table class="custom-table" style="width: 100%; padding: 10px;" >
                         <thead>
                             <tr>
                                 <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
-                                <th>Expertise</th>
+                                <!-- <th>Expertise</th> -->
                                
                             </tr>
                         </thead>
@@ -47,12 +47,12 @@
                             <td><a href="{{ route('mentors.show', $mentor->id) }}">{{ $mentor->name }}</a></td>
                                 <td>{{ $mentor->email }}</td>
                                 <td>{{ $mentor->niveau }}</td>
-                               <td>
+                               <!-- <td>
                                 @php
                                 $studentMentora = json_decode($mentor->expertise);
                                 echo implode('<br>', $studentMentora);
                                 @endphp
-                               </td>
+                               </td> -->
                                
                             </tr>
                             @endforeach
@@ -66,14 +66,15 @@
                 @elseif(auth()->user()->user_type === 'mentor')
                 @if (!$students->isEmpty())
                 <div class="mb-4  custom-background">
-                    <h3>Mes Etudiants Tuteures</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
+                    <h3 class="mb-4">Mes Etudiants Tuteurés</h3>
+
+                    <table class="custom-table mb-4"" style="width: 100%; padding: 10px;">
+                        <thead >
+                            <tr >
                                 <th>NomPrenom</th>
                                 <th>Email</th>
                                 <th>Niveau</th>
-                                <th>Centre d'intérêt</th>
+                                <!-- <th>Centre d'intérêt</th> -->
                                 <!-- <th>Action</th> -->
                             </tr>
                         </thead>
@@ -83,21 +84,13 @@
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->niveau }}</td>
-                                <td>
+                                <!-- <td>
                                 @php
                                 $studentMentor = json_decode($student->interests);
-                                echo implode('<br>', $studentMentor);
+                                echo implode(' ', $studentMentor);
                                 @endphp
-                                </td>
-                                <!-- <td> -->
-                                    <!-- Icones pour modifier et supprimer -->
-                                    <!-- <a href="{{ route('users.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a> -->
-                                    <!-- <form action="{{ route('users.destroy', $student->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
-                                    </form> -->
-                                <!-- </td> -->
+                                </td> -->
+                               
                             </tr>
                             @endforeach
                         </tbody>
@@ -110,8 +103,8 @@
                 @elseif(auth()->user()->user_type === 'admin')
                 @if (!$students->isEmpty())
                 <div class="mb-4  custom-background ">
-                    <h3>Etudiants</h3>
-                    <table class="table">
+                    <h3 >Etudiants</h3>
+                    <table class="custom-table" style="width: 100%; padding: 10px;">
                         <thead>
                             <tr>
                                 <th>NomPrenom</th>
@@ -155,7 +148,7 @@
                 @if (!$mentors->isEmpty())
                 <div class="mb-4  custom-background">
                     <h3>Tuteurs</h3>
-                    <table class="table">
+                    <table class="custom-table" style="width: 100%; padding: 10px;">
                         <thead>
                             <tr>
                                 <th>NomPrenom</th>

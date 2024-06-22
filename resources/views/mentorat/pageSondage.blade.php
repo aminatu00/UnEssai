@@ -64,19 +64,27 @@
 
                         @if(auth()->user()->user_type !== 'mentor' || auth()->user()->user_type === 'mentor')
                         <div>
-                            <form id="vote-form-{{ $loop->index }}" action="{{ route('vote.submit', [$survey->id, $option]) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-link vote-button" name="survey_id" value="{{ $survey->id }}"><i class="fas fa-vote-yea"></i></button>
-                            </form>
+                        <form id="vote-form-{{ $loop->index }}" action="{{ route('vote.submit', [$survey->id, $option]) }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-link vote-button" name="survey_id" value="{{ $survey->id }}" style="background-color: transparent; border: none;">
+        <span style="color: #0ef;">
+            <i class="fas fa-vote-yea"></i>
+        </span>
+    </button>
+</form>
+
                         </div>
                         @endif
                     </li>
                     @endforeach
                 </ul>
                 <!-- <a href="{{ route('view.survey', $survey->id) }}" class="btn btn-link"><i class="fas fa-eye"></i></a> -->
-                <a href="{{ route('surveys.meetings', $survey->id) }}" class="btn btn-link">
-    <i class="fas fa-calendar-check"></i> Voir Tutorat Disponible
+                <a href="{{ route('surveys.meetings', $survey->id) }}" class="btn btn-link" style="background-color: transparent;">
+    <span style="color: #0ef;">
+        <i class="fas fa-calendar-check"></i> Voir Tutorat Disponible
+    </span>
 </a>
+
                 <hr>
             </div>
             @endif
@@ -113,7 +121,7 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-                            <div class="progress-bar bg-primary" role="progressbar" style="width:10%" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width:10%; background-color: #0ef;"  aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
                                 {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}
                             </div>
                         </div>

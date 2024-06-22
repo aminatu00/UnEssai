@@ -33,10 +33,13 @@
                         <div class="text-white text-sm mb-2 ">
                                     Publié par {{ $question->user->name }} il y a {{ $question->created_at->diffForHumans() }}
                                     @if ($question->user->user_type === 'mentor')
-    <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg "></i> Tuteur</span>
+<span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
 @endif
 
                                 </div>
+
+             
+
                                 <div class="d-flex align-items-center">
                                     @if ($question->user->profile_image)
                                     <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}" style="width: 50px; height: 50px;">
