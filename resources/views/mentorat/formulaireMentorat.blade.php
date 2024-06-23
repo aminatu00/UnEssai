@@ -1,8 +1,8 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white">
     <div class="card text-white" style="background-color:#081b29 ; border:1px solid #fff">
-        <div class="card-header text-white" style=" border:1px solid #fff">{{ __(Creer Tutorat') }}</div>
+        <div class="card-header text-white" style=" border:1px solid #fff">{{ __('Creer Tutorats') }}</div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('meetings.store') }}">
@@ -83,10 +83,10 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Lien Meet/Info') }}</label>
+                <div class="form-group row" style="background-color:#081b29 " >
+                    <label for="link" class="col-md-4 col-form-label text-md-right" style="background-color:#081b29 " > {{ __('Lien Meet/Info') }}</label>
                     <div class="col-md-6">
-                        <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="meeting_link" value="{{ old('link') }}" required>
+                        <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="meeting_link" value="{{ old('link') }}" required  style="background-color:#081b29; color:#fff ">
                         @error('link')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -97,8 +97,8 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Create Meeting') }}
+                        <button type="submit" class="btn btn-primary"style="background-color:#081b29; background-image:linear-gradient(180deg, #081b29, #0ef); border-radius:10px">
+                            {{ __('Creer Tutorat') }}
                         </button>
                     </div>
                 </div>

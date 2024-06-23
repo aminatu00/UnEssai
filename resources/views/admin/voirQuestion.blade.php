@@ -16,11 +16,13 @@
                             <tr>
                                 <th  class="text-white" style="background-color:#081b29"scope="col">Sujet</th>
                                 <th  class="text-white" style="background-color:#081b29" scope="col">Contenu</th>
+                                <th class="text-white" style="background-color:#081b29" scope="col"></th>
                                 <th class="text-white" style="background-color:#081b29" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($questions as $question)
+                            
                                 <tr>
                                     <td class="text-white" style="background-color:#081b29">
                                  <a href="{{ route('questionAdmin.show', $question->id) }}">{{ $question->title }}

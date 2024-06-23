@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="col-md-8 offset-md-2 text-white">
      <!-- Afficher les messages d'erreur -->
      @if ($errors->any())
     <div class="alert alert-danger auto-dismiss">
@@ -32,27 +32,27 @@
                     @else
                     <div class="table-responsive">
                         <table class="table table-dark table-striped">
-                            <thead>
+                            <thead style="background-color: #081b29">
                                 <tr>
-                                    <th>Niveau</th>
-                                    <th>Domaine demande</th>
-                                    <th>Message</th>
-                                    <th>Action</th>
+                                    <th style="background-color: #081b29">Niveau</th>
+                                    <th style="background-color: #081b29">Domaine demande</th>
+                                    <th style="background-color: #081b29">Message</th>
+                                    <th style="background-color: #081b29">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="background-color: #081b29">
                                 @foreach ($mentorRequest as $request)
-                                <tr>
-                                    <td>{{ $request->niveau }}</td>
-                                    <td>
+                                <tr style="background-color: #081b29">
+                                    <td style="background-color: #081b29">{{ $request->niveau }}</td>
+                                    <td style="background-color: #081b29">
                                         @if(is_array($request->expertise))
                                         {{ implode(', ', $request->expertise) }}
                                         @else
                                         {{ $request->expertise }}
                                         @endif
                                     </td>
-                                    <td>{{ $request->message }}</td>
-                                    <td>
+                                    <td style="background-color: #081b29">{{ $request->message }}</td>
+                                    <td style="background-color: #081b29">
                                         <form action="{{ route('Tutorat.destroy', $request->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

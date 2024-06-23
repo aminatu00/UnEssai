@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-8" >
+<div class="col-md-8 offset-md-2 text-white">
     <div class="text-white"><h1>Votre questions question</h1></div>  
 
     <div class="card mb-3 " style="background-color: #081b29; border: 1px solid #0ef;">

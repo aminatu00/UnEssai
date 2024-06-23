@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white">
       <!-- Afficher les messages d'erreur -->
       <!-- Afficher les messages d'erreur -->
     @if ($errors->any())

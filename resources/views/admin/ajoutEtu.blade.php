@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="col-md-6 text-white">
+<div class="col-md-8 offset-md-2 text-white">
     <div class="row">
         <form method="POST" action="{{ route('register.student') }}">
             @csrf

@@ -1,5 +1,7 @@
 @extends('layouts.template')
 @section('content')
+<div class="col-md-8 offset-md-2 text-white">
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4">
@@ -38,6 +40,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
 

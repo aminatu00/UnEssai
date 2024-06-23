@@ -3,6 +3,8 @@
 @extends('layouts.template')
 
 @section('content')
+<div class="col-md-8 offset-md-2 text-white">
+
 <div class="container">
     <h1>Signaler un contenu</h1>
     <form action="{{ route('reports.store') }}" method="POST">
@@ -19,4 +21,5 @@
         <button type="submit" class="btn btn-primary">Envoyer le signalement</button>
     </form>
 </div>
+<div>
 @endsection

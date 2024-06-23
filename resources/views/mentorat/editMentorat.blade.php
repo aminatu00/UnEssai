@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-        <div class="col-md-6 offset-md-0">
+<div class="col-md-8 offset-md-2 text-white">
             <div class="card">
                 <div class="card-header">{{ __('Edit Meeting') }}</div>
 

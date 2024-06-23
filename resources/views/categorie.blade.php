@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-6">
+<div class="col-md-10">
     <div class="row">
         @foreach($categories as $category)
         <div class="col-md-6 mb-1" style="background-color:#081b29;">

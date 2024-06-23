@@ -1,11 +1,11 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-8 offset-md-0">
-    <div class="card" >
-        <div class="card-header text-white " style="background-color:#081b29 ; border:1px solid #fff">{{ __('Tutorats') }}</div>
+<div class="col-md-12 offset-md-0 text-white">
+    <div class="card " style="background-color: #081b29; border: 1px solid #0ef; color:aliceblue">
+        <div class="card-header ">{{ __('Tutorats') }}</div>
 
-        <div class="card-body" style="background-color:#081b29">
+        <div class="card-body" style="background-color: #081b29; border: 1px solid #0ef; color:aliceblue">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
             <div class="alert alert-danger auto-dismiss">
@@ -25,9 +25,9 @@
             @endif
 
             @if($meetings->isEmpty())
-             <div class="text-white" style="background-color:#081b29"> <p>Pas de tutorats trouves</p></div>  
+            <p>Pas de tutorats trouves</p>
             @else
-            <table class="custom-table" style="width: 100%; padding: 10px;">
+            <table class="custom-table" style="width: 100%; padding: 20px;">
                 <thead>
                     <tr>
                         <th>Date</th>

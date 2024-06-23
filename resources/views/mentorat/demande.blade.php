@@ -2,7 +2,8 @@
 @section('content')
 
 <div class="container mt-5">
-    <div class="col-md-10 offset-md-1 text-white" style="background-color: #081b29; border: 1px solid #0ef; padding: 20px; border-radius: 8px;">
+<div class="col-md-8 offset-md-2 text-white"
+style="background-color: #081b29; border: 1px solid #0ef; padding: 20px; border-radius: 8px;">
         <h2 class="text-center mb-4">Demande pour être Tuteur</h2>
 
         <form action="{{ route('mentor.request.submit') }}" method="POST" enctype="multipart/form-data">

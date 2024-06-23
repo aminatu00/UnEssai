@@ -1,12 +1,11 @@
 @extends('layouts.template')
 @section('content')
 
+
 <div class="container-fluid">
-<<<<<<< HEAD
-    <h1 class="h3 mb-4 text-gray-800">Modifier Etudiant</h1>
-=======
+<div class="col-md-8 offset-md-2 text-white">
+
     <h1 class="h3 mb-4 text-white">Edit Student</h1>
->>>>>>> origin/aissatou
     <div class="card">
         <div class="card-body" style="background-color:#081b29;" > 
             <form method="POST" action="{{ route('students.update', $student->id) }}">
@@ -36,5 +35,6 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 @endsection

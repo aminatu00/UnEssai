@@ -3,10 +3,10 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white" style="background-color:#081b29">
         <div class="card">
-            <div class="card-header">{{ $question->title }}</div>
-            <div class="card-body">
+            <div class="card-header text-white"style="background-color:#081b29">sujet de la question : {{ $question->title }}</div>
+            <div class="card-body text-white"style="background-color:#081b29">
             @if ($question->media_path)
                             @php
                             $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
@@ -40,12 +40,12 @@
                                 <p>Le type de média n'est pas pris en charge.</p>
                                 @endif
                                 @endif
-                <p>{{ $question->content }}</p>
+                <p>la question :       {{ $question->content }}</p>
                 <hr>
                 <h5>Réponses :</h5>
-                <ul class="list-group">
+                <ul class="list-group text-white" style="background-color:#081b29">
                     @foreach($question->answers as $answer)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-white"style="background-color:#081b29">
                             <div>
                                 <p>{{ $answer->content }}</p>
                                 <small>Répondu par : {{ $answer->user->name }}</small>
@@ -53,7 +53,7 @@
                             <form action="{{ route('answerAdmin.destroy', $answer->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </li>
                     @endforeach

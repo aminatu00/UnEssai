@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-        <div class="col-md-8 offset-md0">
+<div class="col-md-8 offset-md-2 text-white">
             <div class="card">
                 <div class="card-header text-white" style="background-color:#081b29">{{ __('Modifier le sondage') }}</div>
 

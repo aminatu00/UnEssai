@@ -26,21 +26,21 @@ class QuestionController extends Controller
     }
 
 
-     public function getQuestionsByCategory($id)
-     {
-         // Récupérer les questions pour la catégorie spécifiée par $id
-         $category = Category::find($id);
+    //  public function getQuestionsByCategory($id)
+    //  {
+    //      // Récupérer les questions pour la catégorie spécifiée par $id
+    //      $category = Category::find($id);
      
-         if ($category) {
-             $questions = $category->questions;
-             return view('nonConnecter.discussion', ['questions' => $questions, 'category' => $category]);
-         } else {
-             return view('nonConnecter.discussion')->with('error', 'Aucune question associée à cette catégorie.');
-         }
-     }
+    //      if ($category) {
+    //          $questions = $category->questions;
+    //          return view('nonConnecter.discussion', ['questions' => $questions, 'category' => $category]);
+    //      } else {
+    //          return view('nonConnecter.discussion')->with('error', 'Aucune question associée à cette catégorie.');
+    //      }
+    //  }
 
 
-     public function getQuestionsparCategory($id)
+     public function getQuestionsByCategory($id)
      {
          // Récupérer les questions pour la catégorie spécifiée par $id
          $category = Category::find($id);

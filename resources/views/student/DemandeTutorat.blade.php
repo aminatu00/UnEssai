@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-0">
-    <div class="col-md-8 offset-md-2 text-white">
+<div class="col-md-8 offset-md-2 text-white">
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

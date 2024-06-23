@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-6 text-white">
+<div class="col-md-8 offset-md-2 text-white">
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -49,8 +49,8 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label for="sub_expertises">Expertises</label>
+            <div class="form-group text-white" style="background-color:#081b29">
+                <label for="sub_expertises">Modules</label>
                 <div id="sub_expertises-container"></div>
             </div>
             <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">S'inscrire</button>

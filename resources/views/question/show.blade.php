@@ -3,7 +3,7 @@
 
 
 
-        <div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white">
           <div class="text-white"><h1>Liste des questions</h1></div>  
             <form action="{{ route('questions.search') }}" method="GET" class="mb-3">
                 <div class="input-group" style="background-color:#081b29">

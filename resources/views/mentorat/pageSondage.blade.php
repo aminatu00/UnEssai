@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8 offset-md-2">
+<div class="col-md-8 offset-md-2 text-white">
     <div class="card">
         @if (session('success'))
         <div class="alert alert-success auto-dismiss">
@@ -18,8 +18,8 @@
         </div>
         @endif
 
-        <div class="card-header text-white"  style="background-color:#081b29; border:1px solid #fff">{{ __('Mes Sondages recents'') }}</div>
-        <div class="card-body" style="background-color:#081b29">
+        <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('Mes Sondages recents') }}</div>
+        <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
             @foreach($surveys->sortByDesc('created_at') as $survey)
             <div id="sondage_{{ $survey->id }}" class="survey text-white" > <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
@@ -126,7 +126,7 @@
                             </div>
                         </div>
 
-                        @if(auth()->user()->user_type !== 'mentor')
+                    @if(auth()->user()->user_type !== 'mentor')
                         <div>
                             <form id="vote-form-{{ $loop->index }}" action="{{ route('vote.submit', [$survey->id, $option]) }}" method="POST">
                                 @csrf

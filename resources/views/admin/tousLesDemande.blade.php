@@ -3,8 +3,8 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="col-md-10 offset-md-0 text-white">
-    <h2>Liste des Demandes pour etre Tuteur</h2>
+<div class="col-md-8 offset-md-2  text-white" style="background-color: #081b29; border: 1px solid #0ef; color:#fff">
+    <h2 class=" mb-4">Liste des Demandes pour etre Tuteur</h2>
 
     <table class="table">
         <thead>
@@ -32,8 +32,8 @@
     }
     @endphp
 </td>
-                <td>
-                    <a href="{{ route('mentor.request.show', $request->id) }}" class="btn btn-primary">Voir</a>
+                <td style="background-color:#081b29">
+                    <a href="{{ route('mentor.request.show', $request->id) }}" class="btn btn-primary" style="background-color:#081b29; background-image:linear-gradient(180deg, #081b29, #0ef); border-radius:10px">Voir</a>
                 </td>
             </tr>
             @endforeach

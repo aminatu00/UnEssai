@@ -5,7 +5,7 @@
 
 
 
-<div class="col-md-8 offset-md-2">
+<div class="col-md-8 offset-md-2 text-white">
         <div class="card">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())

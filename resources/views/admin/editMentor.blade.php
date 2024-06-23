@@ -1,8 +1,10 @@
 @extends('layouts.template')
 @section('content')
 
+<div class="col-md-8 offset-md-2 text-white">
 
-<<div class="container-fluid">
+<div class="container-fluid">
+
     <h1 class="h3 mb-4 text-white">Modifier Tuteur</h1><div class="card" >
         <div class="card-body" style="background-color:#081b29">
             <form method="POST" action="{{ route('mentors.update', $mentor->id) }}">
@@ -42,5 +44,6 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+<div class="col-md-8 offset-md-2 text-white">
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -77,6 +78,7 @@
             @endif
         @endif
     </div>
+</div>
 @endsection
 
 @section('scripts')

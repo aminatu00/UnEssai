@@ -1,11 +1,10 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header text-center text-white" style="background-color:#081b29; border-color:#fff">Profil Utilisateur</div>
+
+    <div class="col-md-8 offset-md-2 text-white">
+    <div class="card" style="background-color: #081b29; border: 1px solid #0ef; color:#fff">
+                <div class="card-header text-center">Profil Utilisateur</div>
 
                 <div class="card-body" style="background-color:#081b29">
                     <!-- Afficher les messages d'erreur -->
@@ -78,9 +77,9 @@
                         <div class="form-group text-white">
                             <label for="interests">Centres d'intérêt :</label><br>
                             @foreach (['informatique', 'reseaux'] as $interest)
-                                <div class="form-check form-check-inline custom-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="interests[]" value="{{ $interest }}" {{ in_array($interest, json_decode(Auth::user()->interests)) ? 'checked' : '' }}>
-                                    <label class="form-check-label">{{ $interest }}</label>
+                                <div class="form-check form-check-inline custom-checkbox text-white">
+                                    <input class="form-check-input text-white" type="checkbox" name="interests[]" value="{{ $interest }}" {{ in_array($interest, json_decode(Auth::user()->interests)) ? 'checked' : '' }} >
+                                    <label class="form-check-label " style="color: #fff;">{{ $interest }}</label>
                                 </div>
                             @endforeach
                         </div>
@@ -90,8 +89,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+      
 </div>
 
 @endsection
