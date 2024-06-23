@@ -115,6 +115,7 @@ foreach ($allDomains as $domain => $subInterests) {
         $dmTutorat->message = $request->message;
         $dmTutorat->niveau = $request->niveau;
         $dmTutorat->expertise = implode(',', $request->expertise);
+          $dmTutorat->user_id = auth()->id(); 
         $dmTutorat->save();
     
         // Trouver les mentors dont l'expertise correspond à celle choisie

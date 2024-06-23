@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('message');
             $table->string('niveau');
             $table->string('expertise');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Clé étrangère user_id
             $table->timestamps();
         });
     }
@@ -27,4 +28,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('dm_tutorats');
     }
+
 };

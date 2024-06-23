@@ -122,9 +122,13 @@
                                 <td>{{ $student->niveau }}</td>
                                 <td>
                                 @php
-                                $studentInterest = json_decode($student->interests);
-                                echo implode('<br>', $studentInterest);
-                                @endphp
+                                        $studentInterest = json_decode($student->interests);
+                                        if (is_array($studentInterest)) {
+                                            echo implode('<br>', $studentInterest);
+                                        } else {
+                                            echo $studentInterest; // Handle case where $studentInterest is a string
+                                        }
+                                    @endphp
                                 </td>
 
                                 <td>

@@ -9,11 +9,17 @@ class DmTutorat extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'message', 'niveau', 'expertise',
+        'message', 'niveau', 'expertise','user_id',
     ];
 
 
     protected $casts = [
         'expertise' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

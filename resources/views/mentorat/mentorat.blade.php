@@ -27,8 +27,8 @@
             @if($meetings->isEmpty())
             <p>Pas de tutorats trouves</p>
             @else
-            <table class="custom-table"style="width: 100%; padding: 10px;">
-                <thead >
+            <table class="custom-table" style="width: 100%; padding: 10px;">
+                <thead>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
@@ -37,11 +37,16 @@
                         <th>Tuteur</th>
                         <th>Domaine</th>
                         <th>Type de Session</th>
+                        <!-- Afficher Actions uniquement pour les mentors connectés -->
+                        @if(auth()->check() && auth()->user()->user_type === 'mentor')
                         <th>Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($meetings as $meeting)
+                    @if(auth()->check())
+                    @if(auth()->user()->user_type === 'mentor' && $meeting->mentor_id === auth()->user()->id)
                     <tr>
                         <td>{{ $meeting->date }}</td>
                         <td>{{ $meeting->time }}</td>
@@ -52,6 +57,7 @@
                         <td>{{ $meeting->mentor->name }}</td>
                         <td>{{ $meeting->domaine }}</td>
                         <td>{{ ucfirst($meeting->session_type) }}</td>
+                        <!-- Afficher Actions uniquement pour les mentors -->
                         <td>
                             <a href="{{ route('meetings.edit', $meeting->id) }}" class="btn btn-link p-0">
                                 <i class="fas fa-edit" style="color: blue;"></i> <!-- Icone pour modifier -->
@@ -64,8 +70,21 @@
                                 </button>
                             </form>
                         </td>
-
                     </tr>
+                    @elseif(auth()->user()->user_type !== 'mentor')
+                    <tr>
+                        <td>{{ $meeting->date }}</td>
+                        <td>{{ $meeting->time }}</td>
+                        <td>
+                            {!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $meeting->meeting_link) !!}
+                        </td>
+                        <td>{{ $meeting->subject }}</td>
+                        <td>{{ $meeting->mentor->name }}</td>
+                        <td>{{ $meeting->domaine }}</td>
+                        <td>{{ ucfirst($meeting->session_type) }}</td>
+                    </tr>
+                    @endif
+                    @endif
                     @endforeach
                 </tbody>
             </table>
