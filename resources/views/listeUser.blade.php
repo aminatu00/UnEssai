@@ -9,7 +9,7 @@
         <div class="card">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
-            <div class="alert alert-danger auto-dismiss">
+            <div class="alert alert-danger auto-dismiss text-white">
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -19,7 +19,7 @@
             @endif
              <!-- Afficher les messages de succès -->
              @if (session('success'))
-                <div class="alert alert-success auto-dismiss">
+                <div class="alert alert-success auto-dismiss text-white">
                     {{ session('success') }}
                 </div>
             @endif
@@ -117,10 +117,10 @@
                         <tbody>
                             @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->niveau }}</td>
-                                <td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->name }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->email }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->niveau }}</td>
+                                <td class="text-white"  style="background-color:#081b29">
                                 @php
                                         $studentInterest = json_decode($student->interests);
                                         if (is_array($studentInterest)) {
@@ -131,13 +131,13 @@
                                     @endphp
                                 </td>
 
-                                <td>
+                                <td  class="text-white"  style="background-color:#081b29">
                                     <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('students.edit', $student->id) }}" class="btn" style="color:#0ef"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -166,31 +166,37 @@
                         <tbody>
                             @foreach ($mentors as $mentor)
                             <tr>
-                                <td>{{ $mentor->name }}</td>
-                                <td>{{ $mentor->email }}</td>
-                                <td>{{ $mentor->niveau }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->name }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->email }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->niveau }}</td>
                               
-                                <td>
-                                @php
-                                $mentorExpertisesArray = json_decode($mentor->expertise);
-                                echo implode('<br>', $mentorExpertisesArray);
-                                @endphp
-                                </td>
-                                <td>
+                                <td class="text-white"  style="background-color:#081b29">
+    @php
+        $mentorExpertisesArray = json_decode($mentor->expertise);
+        if(is_array($mentorExpertisesArray)) {
+            echo implode('<br>', $mentorExpertisesArray);
+        }
+    @endphp
+</td>
+
+<td class="text-white"  style="background-color:#081b29">
     @php
         $subExpertisesArray = json_decode($mentor->sub_expertises, true);
-        echo implode('<br>', $subExpertisesArray);
+        if(is_array($subExpertisesArray)) {
+            echo implode('<br>', $subExpertisesArray);
+        }
     @endphp
 </td>
 
 
-                                <td>
+
+                                <td class="text-white"  style="background-color:#081b29">
                                     <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('mentors.edit', $mentor->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('mentors.edit', $mentor->id) }}" class="btn " style="color:#0ef"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('mentors.destroy', $mentor->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Est tu sure de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sure de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -199,7 +205,7 @@
                     </table>
                 </div>
                 @else
-                <p>No mentors found.</p>
+            <div class="text-white"></div>    <p>No mentors found.</p>
                 @endif
                 @endif
             </div>

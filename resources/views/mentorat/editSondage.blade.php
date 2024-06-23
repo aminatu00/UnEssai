@@ -3,9 +3,9 @@
 
         <div class="col-md-8 offset-md0">
             <div class="card">
-                <div class="card-header">{{ __('Modifier le sondage') }}</div>
+                <div class="card-header text-white" style="background-color:#081b29">{{ __('Modifier le sondage') }}</div>
 
-                <div class="card-body">
+                <div class="card-body text-white" style="background-color:#081b29">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -22,25 +22,25 @@
 
                         <div class="form-group">
                             <label for="subject">{{ __('Sujet') }}</label>
-                            <input type="text" class="form-control" id="subject" name="subject" value="{{ $sondage->subject }}" required>
+                            <input type="text" class="form-control text-white" style="background-color:#081b29" id="subject" name="subject" value="{{ $sondage->subject }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="question">{{ __('Question') }}</label>
-                            <textarea class="form-control" id="question" name="question" rows="3" required>{{ $sondage->question }}</textarea>
+                            <textarea class="form-control text-white" style="background-color:#081b29" id="question" name="question" rows="3" required>{{ $sondage->question }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="options">{{ __('Options (séparées par des virgules)') }}</label>
-                            <input type="text" class="form-control" id="options" name="options" value="{{ $sondage->options }}" required>
+                            <input type="text" class="form-control text-white" style="background-color:#081b29" id="options" name="options" value="{{ $sondage->options }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="expiry_date">{{ __('Date d\'expiration') }}</label>
-                            <input type="date" class="form-control" id="expiry_date" name="expiry_date" value="{{ $sondage->expiry_date }}" required>
+                            <input type="date" class="form-control text-white" style="background-color:#081b29" id="expiry_date" name="expiry_date" value="{{ $sondage->expiry_date }}" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Enregistrer les modifications') }}</button>
+                        <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg,#081b29,#0ef);border-radius:40px">{{ __('Enregistrer les modifications') }}</button>
                     </form>
                 </div>
             </div>

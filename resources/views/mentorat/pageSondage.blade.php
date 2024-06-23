@@ -18,13 +18,13 @@
         </div>
         @endif
 
-        <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('Mes Sondages recents') }}</div>
-        <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
+        <div class="card-header text-white"  style="background-color:#081b29; border:1px solid #fff">{{ __('Mes Sondages recents'') }}</div>
+        <div class="card-body" style="background-color:#081b29">
             @foreach($surveys->sortByDesc('created_at') as $survey)
-            <div id="sondage_{{ $survey->id }}" class="survey"> <!-- Ajout d'un div unique pour chaque sondage -->
+            <div id="sondage_{{ $survey->id }}" class="survey text-white" > <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
             @if(auth()->user()->niveau >= $survey->niveau && in_array($survey->subject, json_decode(auth()->user()->interests)))
-            <div class="survey">
+            <div class="survey text-white" >
                 <h4>{{ $survey->subject }}</h4>
                 <p>{{ $survey->question }}</p>
                 <p><strong>Domaine :</strong> {{ $survey->subject }}</p>
@@ -48,7 +48,7 @@
                     @foreach($options as $option)
                     <li class="d-flex align-items-center justify-content-between">
                         <div>{{ is_array($option) ? $option['name'] : $option }}</div>
-                        <div class="progress" style="width: 50%">
+                        <div class="progress " style="width: 50%">
                             @php
                             $percentage = 0;
                             $optionName = is_array($option) ? $option['name'] : $option;
@@ -113,7 +113,7 @@
                     @foreach($options as $option)
                     <li class="d-flex align-items-center justify-content-between">
                         <div>{{ is_array($option) ? $option['name'] : $option }}</div>
-                        <div class="progress" style="width: 50%">
+                        <div class="progress " style="width: 50% ; background-color:#081b29; border:1px solid #fff">
                             @php
                             $percentage = 0;
                             $optionName = is_array($option) ? $option['name'] : $option;
@@ -156,7 +156,7 @@
 </div>
 
                 @endif
-                <hr style="border-top: 2px solid #8B0000; margin: 40px 0;">
+                <!-- <hr style="border-top: 2px solid #8B0000; margin: 40px 0;"> -->
             </div>
             @endif
             @endforeach
@@ -167,7 +167,7 @@
 @endsection
 
 
-@section('styles')
+ @section('styles')
 <style>
     .bg-custom {
     background-color: #0ef !important;

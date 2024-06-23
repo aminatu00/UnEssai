@@ -249,7 +249,7 @@ Route::delete('/admine/reported-questions/{id}', [AdminController::class, 'delet
 // Route::post('/signaler/contenue/{question_id}', [SignalementController::class, 'create'])->name('reports.create');
 
 
-// Route::post('/signaler-contenu', [SignalementController::class, 'store'])->name('reports.store');
+ Route::post('/signaler-contenu', [SignalementController::class, 'store'])->name('reports.store');
 
 //admin peut voir question , reponses et aussi peut supprimer questions , reponses
 

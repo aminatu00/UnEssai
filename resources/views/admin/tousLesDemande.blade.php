@@ -9,20 +9,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Domaine</th>
-                <th>Actions</th>
+                <th class="text-white" style="background-color:#081b29">Prénom</th>
+                <th class="text-white" style="background-color:#081b29">Nom</th>
+                <th class="text-white" style="background-color:#081b29">Email</th>
+                <th class="text-white" style="background-color:#081b29" >Domaine</th>
+                <th class="text-white" style="background-color:#081b29">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($mentorRequests as $request)
             <tr>
-                <td>{{ $request->prenom }}</td>
-                <td>{{ $request->nom }}</td>
-                <td>{{ $request->email }}</td>
-                <td>
+                <td class="text-white" style="background-color:#081b29"> {{ $request->prenom }}</td>
+                <td class="text-white" style="background-color:#081b29">{{ $request->nom }}</td>
+                <td class="text-white" style="background-color:#081b29">{{ $request->email }}</td>
+                <td class="text-white" style="background-color:#081b29">
     @php
     $domain = json_decode($request->domain);
     if (json_last_error() === JSON_ERROR_NONE && is_array($domain)) {

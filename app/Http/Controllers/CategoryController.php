@@ -14,6 +14,9 @@ class CategoryController extends Controller
     public function index()
     {
         if (Auth::check()) {
+            // Initialiser $userInterests à un tableau vide par défaut
+            $userInterests = [];
+    
             if (Auth::user()->user_type === 'mentor') {
                 // Décoder les expertises du mentor connecté depuis la chaîne JSON
                 $userInterests = json_decode(Auth::user()->expertise);
@@ -22,13 +25,20 @@ class CategoryController extends Controller
                 $userInterests = json_decode(Auth::user()->interests);
             }
     
-            // Filtrer les catégories en fonction des centres d'intérêt ou des expertises de l'utilisateur
-            $categories = Category::whereIn('nom', $userInterests)->get();
+            // Vérifier si $userInterests est null ou non
+            if ($userInterests !== null) {
+                // Filtrer les catégories en fonction des centres d'intérêt ou des expertises de l'utilisateur
+                $categories = Category::whereIn('nom', $userInterests)->get();
+            } else {
+                // Si $userInterests est null, récupérer toutes les catégories
+                $categories = Category::all();
+            }
     
             // Passer les catégories filtrées à la vue
             return view('categorie', compact('categories'));
         }
     }
+    
 
 
 
