@@ -72,19 +72,26 @@
     color: #fff; /* Couleur du texte (ici, le contour prend la même couleur que le texte) */
     border-color: #0ef; /* Couleur du contour (blanc) */
 }
-
-        
+.df-messenger {
+            background-color: #081b29 !important;
+            background-image: linear-gradient(180deg, #081b29, #0ef) !important;
+            color: #ffffff !important; /* Couleur du texte en blanc */
+            border-color: #0ef !important; /* Couleur du contour */
+        }
     </style>
 </head>
-
 <body class="index-page">
-<df-messenger
-  chat-icon="https:&#x2F;&#x2F;icons.iconarchive.com&#x2F;icons&#x2F;iconarchive&#x2F;robot-avatar&#x2F;512&#x2F;Cyan-1-Robot-Avatar-icon.png"
-  intent="WELCOME"
-  chat-title="StudentHub"
-  agent-id="a90238f7-7570-4568-a013-aac15728a613"
-  language-code="fr"
-></df-messenger>
+    <!-- Votre contenu HTML -->
+    <df-messenger
+      chat-icon="https://icons.iconarchive.com/icons/iconarchive/robot-avatar/512/Cyan-1-Robot-Avatar-icon.png"
+      intent="WELCOME"
+      chat-title="StudentHub"
+      agent-id="a90238f7-7570-4568-a013-aac15728a613"
+      language-code="fr"
+    ></df-messenger>
+
+
+
 
 
   <header id="header" class="header d-flex align-items-center fixed-top">
