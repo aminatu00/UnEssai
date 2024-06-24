@@ -1,7 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-<<<<<<< HEAD
     <div class="col-md-12">
         <div class="card">
             <div class="card-header text-white" style="background-color:#081b29">Toutes les questions</div>
@@ -51,33 +50,6 @@
                                         <!-- Utilisation d'une icône pour représenter le document PDF -->
                                         <i class="far fa-file-pdf fa-3x"></i>
                                         <p class="card-text">Document PDF</p>
-=======
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-header">Toutes les questions</div>
-        <div class="card-body">
-            @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-            @endif
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Sujet</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($questions as $question)
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div style="margin-right: 10px;">
-                                        <a href="{{ route('questionAdmin.show', $question->id) }}">{{ $question->title }}</a>
-                                        <div>{{ $question->content }}</div>
->>>>>>> origin/amina
                                     </div>
                                     <div>
                                         @if ($question->media_path)
@@ -114,7 +86,6 @@
                                         @endif
                                     </div>
                                 </div>
-<<<<<<< HEAD
                                 @else
                                 <!-- Si le type de média n'est ni une image ni une vidéo ni un PDF -->
                                 <p>Le type de média n'est pas pris en charge.</p>
@@ -125,7 +96,7 @@
                                         <form action="{{ route('questionAdmin.destroy', $question->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn " style="color:#ff0016;" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
 
                                         </form>
                                     </td>
@@ -134,20 +105,6 @@
                         </tbody>
                     </table>
                 </div>
-=======
-                            </td>
-                            <td>
-                                <form action="{{ route('questionAdmin.destroy', $question->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
->>>>>>> origin/amina
             </div>
         </div>
     </div>

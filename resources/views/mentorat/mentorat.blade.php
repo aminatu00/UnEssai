@@ -35,29 +35,29 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Meeting Link/Info</th>
-                            <th>Sujet</th>
-                            <th>Tuteur</th>
-                            <th>Domaine</th>
-                            <th>Type de Session</th>
-                            <th>Actions</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Date</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Time</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Meeting Link/Info</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Sujet</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Tuteur</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Domaine</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Type de Session</th>
+                            <th class=" text-white  " style="background-color:#081b29;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($meetings as $meeting)
                         <tr>
-                            <td>{{ $meeting->date }}</td>
-                            <td>{{ $meeting->time }}</td>
-                            <td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ $meeting->date }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ $meeting->time }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">
                                 {!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $meeting->meeting_link) !!}
                             </td>
-                            <td>{{ $meeting->subject }}</td>
-                            <td>{{ $meeting->mentor->name }}</td>
-                            <td>{{ $meeting->domaine }}</td>
-                            <td>{{ ucfirst($meeting->session_type) }}</td>
-                            <td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ $meeting->subject }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ $meeting->mentor->name }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ $meeting->domaine }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">{{ ucfirst($meeting->session_type) }}</td>
+                            <td class=" text-white  " style="background-color:#081b29;">
     <a href="{{ route('meetings.edit', $meeting->id) }}" class="btn btn-link p-0">
         <i class="fas fa-edit" style="color: blue;"></i> <!-- Icone pour modifier -->
     </a>

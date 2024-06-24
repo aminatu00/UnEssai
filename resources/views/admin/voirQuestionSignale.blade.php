@@ -4,12 +4,12 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Détails de la Question Signalée</h1>
-        <p class="mb-4">Examinez les détails de la question signalée.</p>
+        <h1 class="h3 mb-2 text-white">Détails de la Question Signalée</h1>
+        <p class="mb-4 text-white">Examinez les détails de la question signalée.</p>
         
         @if($question)
             <div class="card shadow mb-4">
-                <div class="card-body">
+                <div class="card-body text-white" style="background-color:#081b29">
                     <h5>ID: {{ $question->id }}</h5>
                     <h5>Titre: {{ $question->title }}</h5>
                     <p>Contenu: {{ $question->content }}</p>
@@ -53,14 +53,14 @@
                     <form action="{{ route('reported.questions.delete', $question->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question?');">Supprimer</button>
-                    </form>
+                        <button type="submit" class="btn " style="color:red" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question?');">  <i class="fas fa-trash"></i> </button>
+                     </form>
                 </div>
             </div>
 
             @if($answer)
                 <div class="card shadow mb-4">
-                    <div class="card-body">
+                    <div class="card-body card-body text-white" style="background-color:#081b29">
                         <h5>Réponse Signalée</h5>
                         <h5>ID: {{ $answer->id }}</h5>
                         <h5>Titre: {{ $answer->title }}</h5>
@@ -70,7 +70,7 @@
                         <form action="{{ route('reported.answers.delete', $answer->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réponse?');">Supprimer</button>
+                            <button type="submit" class="btn " style="color:red" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réponse?');"><i class="fas fa-trash"></i></button>
                         </form>
                     </div>
                 </div>

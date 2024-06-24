@@ -26,20 +26,20 @@
 
         .wrapper {
             position: relative;
-            width: 750px;
-            height: 450px;
+            width: 800px;
+            height: 700px;
             background: transparent;
             border: 2px solid #0ef;
             box-shadow: 0 0 25px #0ef;
             overflow: hidden;
-            min-height: 95vh;
+            min-height: 80vh;
             margin-top: 20px; /* Ajoutez cette ligne */
         }
 
         .wrapper .form-box {
             position: absolute;
             top: 0;
-            width: 50%;
+            width: 55%;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -195,7 +195,7 @@
         }
 
         .info-text p {
-            font-size: 16px;
+            font-size: 18px;
             color: #fff;
         }
 
@@ -204,10 +204,10 @@
             top: 0;
             right: 0;
             width: 850px;
-            height: 600px;
+            height: 650px;
             background: linear-gradient(45deg, #081b29, #0ef);
             border-bottom: 3px solid #0ef;
-            transform: rotate(10deg) skewY(40deg);
+            transform: rotate(8deg) skewY(40deg);
             transform-origin: bottom right;
         }
 
@@ -306,13 +306,14 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-bottom: 50px;
 }
 
 .header h2 {
-    font-size: 25px;
+    font-size: 23px;
     color: #fff;
     margin: 0;
+    height:
 }
 
     </style>
@@ -321,7 +322,7 @@
     <div class="wrapper">
         <span class="bg-animate"></span>
         <div class="form-box register">
-        <div class="header">
+        <div class="header" >
         <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
         <h2>Inscription</h2>
     </div>
@@ -334,7 +335,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <label>UserName</label>
+                    <label>Nom d'utilisateur</label>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
@@ -392,9 +393,9 @@
                     <label>Confirm Password</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">S'inscrire</button>
                 <div class="logreg-link">
-                    <p>Do you have an account? <a href="{{ route('login') }}" class="register-link">Sign-in</a></p>
+                    <p>Vous avez déjà un compte ?<a href="{{ route('login') }}" class="register-link">Se connecter</a></p>
                 </div>
             </form>
         </div>

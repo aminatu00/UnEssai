@@ -3,15 +3,10 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-<<<<<<< HEAD
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center text-white" style="background-color:#081b29; border-color:#fff">Profil Utilisateur</div>
-=======
-    <div class="col-md-8 offset-md-2">
-    <div class="card">
-                <div class="card-header text-center">Profil Utilisateur</div>
->>>>>>> origin/amina
 
                 <div class="card-body" style="background-color:#081b29">
                     <!-- Afficher les messages d'erreur -->
@@ -54,15 +49,11 @@
                         @csrf
                         @method('PUT')
 
-<<<<<<< HEAD
+
                         <div class="form-group text-white">
                             <label for="name">Nom :</label>
                             <input type="text" name="name" class="form-control text-white" style="background-color:#081b29;" value="{{ Auth::user()->name }}">
-=======
-                        <div class="form-group">
-                            <label for="name">NomPrenom :</label>
-                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}">
->>>>>>> origin/amina
+
                         </div>
 
                         <div class="form-group text-white">

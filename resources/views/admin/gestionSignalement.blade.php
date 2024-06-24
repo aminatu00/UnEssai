@@ -15,44 +15,24 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-<<<<<<< HEAD
+
                             <th class="text-white" style="background-color:#081b29">ID</th>
                             <th class="text-white" style="background-color:#081b29">Titre</th>
                             <th class="text-white" style="background-color:#081b29">Contenu</th>
                             <th class="text-white" style="background-color:#081b29">Image</th>
                             <th class="text-white" style="background-color:#081b29">Signalements</th>
                             <th class="text-white" style="background-color:#081b29">Action</th>
-=======
-                            <th>ID</th>
-                            <th>Titre</th>
-                            <th>Contenu</th>
-                            <th>Media</th>
-                            <th>Signalements</th>
-                            <th>Action</th>
->>>>>>> origin/amina
+
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($reportedQuestions as $question)
                         <tr>
-<<<<<<< HEAD
+
                             <td class="text-white" style="background-color:#081b29">{{ $question->id }}</td>
                             <td class="text-white" style="background-color:#081b29">{{ $question->title }}</td>
                             <td class="text-white" style="background-color:#081b29">{{ $question->content }}</td>
                             <td class="text-white" style="background-color:#081b29">
-                                @if($question->media_path)
-                                <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" alt="Image de la question" style="max-height: 100px;">
-                                @else
-                                N/A
-                                @endif
-                            </td>
-                            <td class="text-white" style="background-color:#081b29">{{ $question->reports_count }}</td>
-                            <td class="text-white" style="background-color:#081b29">
-=======
-                            <td>{{ $question->id }}</td>
-                            <td>{{ $question->title }}</td>
-                            <td>{{ $question->content }}</td>
-                            <td>
     @if ($question->media_path)
         @php
             $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
@@ -91,13 +71,14 @@
     @endif
 </td>
 
-                            <td>{{ $question->reports_count }}</td>
-                            <td>
->>>>>>> origin/amina
+                            <td class="text-white" style="background-color:#081b29">{{ $question->reports_count }}</td>
+                            <td class="text-white" style="background-color:#081b29">
+
                                 <form action="{{ route('reported.questions.delete', $question->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question?');">Supprimer</button>
+                                    <button type="submit" class="btn " style="color:red" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question?');">  <i class="fas fa-trash"></i> </button>
+
                                 </form>
                             </td>
                         </tr>

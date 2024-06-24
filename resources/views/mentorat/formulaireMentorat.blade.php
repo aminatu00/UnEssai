@@ -1,32 +1,29 @@
 @extends('layouts.template')
 @section('content')
 <div class="col-md-8">
-<<<<<<< HEAD
-    <div class="card text-white" style="background-color:#081b29 ; border:1px solid #fff">
-        <div class="card-header text-white" style=" border:1px solid #fff">{{ __('Create Meeting') }}</div>
-=======
-    <div class="card">
-        <div class="card-header">{{ __('Creer Tutorat') }}</div>
->>>>>>> origin/amina
 
-        <div class="card-body">
+    <div class="card">
+        <div class="card-header text-white" style="background-color:#081b29 ">{{ __('Créer Tutorat') }}</div>
+
+
+        <div class="card-body" style="background-color:#081b29 ">
             <form method="POST" action="{{ route('meetings.store') }}">
                 @csrf
 
-                <div class="form-group row " >
+                <div class="form-group row text-white " >
                     <div class="col-md-6" >
                         <input type="hidden" name="survey_id" value="{{ $survey['id'] ?? '' }}">
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="domaine" class="col-md-4 col-form-label text-md-right">{{ __('Domaine dexpertise') }}</label>
                     <div class="col-md-6">
                         <input id="domaine" type="text" class="form-control text-white" style="background-color:#081b29 " name="domaine" value="{{ $survey['subject'] }}" required>
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Sujet') }}</label>
                     <div class="col-md-6">
                         <select id="subject" class="form-control @error('subject') is-invalid @enderror text-white" style="background-color:#081b29 " name="subject" required>
@@ -45,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>
                     <div class="col-md-6">
                         <input id="date" type="date" class="form-control @error('date') is-invalid @enderror text-white" style="background-color:#081b29 " name="date" value="{{ old('date') }}" required autofocus>
@@ -57,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Heure') }}</label>
                     <div class="col-md-6">
                         <input id="time" type="time" class="form-control @error('time') is-invalid @enderror text-white" style="background-color:#081b29 " name="time" value="{{ old('time') }}" required>
@@ -69,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="session_type" class="col-md-4 col-form-label text-md-right">{{ __('Type de la session') }}</label>
                     <div class="col-md-6">
                         <div class="form-check form-check-inline">
@@ -88,10 +85,10 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row text-white">
                     <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Lien Meet/Info') }}</label>
                     <div class="col-md-6">
-                        <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="meeting_link" value="{{ old('link') }}" required>
+                        <input id="link" type="text" class="form-control @error('link') is-invalid @enderror text-white" style="background-color:#081b29 " name="meeting_link" value="{{ old('link') }}" required>
                         @error('link')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -100,10 +97,10 @@
                     </div>
                 </div>
 
-                <div class="form-group row mb-0">
+                <div class="form-group row mb-0 text-white">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Create Meeting') }}
+                        <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg,#081b29,#0ef); width:50%;border-radius:20px ">
+                            {{ __('Créer Meeting') }}
                         </button>
                     </div>
                 </div>

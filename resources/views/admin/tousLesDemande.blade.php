@@ -6,7 +6,7 @@
 <div class="col-md-10 offset-md-0 text-white">
     <h2>Liste des Demandes pour etre Tuteur</h2>
 
-    <table class="table">
+    <table class="table ">
         <thead>
             <tr>
                 <th class="text-white" style="background-color:#081b29">Prénom</th>
@@ -19,17 +19,11 @@
         <tbody>
             @foreach($mentorRequests as $request)
             <tr>
-<<<<<<< HEAD
+
                 <td class="text-white" style="background-color:#081b29">{{ $request->prenom }}</td>
                 <td class="text-white" style="background-color:#081b29">{{ $request->nom }}</td>
                 <td class="text-white" style="background-color:#081b29">{{ $request->email }}</td>
-                <td class="text-white" style="background-color:#081b29">{{ $request->domain }}</td>
                 <td class="text-white" style="background-color:#081b29">
-=======
-                <td>{{ $request->prenom }}</td>
-                <td>{{ $request->nom }}</td>
-                <td>{{ $request->email }}</td>
-                <td>
     @php
     $domain = json_decode($request->domain);
     if (json_last_error() === JSON_ERROR_NONE && is_array($domain)) {
@@ -39,9 +33,9 @@
     }
     @endphp
 </td>
-                <td>
->>>>>>> origin/amina
-                    <a href="{{ route('mentor.request.show', $request->id) }}" class="btn btn-primary">Voir</a>
+                <td class="text-white" style="background-color:#081b29">
+
+                    <a href="{{ route('mentor.request.show', $request->id) }}" class="btn " style="color:#0ef"><i class="fas fa-eye"></i></a>
                 </td>
             </tr>
             @endforeach

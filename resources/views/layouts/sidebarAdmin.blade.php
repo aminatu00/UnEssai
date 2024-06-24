@@ -2,13 +2,13 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-<<<<<<< HEAD
-=======
+
+
     <div class="sidebar-brand-icon rotate-n-15">
-            <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%;">
+            <img src="{{ asset('assets/img/logoForum.png') }}" alt="" style="width: 60px; height: 60px; border-radius: 50%;">
         </div>
         <div class="sidebar-brand-text mx-3" style="text-transform: none;">StudentHub</div>
->>>>>>> origin/amina
+
     </a>
 
     <!-- Divider -->

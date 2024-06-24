@@ -27,7 +27,8 @@
             @foreach($surveys->sortByDesc('created_at') as $survey)
             <div id="sondage_{{ $survey->id }}" class="survey text-white" > <!-- Ajout d'un div unique pour chaque sondage -->
             @if(auth()->user()->user_type === 'student')
-            @if(auth()->user()->niveau >= $survey->niveau && in_array($survey->subject, json_decode(auth()->user()->interests)))
+            @if(auth()->user()->niveau >= $survey->niveau && auth()->user()->interests !== null && in_array($survey->subject, json_decode(auth()->user()->interests, true)))
+    
             <div class="survey text-white" >
                 <h4>{{ $survey->subject }}</h4>
                 <p>{{ $survey->question }}</p>
@@ -60,11 +61,9 @@
                             $percentage = ($voteCounts[$optionName] / $totalVotes) * 100;
                             }
                             @endphp
-
                             <div class="progress-bar" role="progressbar" style="width:10%;background-image:linear-gradient(180deg,#081b29,#0ef" aria-valuenow="{{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }}" aria-valuemin="0" aria-valuemax="100">
-                                <!-- {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }} -->
+                              {{ isset($voteCounts[$optionName]) ? $voteCounts[$optionName] : 0 }} 
                             </div>
-
                         </div>
 
                         @if(auth()->user()->user_type !== 'mentor' || auth()->user()->user_type === 'mentor')
@@ -135,6 +134,7 @@
                     @endforeach
                 </ul>
                 @if(auth()->user()->user_type === 'mentor' && auth()->user()->id === $survey->mentor_id)
+   </form>
 
                 <div class="d-flex align-items-center">
     <a href="{{ route('sondages.destroy', $survey->id) }}" class="btn btn-link">

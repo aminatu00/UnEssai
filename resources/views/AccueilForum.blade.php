@@ -14,7 +14,7 @@
         <input type="hidden" name="category_id" value="{{ isset($category) ? $category->id : null }}">
         <div class="input-group">
             <input type="text" name="query" class="form-control custom-placeholder" placeholder="Rechercher une question">
-            <button type="submit" class="btn btn-primary" style="background-image:linear-gradient(180deg, #081b29, #0ef);box-shadow: 0 0 1px #0ef;">Rechercher</button>
+            <button type="submit" class="btn " style="background-image:linear-gradient(180deg, #081b29, #0ef);box-shadow: 0 0 1px #0ef;">Rechercher</button>
         </div>
     </form>
 

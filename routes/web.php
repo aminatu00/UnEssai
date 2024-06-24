@@ -301,5 +301,6 @@ Route::get('/disscussions', [QuestionController::class, 'indexe'])->name('discus
 Route::get('/questions/{question}/answerrrs', [AnswerController::class, 'showa'])->name('answers.showa');
 
 
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 

@@ -262,8 +262,8 @@
         <span class="bg-animate"></span>
         <div class="form-box login">
         <div class="header">
-        <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
-        <h2>Inscription</h2>
+        <img src="{{ asset('assets/img/logoForum.png') }}" alt="">
+        <h2>Connexion</h2>
     </div>
             <form action="{{route('login')}}" method="POST">
                 @csrf
@@ -284,19 +284,19 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                    <label>Password</label>
+                    <label>Mot de pass</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-white">
-                    {{ __('Forgot Your Password?') }}
+                <a href="{{ route('password.request') }}" class="text-white" style="margin-right:23px ">
+                    {{ __(' Mot de pass oublié?') }}
                 </a>
                 @endif
                 <div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn">Se connecter</button>
                 </div>
-                <div class="logreg-link">
-                    <p>Don't have an account? <a href="{{ route('register') }}" class="register-link">Sign-up</a></p>
+                <div class="logreg-link" st>
+                    <p>N'avez-vous pas de compte ? <a href="{{ route('register') }}" class="register-link">S'inscrire</a></p>
                 </div>
             </form>
         </div>

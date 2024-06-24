@@ -31,28 +31,28 @@
                     <p class="text-white">Aucune demande de tutorat n'a été trouvée.</p>
                     @else
                     <div class="table-responsive">
-                        <table class="table table-dark table-striped">
+                        <table class="table  ">
                             <thead>
                                 <tr>
-                                    <th>Niveau</th>
-                                    <th>Domaine demande</th>
-                                    <th>Message</th>
-                                    <th>Action</th>
+                                    <th class="text-white" style="background-color:#081b29">Niveau</th>
+                                    <th class="text-white" style="background-color:#081b29">Domaine demande</th>
+                                    <th class="text-white" style="background-color:#081b29">Message</th>
+                                    <th class="text-white" style="background-color:#081b29">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @foreach ($mentorRequest as $request)
                                 <tr>
-                                    <td>{{ $request->niveau }}</td>
-                                    <td>
+                                    <td class="text-white" style="background-color:#081b29" >{{ $request->niveau }}</td>
+                                    <td class="text-white" style="background-color:#081b29">
                                         @if(is_array($request->expertise))
                                         {{ implode(', ', $request->expertise) }}
                                         @else
                                         {{ $request->expertise }}
                                         @endif
                                     </td>
-                                    <td>{{ $request->message }}</td>
-                                    <td>
+                                    <td class="text-white" style="background-color:#081b29">{{ $request->message }}</td>
+                                    <td class="text-white" style="background-color:#081b29">
                                         <form action="{{ route('Tutorat.destroy', $request->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

@@ -12,7 +12,7 @@
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
-            <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%; margin-bottom:80px">
+            <img src="{{ asset('assets/img/logoForum.png') }}" alt="" style="width: 60px; height: 60px; border-radius: 50%; margin-bottom:80px">
         </div>
         <div class="sidebar-brand-text mx-3" style="text-transform: none;margin-bottom:80px;">StudentHub</div>
 
