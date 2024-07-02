@@ -16,7 +16,7 @@
                     <div class="form-group text-white" style="background-color:#081b29">
                         <label for="subject">{{ __('Expertise') }}</label>
                         <select id="subject" class="form-control @error('subject') is-invalid @enderror text-white"  style="background-color:#081b29"name="subject" required>
-                            <option value="" >Select an expertise</option>
+                            <option value="" >Selectionez un domaine </option>
                             @if(is_array($expertises))
                             @foreach($expertises as $expertise)
                             <option value="{{ $expertise }}" class="text-white" style="background-color:#081b29" >{{ $expertise }} </option>
@@ -60,7 +60,7 @@
 
 
                     <div class="form-group text-white">
-                        <label for="expiry_date">{{ __('Expiry Date') }}</label>
+                        <label for="expiry_date">{{ __('Date Expiration') }}</label>
                         <input id="expiry_date" type="datetime-local" class="form-control @error('expiry_date') is-invalid @enderror text-white" style="background-color:#081b29" name="expiry_date" value="{{ old('expiry_date') }}" required autocomplete="expiry_date">
                         @error('expiry_date')
                         <span class="invalid-feedback" role="alert">

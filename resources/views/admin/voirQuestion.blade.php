@@ -11,10 +11,10 @@
                     </div>
                 @endif
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" >
                         <thead>
                             <tr>
-                                <th  class="text-white" style="background-color:#081b29"scope="col">Sujet</th>
+                                <th  class="text-white" style="background-color:#081b29; "scope="col">Sujet</th>
                                 <th  class="text-white" style="background-color:#081b29" scope="col">Contenu</th>
                                 <th class="text-white" style="background-color:#081b29" scope="col"></th>
                                 <th class="text-white" style="background-color:#081b29" scope="col">Action</th>
@@ -25,10 +25,11 @@
                             
                                 <tr>
                                     <td class="text-white" style="background-color:#081b29">
-                                 <a href="{{ route('questionAdmin.show', $question->id) }}">{{ $question->title }}
+                                 <a href="{{ route('questionAdmin.show', $question->id) }}"  style=" text-decoration: none; color:aqua">{{ $question->title }}
                                 </a>
                                     </td>
-                                    <td class="text-white" style="background-color:#081b29">{{ $question->content }}</td>
+                                    <td class="text-white" style="background-color:#081b29 ; max-width: 300px; word-wrap: break-word; white-space: pre-wrap;">{{ $question->content }}</td>
+                                    
                                     <td class="text-white" style="background-color:#081b29">
                                     @if ($question->media_path)
                             @php
@@ -68,7 +69,7 @@
                                             Your browser does not support the video tag.
                                         </video>
                                         @elseif ($extension === 'pdf')
-                                        <div class="card" style="max-width: 300px;">
+                                        <div class="card" style="max-width: 500px;">
                                             <div class="card border-danger mb-3">
                                                 <div class="card-body text-danger">
                                                     <!-- Utilisation d'une icône pour représenter le document PDF -->

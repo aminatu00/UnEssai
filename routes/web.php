@@ -22,9 +22,10 @@ use App\Http\Controllers\DemandeMentoratController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\DmTutoratController;
 
-
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\SignalementController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
+
+// Route::group(['middleware' => ['auth', 'verified']], function () {
+    
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  // administrateurrrrrrr
@@ -280,6 +284,24 @@ Route::get('/mentor/requests/{mentorRequest}', [DmTutoratController::class, 'sho
     Route::get('/mentor/requests', [DmTutoratController::class, 'index'])->name('mentor.DmTutorat');
 
 
+
+
+
+
+    ////////////////////////////
+    // Route::post('/verify', [RegisterController::class, 'verify'])->name('verify');
+
+    // Route::get('/verifye', function () {
+    //     return view('emails.verify');
+    // })->name('verification');
+
+
+
+    Route::get('/verify-email', [VerificationController::class, 'show'])->name('verification.show');
+    Route::post('/verify-email', [VerificationController::class, 'verify'])->name('verification.verify');
+
+    // Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    // Route::post('/registeer', [RegisterController::class, 'register']);
 
 //le testtttt
 // Route::get('/testeuuuu', [StudentController::class, 'test'])->name('test');

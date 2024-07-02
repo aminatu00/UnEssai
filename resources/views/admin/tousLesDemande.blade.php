@@ -3,7 +3,7 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="col-md-8 offset-md-2  text-white" style="background-color: #081b29; border: 1px solid #0ef; color:#fff">
+<div class="col-md-8 offset-md-2  text-white" style="background-color: #081b29; border: 1px solid #0ef; color:#fff; padding:30px;">
     <h2 class=" mb-4">Liste des Demandes pour etre Tuteur</h2>
 
     <table class="table">

@@ -2,6 +2,22 @@
 @section('content')
 
 <div class="container mt-5">
+     <!-- Afficher les messages d'erreur -->
+     @if ($errors->any())
+    <div class="alert alert-danger auto-dismiss">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <!-- Afficher les messages de succès -->
+    @if (session('success'))
+    <div class="alert alert-success auto-dismiss">
+        {{ session('success') }}
+    </div>
+    @endif
 <div class="col-md-8 offset-md-2 text-white"
 style="background-color: #081b29; border: 1px solid #0ef; padding: 20px; border-radius: 8px;">
         <h2 class="text-center mb-4">Demande pour être Tuteur</h2>
@@ -68,7 +84,7 @@ style="background-color: #081b29; border: 1px solid #0ef; padding: 20px; border-
             </div>
 
             <!-- Bouton de Soumission -->
-            <button type="submit" class="btn " style="background-image:linear-gradient(180deg,#081b29,#0ef);width:50%;border-radius:40px;">Soumettre</button>
+            <button type="submit" class="btn " style="background-image:linear-gradient(180deg,#081b29,#0ef);width:50%;border-radius:40px; color:aliceblue">Soumettre</button>
         </form>
     </div>
 </div>

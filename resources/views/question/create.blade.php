@@ -15,7 +15,7 @@
             @endif
             <form action="{{ route('questions.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="mb-3">
+                <div class="mb-3 text-white">
                     <label for="categorie" class="form-label text-white">Catégorie</label>
                     <select name="categorie" id="categorie" class="form-select text-white"style="background-color:#081b29">
                         @foreach($categories as $category)

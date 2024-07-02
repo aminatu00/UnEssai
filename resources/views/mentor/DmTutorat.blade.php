@@ -40,9 +40,9 @@
                                     <th style="background-color: #081b29">Action</th>
                                 </tr>
                             </thead>
-                            <tbody style="background-color: #081b29">
+                            <tbody >
                                 @foreach ($mentorRequest as $request)
-                                <tr style="background-color: #081b29">
+                                <tr >
                                     <td style="background-color: #081b29">{{ $request->niveau }}</td>
                                     <td style="background-color: #081b29">
                                         @if(is_array($request->expertise))

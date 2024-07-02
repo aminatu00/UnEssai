@@ -2,8 +2,9 @@
 @section('content')
 
 
-<div class="col-md-8 offset-md-2 text-white">
+<div class="col-md-8 offset-md-2 text-white" style="border: 1px solid #0ef;color:aliceblue;padding: 30px;">
     <div class="row">
+
         <form method="POST" action="{{ route('register.student') }}">
             @csrf
             <div class="form-group text-white">
@@ -47,7 +48,7 @@
     </div>
 </div>
 
-            <button type="submit" class="btn  text-white"  style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">S'inscrire</button>
+            <button type="submit" class="btn  text-white"  style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">Inscrire</button>
         </form>
     </div>
 </div>

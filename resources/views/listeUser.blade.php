@@ -4,9 +4,11 @@
 <div class="container-fluid">
 
 
+    <h1 class="h3 mb-4 text-white">Tableau de Bord </h1>
 
-<div class="col-md-8 offset-md-2 text-white">
-        <div class="card">
+
+    <div class="col-md-14">
+        <div class="card" style="background-color: #081b29;">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
             <div class="alert alert-danger auto-dismiss text-white">
@@ -23,36 +25,34 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <!-- <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div> -->
+
+            <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div>
             <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
+
 
                 <!-- Display mentors for students -->
                 @if(auth()->user()->user_type === 'student')
                 @if (!$mentors->isEmpty())
-                <div class="mb-4 custom-background">
-                    <h3 class="mb-4">Les Tuteurs</h3>
-                    <table class="custom-table" style="width: 100%; padding: 10px;" >
+                <div class="mb-4 text-white" >
+                  <div class="text-white"><h3>Les Tuteurs</h3></div>  
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>NomPrenom</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <!-- <th>Expertise</th> -->
+                               <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                               
+                
                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mentors as $mentor)
                             <tr>
-                            <td><a href="{{ route('mentors.show', $mentor->id) }}">{{ $mentor->name }}</a></td>
-                                <td>{{ $mentor->email }}</td>
-                                <td>{{ $mentor->niveau }}</td>
-                               <!-- <td>
-                                @php
-                                $studentMentora = json_decode($mentor->expertise);
-                                echo implode('<br>', $studentMentora);
-                                @endphp
-                               </td> -->
+                            <td  class="text-white"  style="background-color:#081b29; color:#0ef"><a href="{{ route('mentors.show', $mentor->id) }}" style="color: #0ef; text-decoration: none;">{{ $mentor->name }}</a></td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $mentor->email }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $mentor->niveau }}</td>
+                               
                                
                             </tr>
                             @endforeach
@@ -60,37 +60,35 @@
                     </table>
                 </div>
                 @else
-                <p>Pas de tuteurs</p>
-                @endif
+
+               
+               <div class="text-white" style="background-color:#081b29;padding:30px;" width="100%">  <p>Pas de tuteurs</p></div> 
+           @endif
                 <!-- Display students for mentors -->
                 @elseif(auth()->user()->user_type === 'mentor')
                 @if (!$students->isEmpty())
-                <div class="mb-4  custom-background">
-                    <h3 class="mb-4">Mes Etudiants Tuteurés</h3>
 
-                    <table class="custom-table mb-4"" style="width: 100%; padding: 10px;">
-                        <thead >
-                            <tr >
-                                <th>NomPrenom</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <!-- <th>Centre d'intérêt</th> -->
-                                <!-- <th>Action</th> -->
+                <div class="mb-4">
+                <div class="text-white " style="padding:10px;"><h3>Mes Etudiants Tuteurés</h3></div>  
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th  class="text-white"  style="background-color:#081b29">Name</th>
+                                <th  class="text-white"  style="background-color:#081b29">Email</th>
+                                <th  class="text-white"  style="background-color:#081b29">Niveau</th>
+                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->niveau }}</td>
-                                <!-- <td>
-                                @php
-                                $studentMentor = json_decode($student->interests);
-                                echo implode(' ', $studentMentor);
-                                @endphp
-                                </td> -->
-                               
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->name }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->email }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->niveau }}</td>
+                                
+             <!-- </td> -->
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -102,16 +100,18 @@
                 <!-- Display all users for admin -->
                 @elseif(auth()->user()->user_type === 'admin')
                 @if (!$students->isEmpty())
-                <div class="mb-4  custom-background ">
-                    <h3 >Etudiants</h3>
-                    <table class="custom-table" style="width: 100%; padding: 10px;">
+
+                <div class="mb-4">
+               <div class="text-white"> <h3>Etudiants:</h3></div>     
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>NomPrenom</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th>Centre d'intérêt</th>
-                                <th>Action</th>
+                                <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                                <th class="text-white"  style="background-color:#081b29">Centre d'intérêt</th>
+                                <th class="text-white"  style="background-color:#081b29">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -120,15 +120,15 @@
                                 <td class="text-white"  style="background-color:#081b29">{{ $student->name }}</td>
                                 <td class="text-white"  style="background-color:#081b29">{{ $student->email }}</td>
                                 <td class="text-white"  style="background-color:#081b29">{{ $student->niveau }}</td>
-                                <td class="text-white"  style="background-color:#081b29">
+                                <td class="text-white" style="background-color:#081b29">
                                 @php
-                                        $studentInterest = json_decode($student->interests);
-                                        if (is_array($studentInterest)) {
-                                            echo implode('<br>', $studentInterest);
-                                        } else {
-                                            echo $studentInterest; // Handle case where $studentInterest is a string
-                                        }
-                                    @endphp
+        $studentInterest = json_decode($student->interests);
+        if ($studentInterest && is_array($studentInterest)) {
+            echo implode('<br>', $studentInterest);
+        }
+    @endphp
+</td>
+
                                 </td>
 
                                 <td  class="text-white"  style="background-color:#081b29">
@@ -150,17 +150,19 @@
                 @endif
 
                 @if (!$mentors->isEmpty())
-                <div class="mb-4  custom-background">
-                    <h3>Tuteurs</h3>
-                    <table class="custom-table" style="width: 100%; padding: 10px;">
+
+                <div class="mb-4">
+                 <div class="text-white">  <h3>Tuteurs:</h3></div>  
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>NomPrenom</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th> Domaine d'expertise</th>
-                                <th>Expertise</th>
-                                <th>Action</th>
+                                <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                                <th class="text-white"  style="background-color:#081b29"> Domaine</th>
+                                <th class="text-white"  style="background-color:#081b29">Expertise</th>
+                                <th class="text-white"  style="background-color:#081b29">Action</th>
+  
                             </tr>
                         </thead>
                         <tbody>

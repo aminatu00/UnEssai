@@ -2,8 +2,9 @@
 
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8 offset-md-2 text-white" style="background-color: #081b29">
-    <h2>Demande de Mentorat</h2>
+<div class="col-md-8 offset-md-2 text-white" style="background-color: #081b29;border: 1px solid #0ef;color:aliceblue;padding:30px;">
+
+    <h2>Demande de Tutorat</h2>
 
     <div class="form-group">
         <label for="first_name">Prénom :</label>

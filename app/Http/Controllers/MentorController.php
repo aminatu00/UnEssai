@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Mentor;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
+
+
 class MentorController extends Controller
 {
     /**
@@ -15,10 +19,29 @@ class MentorController extends Controller
      */
     public function index()
     {
-        $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
-    return view('question.index', compact('questions'));
-        // return view('mentor.accueil');
+        if (Auth::check()) {
+            $user = Auth::user();
+            $userInterests = json_decode($user->interests);
+    
+            if ($userInterests !== null && !empty($userInterests)) {
+                // Récupérer les IDs des catégories associées aux centres d'intérêt de l'utilisateur
+                $categoryIds = Category::whereIn('nom', $userInterests)->pluck('id')->toArray();
+    
+                // Récupérer les questions qui correspondent aux catégories d'intérêt de l'utilisateur
+                $questions = Question::whereIn('category_id', $categoryIds)->get();
+            } else {
+                // Si l'utilisateur n'a pas de centres d'intérêt définis, afficher un message ou une logique par défaut
+                $questions = Question::all(); // Ou autre logique par défaut
+            }
+            
+            $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
+    
+    
+    
+            return view('question.index', compact('questions'));
+        }
     }
+    
 
     
 

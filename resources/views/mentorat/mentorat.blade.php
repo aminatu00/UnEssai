@@ -5,7 +5,7 @@
     <div class="card " style="background-color: #081b29; border: 1px solid #0ef; color:aliceblue">
         <div class="card-header ">{{ __('Tutorats') }}</div>
 
-        <div class="card-body" style="background-color: #081b29; border: 1px solid #0ef; color:aliceblue">
+        <div class="card-body" style="border: 1px solid #0ef;">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
             <div class="alert alert-danger auto-dismiss">

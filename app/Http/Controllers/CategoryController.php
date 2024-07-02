@@ -17,13 +17,19 @@ class CategoryController extends Controller
             // Initialiser $userInterests à un tableau vide par défaut
             $userInterests = [];
     
-            if (Auth::user()->user_type === 'mentor') {
-                // Décoder les expertises du mentor connecté depuis la chaîne JSON
-                $userInterests = json_decode(Auth::user()->expertise);
-            } elseif (Auth::user()->user_type === 'student') {
-                // Décoder les centres d'intérêt de l'étudiant connecté depuis la chaîne JSON
+            // if (Auth::user()->user_type === 'mentor') {
+            //     // Décoder les expertises du mentor connecté depuis la chaîne JSON
+            //     $userInterests = json_decode(Auth::user()->expertise);
+            // } elseif (Auth::user()->user_type === 'student') {
+            //     // Décoder les centres d'intérêt de l'étudiant connecté depuis la chaîne JSON
+            //     $userInterests = json_decode(Auth::user()->interests);
+            // }
+
+            if (Auth::user()->user_type === 'student' || Auth::user()->user_type === 'mentor') {
+                // Décoder les centres d'intérêt de l'utilisateur connecté depuis la chaîne JSON
                 $userInterests = json_decode(Auth::user()->interests);
             }
+            
     
             // Vérifier si $userInterests est null ou non
             if ($userInterests !== null) {

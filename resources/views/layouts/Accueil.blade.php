@@ -9,6 +9,10 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+
+<link rel="manifest" href="/manifest.json">
+
+
   <!-- Favicons -->
   <link href="{{asset('assetsWel/img/favicon.png')}}" rel="icon">
   <link href="{{asset('assetsWel/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -79,6 +83,11 @@
             border-color: #0ef !important; /* Couleur du contour */
         }
     </style>
+
+
+
+
+
 </head>
 <body class="index-page">
     <!-- Votre contenu HTML -->

@@ -48,13 +48,19 @@
                             <div class="text-white text-sm mb-2 " >
 
                                 @if (auth()->user()->id === $question->user->id)
-                                Publié par Moi il y a {{ $question->created_at->diffForHumans() }}
+                                Publié par Moi il y a {{ $question->created_at->locale('fr')->diffForHumans() }}
+
                                 @else
-                                Publié par {{ $question->user->name }} il y a {{ $question->created_at->diffForHumans() }}
+                                Publié par {{ $question->user->name }} il y a {{ $question->created_at->locale('fr')->diffForHumans() }}
+
                                 @endif
                                 @if ($question->user->user_type === 'mentor')
-                                <span class="badge badge-warning"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
+                                <span class="badge badge-warning mr-1"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
                                 @endif
+
+                                
+                             
+                             
                             </div>
                             <div class="d-flex align-items-center">
                                 @if (auth()->user()->id === $question->user->id)
@@ -79,7 +85,15 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
+                        @if ($question->category)
+    <span class="badge badge-info mr-1 custom-badge" style="background-color: #081b29;  color: #0ef;border: 1px solid #0ef; 
+    padding: 5px 10px; 
+    border-radius: 5px; ">{{ $question->category->nom }}</span>
+@endif
+
                             @if(auth()->user()->id !== $question->user_id)
+                            
+                            
                             <form action="{{ route('questions.report', $question->id) }}" method="POST" onsubmit="return confirmReport()">
                                 @csrf
                                 <input type="hidden" name="question_id" value="{{ $question->id }}">
@@ -136,7 +150,7 @@
 
                             @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
                             <!-- Afficher une image -->
-                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 80px; cursor: pointer;">
+                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 200px; cursor: pointer;">
                             @elseif ($extension === 'mp4')
                             <!-- Afficher une vidéo -->
                             <video controls style="max-width: 100%; max-height: 300px;">
@@ -252,6 +266,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <style>
+.custom-badge {
+    background-color: #081b29; /* Couleur de fond du badge */
+    color: #ffffff; /* Couleur du texte */
+    border: 1px solid #ffffff; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+}
 
 
         .card .img-profile.rounded-circle {

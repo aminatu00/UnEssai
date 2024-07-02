@@ -36,7 +36,7 @@ class MentorRequestNotification extends Notification
     {
         return [
             'mentor_request_id' => $this->mentorRequest->id,
-            'message' => 'Vous avez reçu une nouvelle demande de mentorat.',
+            'message' => 'Une nouvelle demande de tutorat a été enregistrée',
         ];
     }
     

@@ -6,8 +6,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-white">Gérer les Questions Signalées</h1>
-    <p class="mb-4 text-white">Liste des questions signalées </p>
+    <h1 class="h3 mb-2 text-white">Liste des questions signalées</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4"  style="background-color:#081b29">

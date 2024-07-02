@@ -32,21 +32,21 @@ class RegistrationController extends Controller
         ];
 
         $sub_expertises = [
-            'licence 2' => [
-                'informatique' => ['module1', 'module2', 'module3'],
-                'reseaux' => ['module4', 'module5']
+          'licence 2' => [
+                'informatique' => ['javascript', 'languageC', 'PHP'],
+                'reseaux' => ['Electronique', 'serice reseaux']
             ],
             'licence 3' => [
-                'informatique' => ['module6', 'module7', 'module8'],
-                'reseaux' => ['module9', 'module10']
+                'informatique' => ['JAVA', 'UML', 'JSP'],
+                'reseaux' => ['Electronique', 'Routage et communication']
             ],
             'master 1' => [
-                'informatique' => ['module11', 'module12', 'module13'],
-                'reseaux' => ['module14', 'module15']
+                'informatique' => ['python', 'flutter', ' Programmation C++,'],
+                'reseaux' => ['base des telecoms', 'module15']
             ],
             'master 2' => [
-                'informatique' => ['module16', 'module17', 'module18'],
-                'reseaux' => ['module19', 'module20']
+                'informatique' => ['Sécurité des SI ', 'Datawarehouse', 'Datamining'],
+                'reseaux' => ['base des telecoms', 'serice reseaux']
             ],
             // Ajoutez d'autres niveaux et leurs relations avec les domaines et les modules
         ];

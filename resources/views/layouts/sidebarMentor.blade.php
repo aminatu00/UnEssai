@@ -9,15 +9,15 @@
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <!-- <hr class="sidebar-divider my-0"> -->
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <!-- <li class="nav-item active">
         <a class="nav-link" href="{{ route('mentor.dashboardeu') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Tableau de bord</span>
         </a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -46,6 +46,7 @@ class ProfileController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'password' => 'nullable|string|min:6', // Rendre le mot de passe facultatif
+            'description' => 'nullable|string|max:400',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image jusqu'à 2 Mo de type JPEG, PNG, JPG ou GIF
             'niveau' => 'nullable|string|max:255', // Rendre le niveau facultatif
             'interests' => 'nullable|array', // Les centres d'intérêt peuvent être facultatifs
@@ -58,15 +59,19 @@ class ProfileController extends Controller
     
         // Mettre à jour le nom de l'utilisateur
         $user->name = $validatedData['name'];
+
     
         // Mettre à jour le mot de passe s'il est fourni
         if (!empty($validatedData['password'])) {
             $user->password = bcrypt($validatedData['password']);
         }
     
+        if ($user->user_type == 'mentor') {
+            $user->description = $validatedData['description'];
+        }
 
         // Mettre à jour le niveau de l'utilisateur si fourni et si l'utilisateur est un étudiant
-    if ($user->user_type == 'student' && isset($validatedData['niveau'])) {
+    if (($user->user_type == 'student' || $user->user_type == 'mentor') && isset($validatedData['niveau'])) {
         $user->niveau = $validatedData['niveau'];
     }
 
@@ -79,7 +84,7 @@ class ProfileController extends Controller
             $user->profile_image = 'profile_images/' . $imageName;
         }
          // Mettre à jour les centres d'intérêt de l'utilisateur si fournis et si l'utilisateur est un étudiant
-    if ($user->user_type == 'student' && isset($validatedData['interests'])) {
+    if (($user->user_type == 'student' || $user->user_type == 'mentor')&& isset($validatedData['interests'])) {
         $user->interests = json_encode($validatedData['interests']);
     }
     

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,8 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'niveau', 'user_type', 'interests', 'expertise', 'sub_expertises',
+        'name', 'email', 'password', 'niveau', 'user_type', 'interests', 'expertise', 'sub_expertises','description'
     ];
+
+    public function markEmailAsVerified()
+{
+    $this->email_verified_at = now();
+    $this->save();
+}
 
 
     public function publishedSondages()

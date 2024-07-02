@@ -20,6 +20,8 @@ class QuestionController extends Controller
     {
         // Logic to fetch all questions
         $questions = Question::all(); // Example logic, adjust as per your needs
+        $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
+
        
 
         return view('AccueilForum', compact('questions'));
@@ -120,15 +122,19 @@ class QuestionController extends Controller
     }
 
     public function index()
-   {
-     $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
-    return view('question.index', compact('questions'));
-   }
+    {
+        // Utilisez 'with' pour charger la relation 'category' avec chaque question
+        $questions = Question::with('category_id')->latest()->paginate(10);
+        
+        return view('question.index', compact('questions'));
+    }
+    
 
 
    public function indexAdmin()
    {
        $questions = Question::all();
+       $questions = Question::latest()->paginate(10);
        return view('admin.voirQuestion', compact('questions'));
    }
 
@@ -155,11 +161,13 @@ class QuestionController extends Controller
         // Vérifier le type d'utilisateur
         if (Auth::user()->user_type === 'mentor') {
             // Si c'est un mentor, récupérer ses expertises
-            $userExpertise = json_decode(Auth::user()->expertise);
+            // $userExpertise = json_decode(Auth::user()->expertise);
+            $userInterests = json_decode(Auth::user()->interests);
+
             // Vérifier si $userExpertise est null ou non
-            if ($userExpertise !== null) {
+            if ($userInterests !== null) {
                 // Récupérer les catégories correspondant à ses expertises
-                $categories = Category::whereIn('nom', $userExpertise)->get();
+                $categories = Category::whereIn('nom', $userInterests)->get();
             }
         } elseif (Auth::user()->user_type === 'student') {
             // Si c'est un étudiant, récupérer ses centres d'intérêt
@@ -202,7 +210,7 @@ class QuestionController extends Controller
       
     
         // Liste des mots considérés comme spam
-        $spamWords = ['spam', 'insulte', 'merde'];
+        $spamWords = ['mot interdit', 'insulte', 'merde'];
     
         // Convertir le contenu et le titre en minuscules pour une comparaison insensible à la casse
         $questionContent = strtolower($request->content);

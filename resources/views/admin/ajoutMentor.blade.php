@@ -12,7 +12,9 @@
     </div>
 @endif
 
-    <div class="row">
+    <div class="row text-white">
+    <div class="card mb-4" style="background-color: #081b29; border: 1px solid #0ef;color:aliceblue;padding:30pX;" >
+
         <form method="POST" action="{{ route('register.mentor') }}">
             @csrf
             <div class="form-group">
@@ -53,9 +55,10 @@
                 <label for="sub_expertises">Modules</label>
                 <div id="sub_expertises-container"></div>
             </div>
-            <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">S'inscrire</button>
+            <button type="submit" class="btn text-white" style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">Inscrire</button>
         </form>
     </div>
+</div>
 </div>
 
 <script>
