@@ -2,29 +2,30 @@
 @section('content')
 
 
-<div class="col-md-6">
+<div class="col-md-8 offset-md-2 text-white" style="border: 1px solid #0ef;color:aliceblue;padding: 30px;">
     <div class="row">
+
         <form method="POST" action="{{ route('register.student') }}">
             @csrf
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="name">Nom</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control text-white" style="background-color:#081b29;" id="name" name="name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control text-white" style="background-color:#081b29;" id="email" name="email" required>
             </div>
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="password">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control text-white" style="background-color:#081b29;" id="password" name="password" required>
             </div>
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="password_confirmation">Confirmer le mot de passe</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                <input type="password" class="form-control text-white" style="background-color:#081b29;" id="password_confirmation" name="password_confirmation" required>
             </div>
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="niveau">Niveau</label>
-                <select class="form-control" id="niveau" name="niveau" required>
+                <select class="form-control text-white" style="background-color:#081b29;" id="niveau" name="niveau" required>
                     <option value="licence 1">Licence 1</option>
                     <option value="licence 2">Licence 2</option>
                     <option value="licence 3">Licence 3</option>
@@ -33,17 +34,21 @@
                 </select>
             </div>
             <div class="form-group">
-    <label for="interests">Intérêts</label>
-    <select class="form-control" id="interests" name="interests[]" multiple required>
-        <option value="informatique">Informatique</option>
-        <option value="reseaux">Réseaux</option>
-        <option value="chimie">Chimie</option>
-        <option value="physique">Physique</option>
-        <option value="math">Math</option>
-    </select>
+    <label for="interests">Centre d'Intérêts</label>
+    <div>
+        <div class="form-check">
+            <input class="form-check-input text-white" style="background-color:#081b29;" type="checkbox" value="informatique" id="interests_informatique" name="interests[]">
+            <label class="form-check-label text-white" style="background-color:#081b29;" for="interests_informatique">Informatique</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input text-white" style="background-color:#081b29;" type="checkbox" value="reseaux" id="interests_reseaux" name="interests[]">
+            <label class="form-check-label text-white" style="background-color:#081b29;" for="interests_reseaux">Réseaux</label>
+        </div>
+        <!-- Ajoutez d'autres cases à cocher si nécessaire -->
+    </div>
 </div>
 
-            <button type="submit" class="btn btn-primary">S'inscrire</button>
+            <button type="submit" class="btn  text-white"  style="background-image:linear-gradient(180deg, #081b29, #0ef) ;border-radius:40px;width:50%">Inscrire</button>
         </form>
     </div>
 </div>

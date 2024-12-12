@@ -14,22 +14,49 @@ class CategoryController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            if (Auth::user()->user_type === 'mentor') {
-                // Décoder les expertises du mentor connecté depuis la chaîne JSON
-                $userInterests = json_decode(Auth::user()->expertise);
-            } elseif (Auth::user()->user_type === 'student') {
-                // Décoder les centres d'intérêt de l'étudiant connecté depuis la chaîne JSON
+            // Initialiser $userInterests à un tableau vide par défaut
+            $userInterests = [];
+    
+            // if (Auth::user()->user_type === 'mentor') {
+            //     // Décoder les expertises du mentor connecté depuis la chaîne JSON
+            //     $userInterests = json_decode(Auth::user()->expertise);
+            // } elseif (Auth::user()->user_type === 'student') {
+            //     // Décoder les centres d'intérêt de l'étudiant connecté depuis la chaîne JSON
+            //     $userInterests = json_decode(Auth::user()->interests);
+            // }
+
+            if (Auth::user()->user_type === 'student' || Auth::user()->user_type === 'mentor') {
+                // Décoder les centres d'intérêt de l'utilisateur connecté depuis la chaîne JSON
                 $userInterests = json_decode(Auth::user()->interests);
             }
+            
     
-            // Filtrer les catégories en fonction des centres d'intérêt ou des expertises de l'utilisateur
-            $categories = Category::whereIn('nom', $userInterests)->get();
+            // Vérifier si $userInterests est null ou non
+            if ($userInterests !== null) {
+                // Filtrer les catégories en fonction des centres d'intérêt ou des expertises de l'utilisateur
+                $categories = Category::whereIn('nom', $userInterests)->get();
+            } else {
+                // Si $userInterests est null, récupérer toutes les catégories
+                $categories = Category::all();
+            }
     
             // Passer les catégories filtrées à la vue
             return view('categorie', compact('categories'));
         }
     }
+    
 
+
+
+
+    public function indexCat()
+    {
+        // Récupérer toutes les catégories
+        $categories = Category::all();
+
+        // Retourner la vue avec les catégories
+        return view('nonConnecter.categorie', compact('categories'));
+    }
     /**
      * Show the form for creating a new resource.
      */

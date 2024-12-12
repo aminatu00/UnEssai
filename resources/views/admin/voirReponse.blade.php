@@ -3,19 +3,49 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white" style="background-color:#081b29">
         <div class="card">
-            <div class="card-header">{{ $question->title }}</div>
-            <div class="card-body">
-                @if($question->image)
-                    <img src="{{ asset('storage/' . $question->image) }}" alt="Image de la question" class="img-thumbnail mb-3" style="width: 100%; height: auto;">
-                @endif
-                <p>{{ $question->content }}</p>
+            <div class="card-header text-white"style="background-color:#081b29">sujet de la question : {{ $question->title }}</div>
+            <div class="card-body text-white"style="background-color:#081b29">
+            @if ($question->media_path)
+                            @php
+                            $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
+                            @endphp
+
+                            @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
+                            <!-- Afficher une image -->
+                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 300px; cursor: pointer;">
+                            @elseif ($extension === 'mp4')
+                            <!-- Afficher une vidéo -->
+                            <video controls style="max-width: 100%; max-height: 100px;">
+                                <source src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            @elseif ($extension === 'pdf')
+                            <div class="card" style="max-width: 300px;">
+                                <div class="card border-danger mb-3" >
+                                    <div class="card-body text-danger">
+                                        <!-- Utilisation d'une icône pour représenter le document PDF -->
+                                        <i class="far fa-file-pdf fa-3x"></i>
+                                        <p class="card-text">Document PDF</p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <!-- Lien pour voir le document PDF -->
+                                        <a href="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="btn btn-danger" target="_blank">Voir le document PDF</a>
+                                    </div>
+                                </div>
+                                @else
+                                <!-- Si le type de média n'est ni une image ni une vidéo ni un PDF -->
+                                <p>Le type de média n'est pas pris en charge.</p>
+                                @endif
+                                @endif
+                <p>la question :       {{ $question->content }}</p>
                 <hr>
                 <h5>Réponses :</h5>
-                <ul class="list-group">
+                <ul class="list-group text-white" style="background-color:#081b29">
                     @foreach($question->answers as $answer)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-white"style="background-color:#081b29">
                             <div>
                                 <p>{{ $answer->content }}</p>
                                 <small>Répondu par : {{ $answer->user->name }}</small>
@@ -23,7 +53,7 @@
                             <form action="{{ route('answerAdmin.destroy', $answer->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sur de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </li>
                     @endforeach

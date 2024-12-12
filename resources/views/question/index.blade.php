@@ -1,8 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
-<div class="col-md-12"> <!-- Utilisez toute la largeur disponible -->
-
+<div class="col-md-8 offset-md-2">
     <!-- Afficher les messages d'erreur -->
     @if ($errors->any())
     <div class="alert alert-danger auto-dismiss">
@@ -19,8 +18,11 @@
         {{ session('success') }}
     </div>
     @endif
-    <div class="text-white">
+    <!-- <div class="text-white">
         <h1>Liste des questions</h1>
+    </div> -->
+    <div style="font-family: Arial, sans-serif; color: #ffffff; font-weight: bold;">
+        <!-- <h1>Liste des questions</h1> -->
     </div>
 
     <form action="{{ route('questions.search') }}" method="GET" class="mb-3">
@@ -43,38 +45,56 @@
                 <div class="card-body" style="border: 1px solid #0ef; border-radius:10px">
                     <div class="d-flex justify-content-between">
                         <div>
-                        <div class="text-white text-sm mb-2">
+                            <div class="text-white text-sm mb-2 " >
+
                                 @if (auth()->user()->id === $question->user->id)
-                                    Publié par Moi il y a {{ $question->created_at->diffForHumans() }}
+                                Publié par Moi il y a {{ $question->created_at->locale('fr')->diffForHumans() }}
+
                                 @else
-                                    Publié par {{ $question->user->name }} il y a {{ $question->created_at->diffForHumans() }}
+                                Publié par {{ $question->user->name }} il y a {{ $question->created_at->locale('fr')->diffForHumans() }}
+
                                 @endif
+                                @if ($question->user->user_type === 'mentor')
+                                <span class="badge badge-warning mr-1"><i class="fas fa-check-circle fa-lg"></i> Tuteur</span>
+                                @endif
+
+                                
+                             
+                             
                             </div>
-                           <div class="d-flex align-items-center">
-                        @if (auth()->user()->id === $question->user->id)
-                            @if (auth()->user()->profile_image)
-                            <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}"style="width: 50px; height: 50px;">
-                            @else
-                                <div class="circle rounded-circle mr-3" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
+                            <div class="d-flex align-items-center">
+                                @if (auth()->user()->id === $question->user->id)
+                                @if (auth()->user()->profile_image)
+                                <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}" style="width: 50px; height: 50px;">
+                                @else
+                                <div class="circle rounded-circle mr-4" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
                                     <span class="text-white font-weight-bold" style="line-height: 1;">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                                 </div>
-                            @endif
-                            <!-- <p class="card-text text-white">Moi</p> -->
-                        @else
-                            @if ($question->user->profile_image)
-                            <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}"style="width: 50px; height: 50px;">
-                            @else
-                                <div class="circle rounded-circle mr-3" style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29)">
-                                    <span class="text-white font-weight-bold" style="line-height: 1;">{{ strtoupper(substr($question->user->name, 0, 1)) }}</span>
+                                @endif
+                                <!-- <p class="card-text text-white">Moi</p> -->
+                                @else
+                                @if ($question->user->profile_image)
+                                <img class="img-profile rounded-circle profile-image" src="{{ asset('storage/' . $question->user->profile_image) }}" style="width: 50px; height: 50px;">
+                                @else
+                                <div class="circle rounded-circle mr-1 " style="width: 55px; height: 55px; display: flex; justify-content: center; align-items: center;background-image:linear-gradient(180deg, #0ef, #081b29); ">
+                                    <span class="text-white font-weight-bold" style="line-height: 1; ">{{ strtoupper(substr($question->user->name, 0, 1)) }}</span>
                                 </div>
-                            @endif
-                            <!-- <p class="card-text text-white">{{ $question->user->name }}</p> -->
-                        @endif
-                    </div>
+                                @endif
+                                <!-- <p class="card-text text-white">{{ $question->user->name }}</p> -->
+                                @endif
+                            </div>
                         </div>
                         <div class="d-flex align-items-center">
+                        @if ($question->category)
+    <span class="badge badge-info mr-1 custom-badge" style="background-color: #081b29;  color: #0ef;border: 1px solid #0ef; 
+    padding: 5px 10px; 
+    border-radius: 5px; ">{{ $question->category->nom }}</span>
+@endif
+
                             @if(auth()->user()->id !== $question->user_id)
-                            <form action="{{ route('questions.report', $question->id) }}" method="POST">
+                            
+                            
+                            <form action="{{ route('questions.report', $question->id) }}" method="POST" onsubmit="return confirmReport()">
                                 @csrf
                                 <input type="hidden" name="question_id" value="{{ $question->id }}">
                                 <!-- Bouton de signalement -->
@@ -102,7 +122,7 @@
                             </form>
                             <!-- Bouton de suppression -->
                             @if(auth()->user()->id === $question->user_id)
-                            <form action="{{ route('questions.destroy', $question) }}" method="POST">
+                            <form action="{{ route('questions.destroy', $question) }}" method="POST" onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" style="background-color: transparent; border: none;">
@@ -114,131 +134,186 @@
                     </div>
 
                     <div class="row"> <!-- Utiliser une rangée pour aligner le titre, le contenu et l'image -->
-                    <div class="col-md-8 offset-md-1 mt-n5"> <!-- Partie texte -->
+                        <div class="col-md-8 offset-md-1 mt-n5"> <!-- Partie texte -->
 
-                    <a href="{{ route('answers.show', $question) }}">
-                        <div class="text-white text-decoration-underline">
-                            <h2 class="card-title h5">{{ $question->title }}</h2>
+                            <a href="{{ route('answers.show', $question) }}">
+                                <div class="text-white text-decoration-underline">
+                                    <h2 class="card-title h5">{{ $question->title }}</h2>
+                                </div>
+                            </a>
+                            <p class="card-text  text-white">{{ $question->content }}</p>
+
+                            @if ($question->media_path)
+                            @php
+                            $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
+                            @endphp
+
+                            @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
+                            <!-- Afficher une image -->
+                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 200px; cursor: pointer;">
+                            @elseif ($extension === 'mp4')
+                            <!-- Afficher une vidéo -->
+                            <video controls style="max-width: 100%; max-height: 300px;">
+                                <source src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            @elseif ($extension === 'pdf')
+                            <div class="card" style="max-width: 300px;">
+                                <div class="card border-danger mb-3" >
+                                    <div class="card-body text-danger">
+                                        <!-- Utilisation d'une icône pour représenter le document PDF -->
+                                        <i class="far fa-file-pdf fa-3x"></i>
+                                        <p class="card-text">Document PDF</p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <!-- Lien pour voir le document PDF -->
+                                        <a href="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="btn btn-danger" target="_blank">Voir le document PDF</a>
+                                    </div>
+                                </div>
+                                @else
+                                <!-- Si le type de média n'est ni une image ni une vidéo ni un PDF -->
+                                <p>Le type de média n'est pas pris en charge.</p>
+                                @endif
+                                @endif
+
+
+
+
+                            </div>
                         </div>
-                    </a>
-                    <p class="card-text  text-white">{{ $question->content }}</p>
 
-                    @if ($question->media_path)
-                    <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 80px; cursor: pointer;">
-                    @endif
+                        <form action="{{ route('answers.store', $question) }}" method="post" class="response-form" id="response-form-{{ $question->id }}" style="display: none;">
+                            @csrf
+                            <div class="form-group ">
+                                <textarea name="content" class="form-control text-white " style="background-color:#081b29" rows="3" placeholder="Votre réponse"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" style="background-image:linear-gradient(180deg, #081b29, #0ef);box-shadow: 0 0 1px #0ef;border-radius:10px; width:20%">Envoyer</button>
+                        </form>
 
-                </div>
                     </div>
-
-                    <form action="{{ route('answers.store', $question) }}" method="post" class="response-form" id="response-form-{{ $question->id }}" style="display: none;">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="content" class="form-control text-white " style="background-color:#081b29" rows="3" placeholder="Votre réponse"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm" style="background-image:linear-gradient(180deg, #081b29, #0ef);box-shadow: 0 0 1px #0ef;border-radius:10px; width:20%">Envoyer</button>
-                    </form>
-
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
+        @endif
     </div>
-    @endif
-</div>
+    <!-- <div class="col-md-4 ml-auto">
+    <img src="{{ asset('assets/img/integra.png') }}" alt="Description de ton image" width="400" height="1000">
+</div> -->
 
-<!-- Ajouter le code JavaScript pour masquer automatiquement les messages d'erreur -->
-<script>
-    // Attendre 3 secondes avant de masquer les messages d'erreur automatiquement
-    setTimeout(function() {
-        document.querySelectorAll('.auto-dismiss').forEach(function(element) {
-            element.style.display = 'none';
+
+    <!-- Ajouter le code JavaScript pour masquer automatiquement les messages d'erreur -->
+    <script>
+        // Attendre 3 secondes avant de masquer les messages d'erreur automatiquement
+        setTimeout(function() {
+            document.querySelectorAll('.auto-dismiss').forEach(function(element) {
+                element.style.display = 'none';
+            });
+        }, 3000);
+
+        // JavaScript pour afficher le champ de réponse lorsqu'on clique sur l'icône "réponse"
+        document.querySelectorAll('.toggle-response').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var target = document.querySelector(button.getAttribute('data-target'));
+                if (target.style.display === 'none') {
+                    target.style.display = 'block';
+                } else {
+                    target.style.display = 'none';
+                }
+            });
         });
-    }, 3000);
 
-    // JavaScript pour afficher le champ de réponse lorsqu'on clique sur l'icône "réponse"
-    document.querySelectorAll('.toggle-response').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var target = document.querySelector(button.getAttribute('data-target'));
-            if (target.style.display === 'none') {
-                target.style.display = 'block';
-            } else {
-                target.style.display = 'none';
-            }
+        // JavaScript pour agrandir l'image lorsqu'on clique dessus
+        document.querySelectorAll('.preview-image').forEach(function(image) {
+            image.addEventListener('click', function() {
+                var img = new Image();
+                img.src = image.src;
+                var w = window.open("");
+                w.document.write(img.outerHTML);
+            });
         });
-    });
 
-    // JavaScript pour agrandir l'image lorsqu'on clique dessus
-    document.querySelectorAll('.preview-image').forEach(function(image) {
-        image.addEventListener('click', function() {
-            var img = new Image();
-            img.src = image.src;
-            var w = window.open("");
-            w.document.write(img.outerHTML);
+        // JavaScript pour afficher une confirmation avant de signaler
+        function confirmReport() {
+            return confirm('trouvez vous le contenue innaproprie ? \n Êtes-vous sûr de vouloir signaler cette question?');
+        }
+
+        function confirmDelete() {
+            return confirm('voulez vous vraiment   supprimer cette  discussion?');
+        }
+
+
+        // JavaScript pour éclaircir légèrement la couleur du div contenant chaque question lorsque le curseur survole
+        document.querySelectorAll('.question-card').forEach(function(card) {
+            card.addEventListener('mouseenter', function() {
+                card.style.backgroundColor = '#0a2545'; // Couleur de fond légèrement plus foncée
+                card.style.transition = 'background-color 0.3s ease'; // Animation de transition
+            });
+
+
+            card.addEventListener('mouseleave', function() {
+                card.style.backgroundColor = '#081b29'; // Retour à la couleur de fond d'origine
+                card.style.transition = 'background-color 0.3s ease'; // Animation de transition
+            });
         });
-    });
+    </script>
 
+    @endsection
 
-    
-  // JavaScript pour éclaircir légèrement la couleur du div contenant chaque question lorsque le curseur survole
-document.querySelectorAll('.question-card').forEach(function(card) {
-    card.addEventListener('mouseenter', function() {
-        card.style.backgroundColor = '#0a2545'; // Couleur de fond légèrement plus foncée
-        card.style.transition = 'background-color 0.3s ease'; // Animation de transition
-    });
+    @section('styles')
+    <!-- Lien vers les icônes Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-    card.addEventListener('mouseleave', function() {
-        card.style.backgroundColor = '#081b29'; // Retour à la couleur de fond d'origine
-        card.style.transition = 'background-color 0.3s ease'; // Animation de transition
-    });
-});
-
-</script>
-
-@endsection
-
-@section('styles')
-<!-- Lien vers les icônes Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
-<style>
- .card .img-profile.rounded-circle {
-    width: 10px; /* Modifier cette valeur selon vos besoins */
-    height: 10px; /* Modifier cette valeur selon vos besoins */
+    <style>
+.custom-badge {
+    background-color: #081b29; /* Couleur de fond du badge */
+    color: #ffffff; /* Couleur du texte */
+    border: 1px solid #ffffff; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
 }
 
 
-    .like-button {
-        background-color: white;
-        color: white;
-        border: 1px solid #ccc;
-    }
+        .card .img-profile.rounded-circle {
+            width: 10px;
+            /* Modifier cette valeur selon vos besoins */
+            height: 10px;
+            /* Modifier cette valeur selon vos besoins */
+        }
 
-    .like-button .fas {
-        color: white;
-    }
+        .like-button {
+            background-color: white;
+            color: white;
+            border: 1px solid #ccc;
+        }
 
-    .like-badge {
-        background-color: white;
-        color: black;
-    }
+        .like-button .fas {
+            color: white;
+        }
 
-    .btn-reply i {
-        color: blue;
-    }
+        .like-badge {
+            background-color: white;
+            color: black;
+        }
 
-    .btn-report i {
-        color: yellow;
-    }
+        .btn-reply i {
+            color: blue;
+        }
 
-    .btn-reply,
-    .btn-report {
-        background-color: transparent;
-        border: none;
-    }
+        .btn-report i {
+            color: yellow;
+        }
 
-    .custom-placeholder::placeholder {
-        color: white;
-        /* Couleur du texte du placeholder */
-    }
-</style>
-@endsection
+        .btn-reply,
+        .btn-report {
+            background-color: transparent;
+            border: none;
+        }
+
+        .custom-placeholder::placeholder {
+            color: white;
+            /* Couleur du texte du placeholder */
+        }
+    </style>
+    @endsection

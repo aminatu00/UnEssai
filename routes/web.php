@@ -20,10 +20,12 @@ use App\Http\Controllers\MentoratController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DemandeMentoratController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\DmTutoratController;
 
-
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\SignalementController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +42,14 @@ use App\Http\Controllers\ReportController;
 //     return view('dashboard');
 // });
 Route::get('/', function () {
-    return view('welcome');
+    return view('AccueilForum');
 });
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
+
+// Route::group(['middleware' => ['auth', 'verified']], function () {
+    
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  // administrateurrrrrrr
@@ -70,10 +75,21 @@ Route::get('/questions/search', [QuestionController::class, 'search'])->name('qu
 Route::get('/questions', [QuestionController::class, 'index'])->name('question.index');
 //pour la reponses
 Route::get('/questions/{question}/answers', [AnswerController::class, 'show'])->name('answers.show');
+
+//lien nouvelle reponse notifiction
+Route::get('/questions/{question}/answers/{answer}', [AnswerController::class, 'notifshow'])->name('answers.notifshow');
+
+//lien likenotification reponse
+Route::get('/questioons/{question}/answers/{answer}', [AnswerController::class, 'likeshow'])->name('answers.likeshow');
+
+//lien discussion aime notification
+Route::get('/queestiones/{question}', [QuestionController::class, 'showno'])->name('questions.notifshow');
+
+
 //supprimer reponses 
 Route::delete('/answers/{answer}', [AnswerController::class, 'destroy'])->name('answers.destroy');
 //enregister la reponse
-Route::post('/questions/{question}/answers', [AnswerController::class, 'store'])->name('answers.store');
+Route::post('/questiones/{question}/answers', [AnswerController::class, 'store'])->name('answers.store');
 //aimer question
 Route::post('/questions/{question}/like', [QuestionController::class, 'like'])->name('questions.like');
  //affichage notification
@@ -89,12 +105,13 @@ Route::post('/questions/{question}/like', [QuestionController::class, 'like'])->
     Route::put('/answers/{answer}', [AnswerController::class, 'update'])->name('answers.update');
     //edition reponse
     Route::get('/answers/{answer}/edit', [AnswerController::class, 'edit'])->name('answers.edit');
+    //route pour dire qu'une reponse a satisfaite a la question
+    Route::match(['post', 'put'], '/answers/{answer}/accept', [AnswerController::class, 'acceptAnswer'])->name('answers.accept');
     //liste des etidiants dans le systeme
     Route::get('/listeUser', [UserController::class, 'index'])->name('listeUser.index');
     //edition des utilisateur
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     //pour supprimer un utilisateur
-    Route::delete('/users/{user}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 
     //affichage page notification
     Route::get('/notif', [NotificationController::class, 'show'])->name('notification.show');
@@ -205,7 +222,8 @@ Route::get('/mentors/{id}', [UserController::class, 'show'])->name('mentors.show
 
 
 //route pour signalement 
-Route::post('/questions/{id}/report', [SignalementController::class, 'report'])->name('questions.report');
+Route::post('/questiones/{id}/report', [SignalementController::class, 'report'])->name('questions.report');
+Route::post('/questions/{id}/report', [SignalementController::class, 'reportAns'])->name('answers.report');
 
 Route::get('/admin/reported-questions', [AdminController::class, 'manageReportedQuestions'])->name('reported.admin');
 
@@ -230,11 +248,12 @@ Route::get('/admin/reported-questions/{id}', [AdminController::class, 'showRepor
 
 
 Route::delete('/admin/reported-questions/{id}', [AdminController::class, 'deleteReportedQuestion'])->name('reported.questions.delete');
+Route::delete('/admine/reported-questions/{id}', [AdminController::class, 'deleteReportedAnswer'])->name('reported.answers.delete');
 
 // Route::post('/signaler/contenue/{question_id}', [SignalementController::class, 'create'])->name('reports.create');
 
 
-// Route::post('/signaler-contenu', [SignalementController::class, 'store'])->name('reports.store');
+ Route::post('/signaler-contenu', [SignalementController::class, 'store'])->name('reports.store');
 
 //admin peut voir question , reponses et aussi peut supprimer questions , reponses
 
@@ -243,10 +262,66 @@ Route::get('Unequestions/{question}', [QuestionController::class, 'showAdmin'])-
 Route::delete('Unequestions/{question}', [QuestionController::class, 'destroyAdmin'])->name('questionAdmin.destroy');
 Route::delete('Uneanswers/{answer}', [AnswerController::class, 'destroyAdmin'])->name('answerAdmin.destroy');
 
+//pour le mentorat
+Route::post('/mentor-request', [DemandeMentoratController::class, 'submit'])->name('mentor.request.submit');
+Route::get('/mentor-request/{id}', [DemandeMentoratController::class, 'show'])->name('mentor.request.show');
+Route::get('/mentor-requests', [DemandeMentoratController::class, 'index'])->name('mentor.requests.index');
+// route pour validation demande 
+Route::post('/mentor-request/{id}/validate', [DemandeMentoratController::class, 'validateRequest'])->name('mentor.validate');
+
+//demande pour tutorat
+Route::get('/tutoring_requests', [DmTutoratController::class, 'create'])->name('demandeTutorat.create');
+
+Route::post('/submit', [DmTutoratController::class, 'store'])->name('Dmtutorat.store');
+
+Route::get('/mentor/requests/{id}', [DmTutoratController::class, 'show'])->name('tutorat.request.show');
+
+Route::get('/mentor/requests/{mentorRequest}', [DmTutoratController::class, 'showee'])->name('voir.Tutorat.show');
 
 
+    Route::delete('/mentor/requests/{dmTutorat}', [DmTutoratController::class, 'destroy'])->name('Tutorat.destroy');
+
+    Route::get('/mentor/requests', [DmTutoratController::class, 'index'])->name('mentor.DmTutorat');
+
+
+
+
+
+
+    ////////////////////////////
+    // Route::post('/verify', [RegisterController::class, 'verify'])->name('verify');
+
+    // Route::get('/verifye', function () {
+    //     return view('emails.verify');
+    // })->name('verification');
+
+
+
+    Route::get('/verify-email', [VerificationController::class, 'show'])->name('verification.show');
+    Route::post('/verify-email', [VerificationController::class, 'verify'])->name('verification.verify');
+
+    // Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    // Route::post('/registeer', [RegisterController::class, 'register']);
 
 //le testtttt
 // Route::get('/testeuuuu', [StudentController::class, 'test'])->name('test');
 });
+
+// partie page accueil
+
+Route::get('/', [QuestionController::class, 'showAll'])->name('forum.home');
+//pour les categories hors du forum
+// Route::get('/categories/{id}', [CategoryController::class, 'indexCat'])->name('categories.indexCat');
+
+
+// Route::get('/categorieee/{id}/questions', [QuestionController::class, 'getQuestionsparCategory'])->name('categorie.showe');
+
+
+Route::get('/disscussions', [QuestionController::class, 'indexe'])->name('discussions.index');
+
+
+Route::get('/questions/{question}/answerrrs', [AnswerController::class, 'showa'])->name('answers.showa');
+
+
+
 

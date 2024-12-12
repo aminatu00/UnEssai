@@ -3,14 +3,15 @@
 
 <div class="container-fluid">
 
-    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+
+    <h1 class="h3 mb-4 text-white">Tableau de Bord </h1>
 
 
     <div class="col-md-14">
-        <div class="card">
+        <div class="card" style="background-color: #081b29;">
             <!-- Afficher les messages d'erreur -->
             @if ($errors->any())
-            <div class="alert alert-danger auto-dismiss">
+            <div class="alert alert-danger auto-dismiss text-white">
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -20,40 +21,38 @@
             @endif
              <!-- Afficher les messages de succès -->
              @if (session('success'))
-                <div class="alert alert-success auto-dismiss">
+                <div class="alert alert-success auto-dismiss text-white">
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="card-header">{{ __('La liste des utilisateurs ') }}</div>
-            <div class="card-body">
+
+            <div class="card-header text-white"style="background-color: #081b29; border: 1px solid #0ef;">{{ __('La liste des utilisateurs ') }}</div>
+            <div class="card-body text-white" style="background-color: #081b29; border: 1px solid #0ef;">
+
 
                 <!-- Display mentors for students -->
                 @if(auth()->user()->user_type === 'student')
                 @if (!$mentors->isEmpty())
-                <div class="mb-4">
-                    <h3>Your Mentors</h3>
+                <div class="mb-4 text-white" >
+                  <div class="text-white"><h3>Les Tuteurs</h3></div>  
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th>Expertise</th>
+                               <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                               
+                
                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mentors as $mentor)
                             <tr>
-                            <td><a href="{{ route('mentors.show', $mentor->id) }}">{{ $mentor->name }}</a></td>
-                                <td>{{ $mentor->email }}</td>
-                                <td>{{ $mentor->niveau }}</td>
-                               <td>
-                                @php
-                                $studentMentora = json_decode($mentor->expertise);
-                                echo implode('<br>', $studentMentora);
-                                @endphp
-                               </td>
+                            <td  class="text-white"  style="background-color:#081b29; color:#0ef"><a href="{{ route('mentors.show', $mentor->id) }}" style="color: #0ef; text-decoration: none;">{{ $mentor->name }}</a></td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $mentor->email }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $mentor->niveau }}</td>
+                               
                                
                             </tr>
                             @endforeach
@@ -61,87 +60,84 @@
                     </table>
                 </div>
                 @else
-                <p>No mentors found.</p>
-                @endif
+
+               
+               <div class="text-white" style="background-color:#081b29;padding:30px;" width="100%">  <p>Pas de tuteurs</p></div> 
+           @endif
                 <!-- Display students for mentors -->
                 @elseif(auth()->user()->user_type === 'mentor')
                 @if (!$students->isEmpty())
+
                 <div class="mb-4">
-                    <h3>Your Students</h3>
+                <div class="text-white " style="padding:10px;"><h3>Mes Etudiants Tuteurés</h3></div>  
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th>Centre d'intérêt</th>
-                                <th>Action</th>
+                                <th  class="text-white"  style="background-color:#081b29">Name</th>
+                                <th  class="text-white"  style="background-color:#081b29">Email</th>
+                                <th  class="text-white"  style="background-color:#081b29">Niveau</th>
+                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->niveau }}</td>
-                                <td>
-                                @php
-                                $studentMentor = json_decode($student->interests);
-                                echo implode('<br>', $studentMentor);
-                                @endphp
-                                </td>
-                                <td>
-                                    <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('users.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                    <form action="{{ route('users.destroy', $student->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->name }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->email }}</td>
+                                <td  class="text-white"  style="background-color:#081b29">{{ $student->niveau }}</td>
+                                
+             <!-- </td> -->
+
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 @else
-                <p>No students found.</p>
+                <p>Pas d'etudiants</p>
                 @endif
                 <!-- Display all users for admin -->
                 @elseif(auth()->user()->user_type === 'admin')
                 @if (!$students->isEmpty())
+
                 <div class="mb-4">
-                    <h3>Students</h3>
+               <div class="text-white"> <h3>Etudiants:</h3></div>     
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th>Centre d'intérêt</th>
-                                <th>Action</th>
+                                <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                                <th class="text-white"  style="background-color:#081b29">Centre d'intérêt</th>
+                                <th class="text-white"  style="background-color:#081b29">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->niveau }}</td>
-                                <td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->name }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->email }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $student->niveau }}</td>
+                                <td class="text-white" style="background-color:#081b29">
                                 @php
-                                $studentInterest = json_decode($student->interests);
-                                echo implode('<br>', $studentInterest);
-                                @endphp
+        $studentInterest = json_decode($student->interests);
+        if ($studentInterest && is_array($studentInterest)) {
+            echo implode('<br>', $studentInterest);
+        }
+    @endphp
+</td>
+
                                 </td>
 
-                                <td>
+                                <td  class="text-white"  style="background-color:#081b29">
                                     <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('students.edit', $student->id) }}" class="btn" style="color:#0ef"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -154,47 +150,55 @@
                 @endif
 
                 @if (!$mentors->isEmpty())
+
                 <div class="mb-4">
-                    <h3>Mentors</h3>
+                 <div class="text-white">  <h3>Tuteurs:</h3></div>  
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Niveau</th>
-                                <th>Expertise</th>
-                                <th>Centre d'interet</th>
-                                <th>Action</th>
+                                <th class="text-white"  style="background-color:#081b29">Name</th>
+                                <th class="text-white"  style="background-color:#081b29">Email</th>
+                                <th class="text-white"  style="background-color:#081b29">Niveau</th>
+                                <th class="text-white"  style="background-color:#081b29"> Domaine</th>
+                                <th class="text-white"  style="background-color:#081b29">Expertise</th>
+                                <th class="text-white"  style="background-color:#081b29">Action</th>
+  
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mentors as $mentor)
                             <tr>
-                                <td>{{ $mentor->name }}</td>
-                                <td>{{ $mentor->email }}</td>
-                                <td>{{ $mentor->niveau }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->name }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->email }}</td>
+                                <td class="text-white"  style="background-color:#081b29">{{ $mentor->niveau }}</td>
                               
-                                <td>
-                                @php
-                                $mentorExpertisesArray = json_decode($mentor->expertise);
-                                echo implode('<br>', $mentorExpertisesArray);
-                                @endphp
-                                </td>
-                                <td>
+                                <td class="text-white"  style="background-color:#081b29">
+    @php
+        $mentorExpertisesArray = json_decode($mentor->expertise);
+        if(is_array($mentorExpertisesArray)) {
+            echo implode('<br>', $mentorExpertisesArray);
+        }
+    @endphp
+</td>
+
+<td class="text-white"  style="background-color:#081b29">
     @php
         $subExpertisesArray = json_decode($mentor->sub_expertises, true);
-        echo implode('<br>', $subExpertisesArray);
+        if(is_array($subExpertisesArray)) {
+            echo implode('<br>', $subExpertisesArray);
+        }
     @endphp
 </td>
 
 
-                                <td>
+
+                                <td class="text-white"  style="background-color:#081b29">
                                     <!-- Icones pour modifier et supprimer -->
-                                    <a href="{{ route('mentors.edit', $mentor->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('mentors.edit', $mentor->id) }}" class="btn " style="color:#0ef"><i class="fas fa-edit"></i></a>
                                     <form action="{{ route('mentors.destroy', $mentor->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Est tu sure de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn " style="color:#ff0016" onclick="return confirm('Est tu sure de vouloir supprimer cet utilisateur?')"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -203,10 +207,32 @@
                     </table>
                 </div>
                 @else
-                <p>No mentors found.</p>
+            <div class="text-white"></div>    <p>No mentors found.</p>
                 @endif
                 @endif
             </div>
 
         </div>
-        @endsection
+
+        @endsection 
+
+      
+        @section('styles')
+ 
+
+    <style>
+.custom-table {
+    background-color: #081b29 !important;
+    color: white; /* Pour que le texte soit lisible sur un fond sombre */
+}
+
+.custom-table th,
+.custom-table td {
+    background-color: #081b29 !important;
+    color: white;
+    border: 1px solid #0ef; /* Pour une bordure visible */
+}
+
+     
+    </style>
+    @endsection

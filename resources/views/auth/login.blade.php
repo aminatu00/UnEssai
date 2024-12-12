@@ -51,9 +51,9 @@
         }
 
         .form-box h2 {
-            font-size: 32px;
+            font-size: 25px;
             color: #fff;
-            text-align: center;
+            text-align: bottom;
         }
 
         .form-box .input-box {
@@ -215,13 +215,61 @@
             transition: .5s;
             margin-left: 90px;
         }
+
+        .btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: 2px solid #0ef;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9999; /* Assure que le bouton reste au-dessus des autres éléments */
+}
+
+/* Style pour l'icône */
+.btn-back i {
+    vertical-align: middle;
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    padding-left: -100px;
+}
+
+.header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.header h2 {
+    font-size: 25px;
+    color: #fff;
+    margin: 0;
+}
+
+.highlight-text {
+    color: #0ef; /* Couleur plus foncée pour "StudentHub" */
+}
+
+
     </style>
 </head>
 <body>
+    
     <div class="wrapper">
         <span class="bg-animate"></span>
         <div class="form-box login">
-            <h2>Login</h2>
+        <div class="header">
+        <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo">
+        <h2>Connexion</h2>
+    </div>
             <form action="{{route('login')}}" method="POST">
                 @csrf
                 <div class="input-box">
@@ -241,25 +289,30 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                    <label>Password</label>
+                    <label>Mot de passe</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-white">
-                    {{ __('Forgot Your Password?') }}
+                    {{ __('Mot de passe oublie!') }}
                 </a>
                 @endif
                 <div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn">Connexion</button>
                 </div>
                 <div class="logreg-link">
-                    <p>Don't have an account? <a href="{{ route('register') }}" class="register-link">Sign-up</a></p>
+                    <p>Vous n'avez pas de compte?<a href="{{ route('register') }}" class="register-link">S'inscire</a></p>
                 </div>
             </form>
         </div>
         <div class="info-text login">
             <h2 style="margin-bottom: 60px; font-size: 36px;">Bienvenue</h2>
-            <p>"Rejoignez notre forum pédagogique pour une expérience d'apprentissage collaborative et enrichissante !"</p>
-        </div>
+            <p>Rejoignez <span class="highlight-text">StudentHub</span> pour une expérience d'apprentissage collaborative et enrichissante !</p>
+            </div>
     </div>
+     <!-- Bouton Back -->
+<!-- Bouton Back avec icône -->
+<button type="button" onclick="window.history.back()" class="btn-back">
+    <i class="bx bx-arrow-back"></i>
+</button>
 </body>

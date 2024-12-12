@@ -32,7 +32,7 @@ class DiscussionLikedNotification extends Notification
             return [
                 'discussion_id' => $this->discussion->id,
                 'message' => $this->liker->name . ' a aimé votre discussion.', // Message de la notification
-                'link' => route('questions.show', $this->discussion->id), // Lien vers la discussion
+                'link' => route('questions.notifshow', $this->discussion->id), // Lien vers la discussion
             ];
         }
         

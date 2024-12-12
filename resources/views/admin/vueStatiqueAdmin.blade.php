@@ -1,27 +1,46 @@
 @extends('layouts.template')
 @section('content')
 
-<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+<h1 class="h3 mb-0 text-white">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn- shadow-sm text-white" style="background-image:linear-gradient(180deg, #081b29, #0ef)"><i
+                                class="fas fa-download fa-sm text-white"></i> Generate Report</a>
+                           <!-- Afficher les messages d'erreur -->
+    @if ($errors->any())
+    <div class="alert alert-danger auto-dismiss">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <!-- Afficher les messages de succès -->
+    @if (session('success'))
+    <div class="alert alert-success auto-dismiss">
+        {{ session('success') }}
+    </div>
+    @endif      
                     </div>
+                    <
+                    
 
                    <!-- Content Row -->
 <div class="row">
 
 <!-- Nombre d'étudiants -->
 <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
+    <div class="card  py-2 text-white" style="background-color:#081b29 ; border: 2px solid #0ef">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                         Nombre d'étudiants</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentsCount }}</div>
+                    <div class="h5 mb-0 font-weight-bold text-white">{{ $studentsCount }}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-users fa-2x text-gray-300"></i>
-                </div>
+    <i class="fas fa-users fa-2x text-success"></i>
+</div>
+
             </div>
         </div>
     </div>
@@ -29,16 +48,16 @@
 
 <!-- Nombre de mentors -->
 <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
+    <div class="card text-white py-2" style="background-color:#081b29 ; border: 2px solid #0ef">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                         Nombre de mentors</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mentorsCount }}</div>
+                    <div class="h5 mb-0 font-weight-bold text-white">{{ $mentorsCount }}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                    <i class="fas fa-user-tie fa-2x " style="color:#0ef"></i>
                 </div>
             </div>
         </div>
@@ -47,16 +66,16 @@
 
 <!-- Nombre de questions -->
 <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
+    <div class="card text-white py-2" style="background-color:#081b29 ; border: 2px solid #0ef">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                         Nombre de questions</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $questionsCount }}</div>
+                    <div class="h5 mb-0 font-weight-bold text-white">{{ $questionsCount }}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-question-circle fa-2x text-gray-300"></i>
+                    <i class="fas fa-question-circle fa-2x " style="color:red"></i>
                 </div>
             </div>
         </div>
@@ -65,16 +84,16 @@
 
 <!-- Nombre de signalements -->
 <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2">
+    <div class="card text-white py-2" style="background-color:#081b29 ; border: 2px solid #0ef">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                    <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                         Nombre de signalements</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $reportsCount }}</div>
+                    <div class="h5 mb-0 font-weight-bold text-white">{{ $reportsCount }}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                    <i class="fas fa-exclamation-triangle fa-2x " style="color:#ffc108"></i>
                 </div>
             </div>
         </div>
@@ -85,13 +104,13 @@
 <!-- /.row -->
 
                 <!-- Content Row -->
-<div class="row">
+<div class="row" >
     <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
+    <div class="col-xl-8 col-lg-7" >
+        <div class="card shadow mb-4" >
             <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Forum Activity Overview</h6>
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"  style="background-color:#081b29 ;">
+                <h6 class="m-0 font-weight-bold text-white"  style="background-color:#081b29 ">Tendance quotidienne des questions posées</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -106,9 +125,9 @@
                 </div>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+            <div class="card-body" style="background-color:#081b29 ; " >
+                <div class="chart-area "  style="background-color:#081b29 ; ">
+                    <canvas id="myAreaChart"  style="background-color:#081b29 ;"></canvas>
                 </div>
             </div>
         </div>
@@ -118,8 +137,8 @@
     <div class="col-xl-4 col-lg-5">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Mentorship Distribution</h6>
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"  style="background-color:#081b29 ;">
+                <h6 class="m-0 font-weight-bold text-white py-2">Évolution de la création de tutorat</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -134,9 +153,9 @@
                 </div>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
+            <div class="card-body text-white" style="background-color:#081b29 ;">
+                <div class="chart-pie pt-4 pb-2" style="background-color:#081b29 ; ">
+                    <canvas id="myPieChart"  ></canvas>
                 </div>
                 <div class="mt-4 text-center small">
                     @foreach($mentorshipDistributionData as $domaine => $count)

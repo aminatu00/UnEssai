@@ -2,29 +2,29 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+    <div class="sidebar-brand-icon rotate-n-15">
+            <img src="{{ asset('assets/img/logoForum.png') }}" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%;">
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3" style="text-transform: none;">StudentHub</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <!-- <hr class="sidebar-divider my-0"> -->
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <!-- <li class="nav-item active">
         <a class="nav-link" href="{{ route('mentor.dashboardeu') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Tableau de bord</span>
         </a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu
+    Votre Menu
     </div>
 
     <!-- Nav Item - Recent Discussions -->
@@ -79,7 +79,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('listeUser.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
-            <span>Étudiants mentorés</span>
+            <span>Étudiants tuteurés</span>
         </a>
     </li>
 
@@ -95,9 +95,19 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('meetings.index') }}">
             <i class="fas fa-fw fa-user-friends"></i>
-            <span>Mes mentorats</span>
+            <span>Mes sessions de tutorat</span>
         </a>
     </li>
+
+<!-- Nav Item - Add Mentor -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('tutorat.request.show', ['id' => Auth::user()->id]) }}">
+        <i class="fas fa-fw fa-user-plus"></i>
+        <span>Demande de Tutorat</span>
+    </a>
+</li>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

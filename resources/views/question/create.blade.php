@@ -1,10 +1,9 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8 offset-md-2">
+<div class="col-md-8 offset-md-2 text-white">
     <div class="card text-white">
-        <div class="card-header  "style="background-color:#081b29">
-        </div>
-        <div class="card-body"style="background-color:#081b29">
+       
+        <div class="card-body" style="background-color: #081b29; border: 1px solid #0ef;">
             @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -16,7 +15,7 @@
             @endif
             <form action="{{ route('questions.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="mb-3">
+                <div class="mb-3 text-white">
                     <label for="categorie" class="form-label text-white">Catégorie</label>
                     <select name="categorie" id="categorie" class="form-select text-white"style="background-color:#081b29">
                         @foreach($categories as $category)
@@ -36,9 +35,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="media" class="form-label text-white" style="background-color:#081b29">Ajouter une image </label>
-                    <input type="file" name="media" id="media" class="form-control text-white" style="background-color:#081b29" accept="image/*,video/*">
-                </div>
+    <label for="media" class="form-label text-white" style="background-color:#081b29">Ajouter un fichier</label>
+    <input type="file" name="media" id="media" class="form-control text-white" style="background-color:#081b29" accept="*/*">
+</div>
+
 
         </div>
         <div id="previewContainer" class="mb-3" style="display: none;">

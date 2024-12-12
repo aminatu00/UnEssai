@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Mentor;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
+
+
 class MentorController extends Controller
 {
     /**
@@ -15,27 +19,50 @@ class MentorController extends Controller
      */
     public function index()
     {
-        $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
-    return view('question.index', compact('questions'));
-        // return view('mentor.accueil');
+        if (Auth::check()) {
+            $user = Auth::user();
+            $userInterests = json_decode($user->interests);
+    
+            if ($userInterests !== null && !empty($userInterests)) {
+                // Récupérer les IDs des catégories associées aux centres d'intérêt de l'utilisateur
+                $categoryIds = Category::whereIn('nom', $userInterests)->pluck('id')->toArray();
+    
+                // Récupérer les questions qui correspondent aux catégories d'intérêt de l'utilisateur
+                $questions = Question::whereIn('category_id', $categoryIds)->get();
+            } else {
+                // Si l'utilisateur n'a pas de centres d'intérêt définis, afficher un message ou une logique par défaut
+                $questions = Question::all(); // Ou autre logique par défaut
+            }
+            
+            $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
+    
+    
+    
+            return view('question.index', compact('questions'));
+        }
     }
+    
 
     
 
 
     public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'niveau' => 'nullable|string',
-            'expertise' => 'required|array', // L'expertise est requise pour les mentors
-            'expertise.*' => 'string',
-            'sub_expertises' => 'nullable|array', // Les sous-expertises sont facultatives
-            'sub_expertises.*' => 'string',
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'niveau' => 'nullable|string',
+        'expertise' => 'required|array', // L'expertise est requise pour les mentors
+        'expertise.*' => 'string',
+        'sub_expertises' => 'nullable|array', // Les sous-expertises sont facultatives
+        'sub_expertises.*' => 'string',
+    ]);
 
+    // Ajouter une ligne pour déboguer les données reçues
+    // dd($request->all()); // <- décommenter cette ligne pour voir les données reçues
+    
+    try {
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -43,11 +70,16 @@ class MentorController extends Controller
             'user_type' => 'mentor', // Définir le type d'utilisateur comme mentor
             'niveau' => $data['niveau'],
             'expertise' => json_encode($data['expertise']), // Convertir en JSON
-    'sub_expertises' => json_encode($data['sub_expertises']), // Convertir en JSON
+            'sub_expertises' => json_encode($data['sub_expertises']), // Convertir en JSON
         ]);
 
         return redirect()->route('listeUser.index')->with('success', 'Inscription mentor réussie.');
+    } catch (\Exception $e) {
+        // En cas d'erreur, rediriger avec un message d'erreur
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+}
+
 
     
 

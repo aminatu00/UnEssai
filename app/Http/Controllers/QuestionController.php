@@ -16,7 +16,30 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function showAll()
+    {
+        // Logic to fetch all questions
+        $questions = Question::all(); // Example logic, adjust as per your needs
+        $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
 
+       
+
+        return view('AccueilForum', compact('questions'));
+    }
+
+
+    //  public function getQuestionsByCategory($id)
+    //  {
+    //      // Récupérer les questions pour la catégorie spécifiée par $id
+    //      $category = Category::find($id);
+     
+    //      if ($category) {
+    //          $questions = $category->questions;
+    //          return view('nonConnecter.discussion', ['questions' => $questions, 'category' => $category]);
+    //      } else {
+    //          return view('nonConnecter.discussion')->with('error', 'Aucune question associée à cette catégorie.');
+    //      }
+    //  }
 
 
      public function getQuestionsByCategory($id)
@@ -99,15 +122,19 @@ class QuestionController extends Controller
     }
 
     public function index()
-   {
-     $questions = Question::latest()->paginate(10); // Replace 'Question' with your actual model name.
-    return view('question.index', compact('questions'));
-   }
+    {
+        // Utilisez 'with' pour charger la relation 'category' avec chaque question
+        $questions = Question::with('category_id')->latest()->paginate(10);
+        
+        return view('question.index', compact('questions'));
+    }
+    
 
 
    public function indexAdmin()
    {
        $questions = Question::all();
+       $questions = Question::latest()->paginate(10);
        return view('admin.voirQuestion', compact('questions'));
    }
 
@@ -125,29 +152,39 @@ class QuestionController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        // Vérifier si l'utilisateur est connecté
-        if (Auth::check()) {
-            // Vérifier le type d'utilisateur
-            if (Auth::user()->user_type === 'mentor') {
-                // Si c'est un mentor, récupérer ses expertises
-                $userExpertise = json_decode(Auth::user()->expertise);
+{
+    // Vérifier si l'utilisateur est connecté
+    if (Auth::check()) {
+        // Initialiser $categories à une liste vide par défaut
+        $categories = [];
+
+        // Vérifier le type d'utilisateur
+        if (Auth::user()->user_type === 'mentor') {
+            // Si c'est un mentor, récupérer ses expertises
+            // $userExpertise = json_decode(Auth::user()->expertise);
+            $userInterests = json_decode(Auth::user()->interests);
+
+            // Vérifier si $userExpertise est null ou non
+            if ($userInterests !== null) {
                 // Récupérer les catégories correspondant à ses expertises
-                $categories = Category::whereIn('nom', $userExpertise)->get();
-            } elseif (Auth::user()->user_type === 'student') {
-                // Si c'est un étudiant, récupérer ses centres d'intérêt
-                $userInterests = json_decode(Auth::user()->interests);
+                $categories = Category::whereIn('nom', $userInterests)->get();
+            }
+        } elseif (Auth::user()->user_type === 'student') {
+            // Si c'est un étudiant, récupérer ses centres d'intérêt
+            $userInterests = json_decode(Auth::user()->interests);
+            // Vérifier si $userInterests est null ou non
+            if ($userInterests !== null) {
                 // Récupérer les catégories correspondant à ses centres d'intérêt
                 $categories = Category::whereIn('nom', $userInterests)->get();
             }
-    
-            return view('question.create', compact('categories'));
         }
-    
-        // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-        return redirect()->route('login');
+
+        return view('question.create', compact('categories'));
     }
-    
+
+    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    return redirect()->route('login');
+}
 
 
     /**
@@ -166,13 +203,14 @@ class QuestionController extends Controller
             'title' => 'required',
             'content' => 'required',
             'categorie' => 'required|exists:categories,id', // Assurez-vous que l'ID de la catégorie existe dans la table des catégories
-            'media' => 'nullable|file|mimes:jpeg,png,mp4|max:10240', // Taille maximale : 10 Mo
-        ]);
+            'media' => 'nullable|file|mimetypes:image/jpeg,image/png,image/gif,video/mp4,application/pdf|max:10240', // Validation pour les images et les vidéos
+            'file' => 'nullable|filemimetypes:application/pdf|max:10240', // Validation pour les fichiers
+                    ]);
 
       
     
         // Liste des mots considérés comme spam
-        $spamWords = ['spam', 'insulte', 'merde'];
+        $spamWords = ['mot interdit', 'insulte', 'merde'];
     
         // Convertir le contenu et le titre en minuscules pour une comparaison insensible à la casse
         $questionContent = strtolower($request->content);
@@ -197,31 +235,29 @@ class QuestionController extends Controller
             }
         }
 
-        
-    // Vérification si un fichier média a été téléchargé
-    if ($request->hasFile('media')) {
-        // Téléchargement du fichier
-        $mediaPath = $request->file('media')->store('public/media');
-        // dd($mediaPath);
+   // Vérification si un fichier média a été téléchargé
+if ($request->hasFile('media')) {
+    // Téléchargement du fichier
+    $mediaPath = $request->file('media')->store('public/media');
 
-        // Enregistrement du chemin du fichier dans la base de données
-        $question = Question::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => auth()->id(),
-            'category_id' => $request->categorie,
-            'media_path' => $mediaPath,
-        ]);
-    } else {
-        // Création de la question sans fichier média
-        $question = Question::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => auth()->id(),
-            'category_id' => $request->categorie,
-        ]);
-    }
-    
+    // Enregistrement du chemin du fichier dans la base de données
+    $question = Question::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'user_id' => auth()->id(),
+        'category_id' => $request->categorie,
+        'media_path' => $mediaPath,
+    ]);
+}  else {
+    // Création de la question sans fichier média
+    $question = Question::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'user_id' => auth()->id(),
+        'category_id' => $request->categorie,
+    ]);
+}
+
         
         // Redirigez l'utilisateur vers la page des questions avec un message de succès
         return redirect()->route('question.index')->with('success', 'Question ajoutée avec succès.');
@@ -236,6 +272,17 @@ class QuestionController extends Controller
       $question = Question::findOrFail($id);
       return view('question.show', compact('question'));
    }
+
+
+   public function showno($id)
+   {
+       // Récupérer la question spécifique
+       $question = Question::findOrFail($id);
+   
+       // Charger la vue avec les données de la question
+       return view('question.likeDiscussion', compact('question'));
+   }
+   
 
     /**
      * Show the form for editing the specified resource.

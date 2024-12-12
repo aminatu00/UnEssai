@@ -28,13 +28,50 @@ class RegistrationController extends Controller
         $domains = [
             'informatique' => ['java', 'php', 'html', 'css', 'javascript'],
             'reseaux' => ['reseaux sans fil', 'reseaux avec fil'],
-            'chimie' => ['chimie organique', 'chimie analytique'],
-            'physique' => ['physique quantique', 'physique classique'],
-            'math' => ['algèbre', 'analyse'],
+           
         ];
 
-        return view('admin.ajoutMentor', compact('domains'));
+        $sub_expertises = [
+          'licence 2' => [
+                'informatique' => ['javascript', 'languageC', 'PHP'],
+                'reseaux' => ['Electronique', 'serice reseaux']
+            ],
+            'licence 3' => [
+                'informatique' => ['JAVA', 'UML', 'JSP'],
+                'reseaux' => ['Electronique', 'Routage et communication']
+            ],
+            'master 1' => [
+                'informatique' => ['python', 'flutter', ' Programmation C++,'],
+                'reseaux' => ['base des telecoms', 'module15']
+            ],
+            'master 2' => [
+                'informatique' => ['Sécurité des SI ', 'Datawarehouse', 'Datamining'],
+                'reseaux' => ['base des telecoms', 'serice reseaux']
+            ],
+            // Ajoutez d'autres niveaux et leurs relations avec les domaines et les modules
+        ];
+        
+
+        return view('admin.ajoutMentor', compact('domains','sub_expertises'));
     }
+
+//     public function showMentorForm()
+// {
+//     $expertisesParNiveau = [
+//         'licence 2' => [
+//             'informatique' => ['java', 'php', 'html', 'css', 'javascript'],
+//             'reseaux' => ['reseaux sans fil', 'reseaux avec fil']
+//         ],
+//         'licence 3' => [
+//             'informatique' => ['python', 'ruby', 'mysql', 'mongodb', 'angular'],
+//             'reseaux' => ['cisco', 'routing', 'switching']
+//         ],
+//         // Ajoutez d'autres niveaux et leurs relations avec les domaines et les sous-expertises
+//     ];
+
+//     return view('admin.ajoutMentor', compact('expertisesParNiveau'));
+// }
+
 
    
 

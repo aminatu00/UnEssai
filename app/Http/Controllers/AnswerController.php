@@ -7,16 +7,51 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Notifications\NewReplyNotification;
 use App\Notifications\ReplyLikedNotification;
+use App\Notifications\AnswerMarkedAsAcceptedNotification;
 
 class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+
+
+
+
+     public function acceptAnswer(Answer $answer)
+     {
+         $question = $answer->question;
+         $question->update(['is_accepted' => true]);
+         $answer->update(['is_accepted' => true]);
+         $answer->user->notify(new AnswerMarkedAsAcceptedNotification($answer));
+         return redirect()->back()->with('success', 'Réponse marquée comme satisfaisante avec succès.');
+     }
+
+     public function notifshow($id)
+     {
+         // Récupérer la question spécifique
+         $question = Question::findOrFail($id);
+     
+         // Récupérer la réponse en question
+         $answer = $question->answers->where('id', $question->answer_id)->first();
+     
+         // Charger la vue avec les données de la question et la réponse en question
+         return view('answer.show', compact('question', 'answer'));
+     }
+
+
+     public function likeshow($id)
+     {
+         // Récupérer la question spécifique
+         $question = Question::findOrFail($id);
+     
+         // Récupérer la réponse en question
+         $answer = $question->answers->where('id', $question->answer_id)->first();
+     
+         // Charger la vue avec les données de la question et la réponse en question
+         return view('answer.show', compact('question', 'answer'));
+     }
+     
 
     /**
      * Show the form for creating a new resource.
@@ -115,6 +150,16 @@ if ($answer->comments && $answer->comments->isNotEmpty()) {
     
         // Charger la vue avec les données de la question et ses réponses
         return view('answer.show', compact('question', 'answers'));
+    }
+
+
+    public function showa($id)
+    {
+        $question = Question::findOrFail($id);
+        $answers = $question->answers;
+    
+        // Charger la vue avec les données de la question et ses réponses
+        return view('nonConnecter.show', compact('question', 'answers'));
     }
     
 

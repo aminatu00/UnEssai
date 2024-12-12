@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->string('media_path')->nullable();
+            
         });
     }
 

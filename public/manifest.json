@@ -1,0 +1,24 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "Laravel",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "/",
+    "short_name": "Laravel",
+    "theme_color": "transparent",
+    "description": "Laravel PWA starter",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+      {
+        "src": "/public/img/accu.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }
+    ],
+    "url": "/",
+    "screenshots": []
+  }

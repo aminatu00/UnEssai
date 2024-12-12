@@ -3,7 +3,7 @@
 
 
 
-        <div class="col-md-8">
+<div class="col-md-8 offset-md-2 text-white">
           <div class="text-white"><h1>Liste des questions</h1></div>  
             <form action="{{ route('questions.search') }}" method="GET" class="mb-3">
                 <div class="input-group" style="background-color:#081b29">
@@ -11,7 +11,7 @@
                     <button type="submit" class="btn btn-primary search-button text-white" style="background-color:#081b29;background-image:linear-gradient(180deg, #081b29, #0ef);">Rechercher</button>
                 </div>
             </form>
-            @if ($questions->isEmpty())
+            @if (!isset($question))
               <div class="text-white"><p>Aucune question n'a été trouvée.</p></div>  
             @else
                 <div class="row">
@@ -20,8 +20,38 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                 @if ($question->media_path)
-            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 text-white" alt="Image de la question">
-            @endif
+                            @php
+                            $extension = pathinfo($question->media_path, PATHINFO_EXTENSION);
+                            @endphp
+
+                            @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
+                            <!-- Afficher une image -->
+                            <img src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="img-fluid mb-2 preview-image" alt="Image de la question" style="max-height: 80px; cursor: pointer;">
+                            @elseif ($extension === 'mp4')
+                            <!-- Afficher une vidéo -->
+                            <video controls style="max-width: 100%; max-height: 300px;">
+                                <source src="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            @elseif ($extension === 'pdf')
+                            <div class="card" style="max-width: 300px;">
+                                <div class="card border-danger mb-3" >
+                                    <div class="card-body text-danger">
+                                        <!-- Utilisation d'une icône pour représenter le document PDF -->
+                                        <i class="far fa-file-pdf fa-3x"></i>
+                                        <p class="card-text">Document PDF</p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <!-- Lien pour voir le document PDF -->
+                                        <a href="{{ Storage::url(str_replace('public/', '', $question->media_path)) }}" class="btn btn-danger" target="_blank">Voir le document PDF</a>
+                                    </div>
+                                </div>
+                                @else
+                                <!-- Si le type de média n'est ni une image ni une vidéo ni un PDF -->
+                                <p>Le type de média n'est pas pris en charge.</p>
+                                @endif
+                                @endif
                                     <div class="text-white text-sm mb-2">{{ $question->created_at->format('d/m/Y H:i') }}</div>
                                     <a href="{{ route('answers.show', $question) }}">
     <h2 class="card-title h5 text-white">{{ $question->title }}</h2>

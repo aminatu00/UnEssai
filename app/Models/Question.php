@@ -15,6 +15,10 @@ class Question extends Model
         'category_id',
         'likes',
         'media_path', // Ajoutez ceci si vous souhaitez attribuer le champ category_id en masse
+        'reports_count',
+        'video_path',
+        'file_path',
+        'reports_count'
     ];
     
     public function user()
@@ -29,5 +33,9 @@ class Question extends Model
     public function categorie()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
